@@ -8,11 +8,17 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField(max_length=200, help_text='Required')
     password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
 
     class Meta:
         model = User
         fields = ['email', 'username', 'password1']
+
+    #Deleting the password2 field from the form, according to the most recent UX trends
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        del self.fields['password2']
     
     def clean_email(self):
         email = self.cleaned_data.get('email')
