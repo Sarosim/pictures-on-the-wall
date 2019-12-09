@@ -1,1 +1,1 @@
-web: gunicorn blog.wsgi:application
+web: gunicorn pictures_on_the_wall.wsgi:application
