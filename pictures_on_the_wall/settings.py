@@ -32,7 +32,10 @@ so it's never been revealed...)  'c4_sm)+br3pf2k%#umljs8jl1ajw*3r3k5-1mqcpb23qcw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8080-b7398b54-ea08-4efb-9070-3144e56ad111.ws-eu01.gitpod.io']
+ALLOWED_HOSTS = [
+    '8080-b7398b54-ea08-4efb-9070-3144e56ad111.ws-eu01.gitpod.io',
+    'https://picture-shop.herokuapp.com/',
+    ]
 
 
 # Application definition
