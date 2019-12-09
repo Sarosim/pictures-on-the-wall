@@ -1,0 +1,21 @@
+<!-- The page wghere the user can provide new password. - The link from the sent email brings them here -->
+<!-- The page to show when the user clicked on the 'email me a recovery link' button -->
+{% extends 'base.html' %}
+
+{% block page_title %}Password Reset Confirmation{% endblock %}
+
+{% block page_heading %}Reset Your Password{% endblock %}
+
+{% block content %}
+<p>Please enter your new password</p>
+
+{% csrf_token %}
+
+<p>
+	<label for="id_password1">Password:</label>
+	{{ form.password1 }}
+	<button>Change password</button>
+</p>
+
+
+{% endblock %}
