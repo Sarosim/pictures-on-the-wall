@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 if os.path.exists('env.py'):
     import env
@@ -25,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY = os.environ.get('SECRET_KEY')
 
-""" this was the old secret key (I generated new one and saved in uncommitted file and added another one to Heroku, 
+""" this was the old secret key (I generated new one and saved in uncommitted file and added another one to Heroku,
 so it's never been revealed...)  'c4_sm)+br3pf2k%#umljs8jl1ajw*3r3k5-1mqcpb23qcw5$0n' """
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -80,13 +81,16 @@ WSGI_APPLICATION = 'pictures_on_the_wall.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+} """
 
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+}    
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
