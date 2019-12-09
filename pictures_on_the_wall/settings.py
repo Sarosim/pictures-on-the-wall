@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+if os.path.exists('env.py'):
+    import env
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c4_sm)+br3pf2k%#umljs8jl1ajw*3r3k5-1mqcpb23qcw5$0n'
+SECRET_KEY = SECRET_KEY = os.environ.get('SECRET_KEY')
+
+""" this was the old secret key (I generated new one and saved in uncommitted file and added another one to Heroku, 
+so it's never been revealed...)  'c4_sm)+br3pf2k%#umljs8jl1ajw*3r3k5-1mqcpb23qcw5$0n' """
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
