@@ -1,4 +1,4 @@
-#Pictures on the Wall
+# Pictures on the Wall
 
 Full stack Milestone Project with Code Institute
 
