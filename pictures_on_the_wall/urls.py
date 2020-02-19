@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from authentication.views import index, logout, login, registration, user_profile
+from authentication.views import logout, login, registration, user_profile
+from home.views import index
 from authentication import urls as authentication_urls
 
 urlpatterns = [
