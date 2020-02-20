@@ -34,6 +34,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '8080-b7398b54-ea08-4efb-9070-3144e56ad111.ws-eu01.gitpod.io',
+    'localhost',
     'picture-shop.herokuapp.com',
     ]
 
