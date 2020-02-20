@@ -1,0 +1,82 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+.page--static {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 1220px;
+	margin: 0 auto;
+	padding: 2em 0 0;
+	text-align: center;
+}
+
+.page__title {
+	padding: 0 2em;
+}
+
+.page__title-main {
+	margin: 0 auto;
+	padding: 0.2em 0 0;
+}
+
+.page__title-sub {
+	margin: 0.5em 0 0.5em;
+    text-transform: capitalize;
+}
+
+.page__title-button {
+	margin: 0.5em 0 1em;
+}
+
+.grid {
+	position: relative;
+	z-index: 100;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 0 0 6em;
+	list-style: none;
+}
+
+.grid__item {
+	display: block;
+	flex: none;
+	width: 33.33%;
+	padding: 10px;
+}
+
+.grid__link {
+	display: block;
+	padding: 13px 13px 0 13px;
+	background: #fff;
+}
+
+.grid__image {
+	display: block;
+	width: 100%;
+}
+
+.grid__item-title {
+	font-family: 'Caveat', cursive;
+	line-height: 1;
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	padding: 1em 0.5em;
+	text-align: left;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #698b8d;
+	background: #fff;
+}

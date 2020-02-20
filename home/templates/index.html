@@ -1,3 +1,66 @@
 {% extends 'base.html' %}
+{% load staticfiles%}
 
-{% block content %}Hello World !{% endblock %}
+{% block content %}
+
+<div class="view">
+
+
+    <section class="page page--static">
+        
+        <div class="page__title">
+            <h1 class="page__title-main">Browse Wall Art by Categories</h1>
+            <h4 class="page__title-sub">alternatively search by #hashtag, Room, Mood or Artist</h4>
+            <button class="page__title-button">Search</button>
+        </div>
+
+        <ul class="grid" >
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/animals_category.jpg' %}" alt="Animals Category image">
+                    <h3 class="grid__item-title">Animals</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/abstract_category.jpg' %}" alt="Abstract Category image">
+                    <h3 class="grid__item-title">Abstract</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/architecture_category.jpg' %}" alt="Architecture Category image">
+                    <h3 class="grid__item-title">Architecture</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/flowers_category.jpg' %}" alt="Flowers Category image">
+                    <h3 class="grid__item-title">Flowers</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/food_category.jpg' %}" alt="Food & Drink Category image">
+                    <h3 class="grid__item-title">Food & Drink</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/painting_category.jpg' %}" alt="Painting Category image">
+                    <h3 class="grid__item-title">Painting</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/other_category.jpg' %}" alt="Other Category image">
+                    <h3 class="grid__item-title">Other</h3>
+                </a>
+            </li>
+        </ul>
+
+    </section>
+
+</div>
+
+{% endblock %}
