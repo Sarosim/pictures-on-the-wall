@@ -19,71 +19,114 @@
 			{tx: .95, ty:-.3, s:1.2, r:25}
         ],
         deviceEl = mainContainer.querySelector('.device'),
-        showGridCtrl = document.getElementById('showgrid'),
+        showGridButton = document.getElementById('showgrid'),
         pageTitleEl = mainContainer.querySelector('.page__title > .page__title-main'),
         pageSubTitleEl = mainContainer.querySelector('.page__title > .page__title-sub'),
         isAnimating,
         scrolled,
-        view = 'stack';
+        currentView = 'stack';
 
-console.log(gridItems)
-        // Initializing
-        function init() {
-            document.body.classList.add("overflow");
-            mainContainer.classList.add('view--loaded');
-                showIntro();
-                //initEvents();
-            
-        }
+    console.log(gridItems)
+    // Initializing
+    function init() {
+        document.body.classList.add("overflow");
+        mainContainer.classList.add('view--loaded');
+            showIntro();
+            initEvents();
+        
+    }
 
-function showIntro() {
-	// display the first set of 6 grid items behind the phone
-	gridItems.slice(0,6).forEach(function(item, pos) {
-		// positioning each of the 6 items on the bottom of the page 
-		// (item´s center is positioned on the middle of the page bottom)
-		// then we move them up and to the sides (extra values) 
-		// and also apply a scale and rotation
-		var itemOffset = item.getBoundingClientRect(),
-			settings = introPositions[pos],
-			center = {
-				x : winsize.width/2 - (itemOffset.left + item.offsetWidth/2),
-				y : winsize.height - (itemOffset.top + item.offsetHeight/2)
-			}
+    function showIntro() {
+        // display the first set of 6 grid items behind the phone
+        gridItems.slice(0,6).forEach(function(item, pos) {
+            // positioning each of the 6 items on the bottom of the page 
+            // (item´s center is positioned on the middle of the page bottom)
+            // then we move them up and to the sides (extra values) 
+            // and also apply a scale and rotation
+            var itemOffset = item.getBoundingClientRect(),
+                settings = introPositions[pos],
+                center = {
+                    x : winsize.width/2 - (itemOffset.left + item.offsetWidth/2),
+                    y : winsize.height - (itemOffset.top + item.offsetHeight/2)
+                }
 
-		// first position the items behind the phone
-		dynamics.css(item, {
-			opacity: 1,
-			translateX: center.x,
-			translateY: center.y,
-			scale: 0.5
-		});
+            // first position the items behind the phone
+            dynamics.css(item, {
+                opacity: 1,
+                translateX: center.x,
+                translateY: center.y,
+                scale: 0.5
+            });
 
-		// animation for each item to their final position
-		dynamics.animate(item, {
-			translateX: center.x + settings.tx*item.offsetWidth,
-			translateY: center.y + settings.ty*item.offsetWidth,
-			scale : settings.s,
-			rotateZ: settings.r
-		}, {
-            type: dynamics.spring,
-            frequency: 150,
-            friction: 300,
-			duration: 1000,
-			delay: pos * 80
-		});
-	});
+            // animation for each item to their final position
+            dynamics.animate(item, {
+                translateX: center.x + settings.tx*item.offsetWidth,
+                translateY: center.y + settings.ty*item.offsetWidth,
+                scale : settings.s,
+                rotateZ: settings.r
+            }, {
+                type: dynamics.spring,
+                frequency: 150,
+                friction: 300,
+                duration: 1000,
+                delay: pos * 80
+            });
+        });
 
-	// animation (sliding) the phone in:
-	    // first, push it slightly down; to make it disappear completely below the viewport
-    	// for that we need to set the translateY to winsize.height * 0.45 --> 45vh)
-	dynamics.css(deviceEl, { translateY: winsize.height * 0.35 } );
-	// then animate it up
-	dynamics.animate(deviceEl, { translateY: 0 }, {
-		type: dynamics.bezier,
-		points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}],
-		duration: 1000
-	});
-}
+        // animation (sliding) the phone in:
+            // first, push it slightly down; to make it disappear completely below the viewport
+            // for that we need to set the translateY to winsize.height * 0.45 --> 45vh)
+        dynamics.css(deviceEl, { translateY: winsize.height * 0.35 } );
+        // then animate it up
+        dynamics.animate(deviceEl, { translateY: 0 }, {
+            type: dynamics.bezier,
+            points: [{"x":0,"y":0,"cp":[{"x":0.2,"y":1}]},{"x":1,"y":1,"cp":[{"x":0.3,"y":1}]}],
+            duration: 1000
+        });
+    }
+
+    function initEvents() {
+    	showGridButton.addEventListener('click', showGrid);
+    }
+
+    function showGrid() {
+        showGridButton.style.display = "none";
+
+        dynamics.animate(titleEl, { translateY: -winsize.height/2, opacity: 0 }, {
+            type: dynamics.linear,
+            duration: 600
+        });
+        dynamics.animate(subtitleEl, { translateY: -winsize.height/2, opacity: 0 }, {
+            type: dynamics.linear,
+            duration: 600,
+            delay: 100
+        });
+        dynamics.animate(deviceEl, { translateY: winsize.height/2, opacity: 0 }, {
+            type: dynamics.linear,
+            duration: 600,
+        });
+        //moving the initial page that covers the grid view up and out of the viewport
+        dynamics.animate(pagemover, { translateY: -winsize.height }, {
+            type: dynamics.easeIn,
+            friction: 400,
+            duration: 600,
+            complete: function(element) {
+                // once it's out we set it transparent 
+                element.style.opacity = 0;
+                // change our currentView variable to grid
+                currentView = "grid";
+                mainContainer.classList.add('view--grid');
+            }
+        });
+        gridItems.slice(0,6).forEach(function(item, pos) {
+            dynamics.stop(item);
+            dynamics.animate(item, { scale: 1, translateX: 0, translateY: 0, rotateZ: 0 }, {
+                type: dynamics.easeInOut,
+			    duration: 600
+            });
+        });
+
+    }
 
     init();
 
