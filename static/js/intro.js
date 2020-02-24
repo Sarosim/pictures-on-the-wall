@@ -4,7 +4,7 @@
         gridEl = mainContainer.querySelector('.grid'),
         gridItems = [].slice.call(gridEl.querySelectorAll('.grid__item')),
         titleEl = mainContainer.querySelector('.title-wrap > .title--main'),
-        subtitleEl = mainContainer.querySelector('.title-wrap > .title--sub'),
+        subtitleElements = [].slice.call(mainContainer.querySelectorAll('.title-wrap > .title--sub')),
         pagemover = mainContainer.querySelector('.page--mover'),
         winsize = {width: window.innerWidth, height: window.innerHeight},
         introPositions = [
@@ -20,20 +20,17 @@
         ],
         deviceEl = mainContainer.querySelector('.device'),
         showGridButton = document.getElementById('showgrid'),
-        pageTitleEl = mainContainer.querySelector('.page__title > .page__title-main'),
+        pageTitleElement = mainContainer.querySelector('.page__title > .page__title-main'),
         pageSubTitleEl = mainContainer.querySelector('.page__title > .page__title-sub'),
-        isAnimating,
-        scrolled,
+        isAnimating = false,
         currentView = 'stack';
 
-    console.log(gridItems)
     // Initializing
     function init() {
-        document.body.classList.add("overflow");
+        //document.body.classList.add("overflow");
         mainContainer.classList.add('view--loaded');
-            showIntro();
-            initEvents();
-        
+        showIntro();
+        initEvents();
     }
 
     function showIntro() {
@@ -86,25 +83,47 @@
     }
 
     function initEvents() {
-    	showGridButton.addEventListener('click', showGrid);
+        showGridButton.addEventListener('click', showGrid);
+        
+        // The function that executes the transition to grid view on scroll event
+        var scrollToGrid = function() {
+            window.removeEventListener('scroll', scrollToGrid);
+            showGrid();
+        }
+        window.addEventListener('scroll', scrollToGrid);
     }
 
     function showGrid() {
+        if( isAnimating ) return;
+        isAnimating = true;
+        
+        // Stopping the pagescroll for the duration of the intro
+        mainContainer.classList.add('fix-for-intro'); 
+        setTimeout(function(){ 
+            console.log("Ez a SET TIMOUT vege")
+            mainContainer.classList.remove('fix-for-intro'); 
+        }, 2000);
+
         showGridButton.style.display = "none";
 
         dynamics.animate(titleEl, { translateY: -winsize.height/2, opacity: 0 }, {
             type: dynamics.linear,
             duration: 600
         });
-        dynamics.animate(subtitleEl, { translateY: -winsize.height/2, opacity: 0 }, {
+
+        subtitleElements.slice().forEach(function(element, pos) {
+            dynamics.animate(element, { translateY: -winsize.height/2, opacity: 0 }, {
             type: dynamics.linear,
             duration: 600,
-            delay: 100
+            delay: 10
+            });
         });
+
         dynamics.animate(deviceEl, { translateY: winsize.height/2, opacity: 0 }, {
             type: dynamics.linear,
             duration: 600,
         });
+
         //moving the initial page that covers the grid view up and out of the viewport
         dynamics.animate(pagemover, { translateY: -winsize.height }, {
             type: dynamics.easeIn,
@@ -125,6 +144,16 @@
 			    duration: 600
             });
         });
+        dynamics.animate(pageTitleElement, { translateY: winsize.height/4, opacity: 0 });
+        dynamics.animate(pageTitleElement, { translateY: 0, opacity: 1 }, {
+            type: dynamics.forceWithGravity,
+            bounciness: 200,
+            elasticity: 100,
+            returnToSelf: false,
+            duration: 600,
+
+        });
+
 
     }
 

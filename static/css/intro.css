@@ -5,7 +5,16 @@
 }
 
 body {
-	overflow-x: hidden;
+    overflow-x: hidden; 
+}
+
+/* the main container needs fixing for proper timing of the transition */
+.fix-for-intro {
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
 }
 
 .page--static {
@@ -89,6 +98,7 @@ body {
 	pointer-events: none;
 	background: #2d323c;
 }
+
 
 /* The title on the intro page */
 .title-wrap {
