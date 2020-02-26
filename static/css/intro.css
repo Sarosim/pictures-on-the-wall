@@ -133,16 +133,32 @@ body {
 }
 
 /* The mobile device on the intro page */
-.device {
-	position: fixed;
-	z-index: 1000;
-	bottom: 0;
-	left: 50%;
-	width: 45vh;
-	height: 45vh;
-	margin: 0 0 0 -22.5vh;
-	background: url(../images/phone.png) no-repeat 50% 0%;
-	background-size: 100%;
+/*   needs different sizing for landscape and portrait orientation */
+@media (orientation: landscape) {
+    .device {
+        position: fixed;
+        z-index: 1000;
+        bottom: 0;
+        left: 50%;
+        width: 45vh;
+        height: 45vh;
+        margin: 0 0 0 -22.5vh;
+        background: url(../images/phone.png) no-repeat 50% 0%;
+        background-size: 100%;
+    }
+}
+@media (orientation: portrait) {
+    .device {
+        position: fixed;
+        z-index: 1000;
+        bottom: 0;
+        left: 50%;
+        width: 60vw;
+        height: 60vw;
+        margin: 0 0 0 -30vw;
+        background: url(../images/phone.png) no-repeat 50% 0%;
+        background-size: 100%;
+    }
 }
 
 .device__screen {

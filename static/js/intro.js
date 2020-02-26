@@ -11,12 +11,12 @@
             // translation values: 
                 // tx and ty: percentages of the item´s width and height
             // s: scale, r: rotation (z) value
-            {tx: -1.1, ty:-.7, s:1.6, r:-22},
-			{tx: 0, ty:-1.1, s:1.4, r:2},
-			{tx: .7, ty:-.7, s:1.55, r:15},
-			{tx: -.6, ty:-.45, s:1.4, r:-25},
-			{tx: -.3, ty:-.5, s:1.1, r:-18},
-			{tx: .95, ty:-.3, s:1.2, r:25}
+            {tx: -1.1, ty:-.6, s:1.5, r:-32}, // Animals category
+			{tx: 0, ty:-0.9, s:1.4, r:-4}, // Abstract category
+			{tx: .7, ty:-.7, s:1.55, r:15}, // Architecture category
+			{tx: -.6, ty:-.45, s:1.4, r:-25}, // Food category
+			{tx: -.3, ty:-.5, s:1.1, r:-18}, // Flowers category
+			{tx: .85, ty:-.3, s:1.2, r:35} // Painting category
         ],
         deviceEl = mainContainer.querySelector('.device'),
         showGridButton = document.getElementById('showgrid'),
