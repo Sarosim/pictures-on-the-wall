@@ -4,14 +4,14 @@ from django.db import models
 
 class Category(models.Model):
     """Artwork (product) categories """
-    category_name = models.CharField(max_length=32, default='other')
+    category_name = models.CharField(max_length=32, default='')
     category_description = models.TextField()
 
     def __str__(self):
         return self.category_name
 
 class Product(models.Model):
-    """The Product database, including the artworks """
+    """The Artwork (Product) database, contains all the artworks """
     title = models.CharField(max_length=32, default='')
     description = models.TextField()
     base_repro_fee = models.DecimalField(max_digits=3, decimal_places=2)
