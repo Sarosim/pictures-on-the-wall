@@ -67,6 +67,3 @@ class Rating(models.Model):
     product = models.ForeignKey(Product)
     rating = models.IntegerField()
     #userid (of the rater to prevent double rating) --- TO BE ADDED LATER
-
-    def __str__(self):
-        return self.rating
