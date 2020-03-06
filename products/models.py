@@ -49,6 +49,7 @@ class Product(models.Model):
     """The Artwork (Product) model, contains all the artworks """
     title = models.CharField(max_length=32, default='')
     description = models.TextField()
+    image = models.ImageField(upload_to='images', default='cube.png')
     base_repro_fee = models.DecimalField(max_digits=3, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default='')
