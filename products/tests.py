@@ -34,10 +34,4 @@ class TestBadge(TestCase):
     def test_badge(self):
         test_badge_name = Badge(badge_name = "Test Badge Name")
         self.assertEqual(str(test_badge_name), "Test Badge Name")
-        self.assertNotEqual(str(test_badge_name), "something else")        
-
-class TestRating(TestCase):
-    """ Testing the ratings model """
-    def test_rating(self):
-        test_rate = Rating(rating = 4)
-        self.assertEqual(test_rate, 4)
+        self.assertNotEqual(str(test_badge_name), "something else")

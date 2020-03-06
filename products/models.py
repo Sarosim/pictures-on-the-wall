@@ -65,7 +65,7 @@ class Product(models.Model):
 class Rating(models.Model):
     """ Products ratings: """
     product = models.ForeignKey(Product)
-    rating = models.IntegerField(choices = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)])
+    rating = models.IntegerField()
     #userid (of the rater to prevent double rating) --- TO BE ADDED LATER
 
     def __str__(self):
