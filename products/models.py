@@ -11,6 +11,9 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
 
 class Badge(models.Model):
     """ Badges for Artists (eg. hobby, advanced, master, pro...) """
@@ -36,13 +39,16 @@ class Artist(models.Model):
         return self.display_name
 
 
-class Technologies(models.Model):
+class Technology(models.Model):
     """ Model for valiable printing technologies. Each artwork is assigned to all relevant print technologies"""
     technology_name = models.CharField(max_length=32)
     technology_description = models.TextField
 
     def __str__(self):
         return self.technology_name
+
+    class Meta:
+        verbose_name_plural = "Technologies"
 
 
 class Room(models.Model):
@@ -63,7 +69,7 @@ class Product(models.Model):
     room = models.ManyToManyField(Room)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default='')
     max_print_size = models.CharField(max_length=16, default='')
-    available_technologies = models.ManyToManyField(Technologies)
+    available_technologies = models.ManyToManyField(Technology)
     num_of_orders = models.IntegerField(default=0)
     num_of_views = models.IntegerField(default=0)
     date_uploaded = models.DateTimeField(auto_now=True)

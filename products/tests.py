@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Product, Category, Badge, Technologies, Rating, Artist, Size, Format, Room, Hashtag
+from .models import Product, Category, Badge, Technology, Rating, Artist, Size, Format, Room, Hashtag
 
 # Create your tests here.
 
@@ -9,10 +9,10 @@ class TestArtist(TestCase):
         artist_name = Artist(display_name = "Test name")
         self.assertEqual(str(artist_name), "Test name")
 
-class TestTechnologies(TestCase):
+class TestTechnology(TestCase):
     """ Testing the technologies model """
-    def test_technologies(self):
-        techn_name = Technologies(technology_name = "Test Technology")
+    def test_technology(self):
+        techn_name = Technology(technology_name = "Test Technology")
         self.assertEqual(str(techn_name), "Test Technology")
 
 class TestProduct(TestCase):
