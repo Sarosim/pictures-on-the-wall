@@ -60,6 +60,6 @@ class TestRoom(TestCase):
 class TestHashtag(TestCase):
     """ Testing the Hashtag model """
     def test_hashtag(self):
-        test_hashtag_name = Hashtag(hashtag_name = "Test Hashtag Name")
+        test_hashtag_name = Hashtag(hashtag = "Test Hashtag Name")
         self.assertEqual(str(test_hashtag_name), "Test Hashtag Name")
         self.assertNotEqual(str(test_hashtag_name), "something else")

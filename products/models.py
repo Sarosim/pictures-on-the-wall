@@ -106,3 +106,6 @@ class Hashtag(models.Model):
     """ Model for Products ratings: """
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default='')
     hashtag = models.CharField(max_length=32, default='#ilovephotography')
+
+    def __str__(self):
+        return self.hashtag
