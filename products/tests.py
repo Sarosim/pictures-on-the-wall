@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Product, Category, Badge, Technologies, Rating, Artist, Size, Format
+from .models import Product, Category, Badge, Technologies, Rating, Artist, Size, Format, Room, Hashtag
 
 # Create your tests here.
 
@@ -49,3 +49,17 @@ class TestFormat(TestCase):
         test_format_name = Format(format_name = "Test Format Name")
         self.assertEqual(str(test_format_name), "Test Format Name")
         self.assertNotEqual(str(test_format_name), "something else")
+
+class TestRoom(TestCase):
+    """ Testing the Room model """
+    def test_room(self):
+        test_room_name = Room(room_name = "Test Room Name")
+        self.assertEqual(str(test_room_name), "Test Room Name")
+        self.assertNotEqual(str(test_room_name), "something else")
+
+class TestHashtag(TestCase):
+    """ Testing the Hashtag model """
+    def test_hashtag(self):
+        test_hashtag_name = Hashtag(hashtag_name = "Test Hashtag Name")
+        self.assertEqual(str(test_hashtag_name), "Test Hashtag Name")
+        self.assertNotEqual(str(test_hashtag_name), "something else")

@@ -45,6 +45,14 @@ class Technologies(models.Model):
         return self.technology_name
 
 
+class Room(models.Model):
+    """ Model for assigning artwork to certain room types """
+    room_name = models.CharField(max_length=16, default='')
+
+    def __str__(self):
+        return self.room_name
+
+
 class Product(models.Model):
     """The Artwork (Product) model, contains all the artworks """
     title = models.CharField(max_length=32, default='')
@@ -52,6 +60,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images', default='cube.png')
     base_repro_fee = models.DecimalField(max_digits=6, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
+    room = models.ManyToManyField(Room)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default='')
     max_print_size = models.CharField(max_length=16, default='')
     available_technologies = models.ManyToManyField(Technologies)
@@ -86,3 +95,8 @@ class Format(models.Model):
 
     def __str__(self):
         return self.format_name
+
+class Hashtag(models.Model):
+    """ Model for Products ratings: """
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, default='')
+    hashtag = models.CharField(max_length=32, default='#ilovephotography')
