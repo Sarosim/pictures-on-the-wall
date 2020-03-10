@@ -50,7 +50,7 @@ class Product(models.Model):
     title = models.CharField(max_length=32, default='')
     description = models.TextField()
     image = models.ImageField(upload_to='images', default='cube.png')
-    base_repro_fee = models.DecimalField(max_digits=3, decimal_places=2)
+    base_repro_fee = models.DecimalField(max_digits=6, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default='')
     max_print_size = models.CharField(max_length=16, default='')
@@ -64,7 +64,25 @@ class Product(models.Model):
 
 
 class Rating(models.Model):
-    """ Products ratings: """
-    product = models.ForeignKey(Product)
+    """ Model for Products ratings: """
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, default='')
     rating = models.IntegerField()
     #userid (of the rater to prevent double rating) --- TO BE ADDED LATER
+
+
+class Size(models.Model):
+    """ Model for exact picture sizes in cm or inch """
+    size_name = models.CharField(max_length=16, default='10 x 15 cm')
+    longer_side = models.DecimalField(max_digits=6, decimal_places=2, default=15)
+    shorter_side = models.DecimalField(max_digits=6, decimal_places=2, default=10)
+
+    def __str__(self):
+        return self.size_name
+
+class Format(models.Model):
+    """ Model for Picutre formats, aka aspect ratio """
+    format_name = models.CharField(max_length=16, default='')
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, default='')
+
+    def __str__(self):
+        return self.format_name
