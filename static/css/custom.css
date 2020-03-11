@@ -14,5 +14,10 @@ body {
 /******************* PRODUCTS HTML ******************************/
 
 .product {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 300px;
     height: 300px;
+    margin: 0 auto;
 }

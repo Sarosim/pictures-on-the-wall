@@ -4,18 +4,47 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row row-flex">
 	{% for product in products %}
-	<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0 col-md-4 display panel panel-default">
+	<div class="col-xs-10 m-2 col-sm-6 col-md-4 m-md-3 display panel panel-default">
 		<div class="panel-body">
 			<div class="product" style="background-image: url({{ MEDIA_URL }}{{ product.image }})"></div>
-            <h3>{{product.title}}</h3>
+			<h3>{{product.title}}</h3>
 			<p class="product-description">{{product.description}}</p>
-			<p>{{product.base_repro_fee}}</p>
+			<p>£ {{product.base_repro_fee}}</p>
+			<p>
+				<span>num of orders: </span>
+				<span>num of views: </span>
+				<span>rating: </span>
+			</p>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input name="quantity" id="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit">Add</button>
+                    </span>
+                </div>
+            </form>
+			
+            <p id="log"></p>
 		</div>
 	</div>
 	{% endfor %}
 
 </div>
+
+<!-- EVENT Listener for DEBUGGING reasons -->
+<script>
+	const input = document.getElementById('quantity');
+    const log = document.getElementById('log');
+
+    input.addEventListener('change', updateValue);
+
+    function updateValue(e) {
+        console.log("EVENT F...G FIRED", e)
+        log.textContent = e.target.value;
+}
+</script>
 
 {% endblock %}
