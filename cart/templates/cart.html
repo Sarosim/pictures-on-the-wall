@@ -14,29 +14,32 @@
 			<h3>{{ item.product.title }}</h3>
 			<p class="product-description">{{ item.product.description }}</p>
 			<p>{{ item.product.base_repro_fee }}</p>
-			<p>
+			<div>
 				<form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
 					{% csrf_token %}
 					<div class="form-group">
 						<label for="exampleInputAmount" class="sr-only">New Qty</label>
 						<div class="input-group">
-							<div class="input-group-addon">Qty</div>
-							<input name="quantity" type="number" min="0" max="999" class="form-control">
-							<div class="input-group-addon">{{item.quantity}}</div>
+							<div class="input-group-prepend">
+								<span class="input-group-text">Qty</span>
+							</div>
+							<input name="quantity" id="exampleInputAmount" type="number" min="0" max="999" class="form-control" value="{{item.quantity}}">
 						</div>
-					</div>
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
+						</div>
+						<button type="submit" class="btn btn-secondary p-2 ml-2">Update</button>
 				</form>
-			</p>
+			</div>
 		</div>
 	</div>
 	{% endfor %}
 </div>
-<div class="row">
-    <p>Total</p>
-    <p><span class="glyphicon glyphicon-pound" aria-hidden="true"></span>{{ total }}</p>
-    <a href="/" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
-    <!--Here comes the url of the checkout view once done-->
+<div class="container text-center">
+	<p>Total:&nbsp;</p>
+	<p class="mx-1">
+		<i class="fas fa-pound-sign"></i><span>{{ total }}</span>
+	</p>
+	<a href="/" class="btn btn-success" role="button">Checkout</a>
+	<!--Here comes the url of the checkout view once done-->
 </div>
 
 {% endblock %}

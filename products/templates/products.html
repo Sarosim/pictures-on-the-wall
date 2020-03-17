@@ -17,34 +17,19 @@
 				<span>num of views: </span>
 				<span>rating: </span>
 			</p>
-            <form method="post" action="{% url 'add_to_cart' product.id %}">
-                {% csrf_token %}
-                <div class="input-group">
-                    <input name="quantity" id="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" value="0">
-                    <span class="input-group-btn">
+			<form method="post" action="{% url 'add_to_cart' product.id %}">
+				{% csrf_token %}
+				<div class="input-group">
+					<input name="quantity" id="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" value="0">
+					<span class="input-group-btn">
                         <button class="btn btn-success" type="submit">Add</button>
                     </span>
-                </div>
-            </form>
-			
-            <p id="log"></p>
+				</div>
+			</form>
 		</div>
 	</div>
 	{% endfor %}
 
 </div>
-
-<!-- EVENT Listener for DEBUGGING reasons -->
-<script>
-	const input = document.getElementById('quantity');
-    const log = document.getElementById('log');
-
-    input.addEventListener('change', updateValue);
-
-    function updateValue(e) {
-        console.log("EVENT F...G FIRED", e)
-        log.textContent = e.target.value;
-}
-</script>
 
 {% endblock %}

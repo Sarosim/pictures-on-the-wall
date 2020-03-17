@@ -26,6 +26,10 @@ def adjust_cart(request, id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
 
+    print(quantity)
+    print(cart[id])
+
+
     if quantity > 0:
         cart[id] = quantity
     else:

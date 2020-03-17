@@ -11,10 +11,7 @@ def cart_contents(request):
     total = 0
     product_count = 0
     
-    print("cart.items: ", cart.items)
-    
     for id, quantity in cart.items():
-        print("The id and quantity: ", id, quantity)
         product = get_object_or_404(Product, pk=id)
         total += quantity * product.base_repro_fee
         product_count += quantity
