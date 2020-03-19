@@ -13,12 +13,12 @@ def logout(request):
     """Log the user out..."""  
     auth.logout(request)
     messages.success(request, "You have successfully been logged out.")
-    return redirect(reverse('index'))
+    return redirect(reverse('index_no_intro'))
     
 def login(request):
     """Return the LOGIN page"""
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect(reverse('index_no_intro'))
 
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
@@ -31,7 +31,7 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully been logged in.")
-                return redirect(reverse('index'))
+                return redirect(reverse('index_no_intro'))
             else:
                 login_form.add_error(None, "Username or Password is incorrect!")
     else:
@@ -41,7 +41,7 @@ def login(request):
 def registration(request):
     """Registration form"""
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect(reverse('index_no_intro'))
 
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
@@ -53,7 +53,7 @@ def registration(request):
             if user:
                 auth.login(user = user, request = request)
                 messages.success(request, "You have successfully been registered.")
-                return redirect(reverse('index'))
+                return redirect(reverse('index_no_intro'))
             else:
                 messages.error(request, "Unable to register")   
     else:
