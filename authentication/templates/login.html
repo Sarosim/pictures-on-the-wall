@@ -9,7 +9,7 @@
 	<form method="POST">
 		{% csrf_token %}
 		{{ login_form }}
-		<button class="btn btn-outline-info" type="submit">Login</button>
+		<button class="btn btn-outline-info" data-toggle="modal" data-target="#feedbackModal">Login</button>
 	</form>
 	<p><a href="{% url 'password_reset' %}">Reset Your Password</a></p>
 </div>
