@@ -8,14 +8,17 @@ def view_cart(request):
 
 
 def add_to_cart(request, id):
-    """ Adds the quantity of the item selected in the form and redirects to the page """
-    quantity = int(request.POST.get('quantity'))
+    """ Adds the product to the cart and redirects to the page.
+    (no quantity is obtained, as 99.99% of the customers will buy only one copy of the artwork)"""
 
     cart = request.session.get('cart', {})
+    
     if id in cart:
-        cart[id] = int(cart[id]) + quantity      
+        # If the product is in the cart already, it increases the quantity 
+        cart[id] = int(cart[id]) + 1      
     else:
-        cart[id] = cart.get(id, quantity) 
+        # If it's not in the cart it add it.
+        cart[id] = cart.get(id, 1) 
 
     request.session['cart'] = cart
     return redirect(reverse('products'))
