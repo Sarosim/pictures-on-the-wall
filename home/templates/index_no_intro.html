@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load staticfiles%}
+
+{% block content %}
+
+<div class="view">
+    <!-- I think I din't need this -->
+    <!-- <section class="page page--mover">
+		<div class="la-square-loader"><div></div></div>
+	</section> -->
+
+<!-- The Title for the intro page -->
+    <!-- <div class="title-wrap">
+        <h1 class="title title--main">Pictures on Your Wall</h1>
+        <h2 class="title title--sub">The home of your amazing wall decor prints</h2>
+        <h2 class="title title--sub">for your home | office | garden shed ... from just <em>£12.99</em></h2>
+    </div> -->
+
+<!-- The landing page itself -->
+    <section class="page page--static">
+        
+        <div class="page__title">
+            <h1 class="page__title-main">Browse Wall Art by Categories</h1>
+            <h4 class="page__title-sub">alternatively search by #hashtag, Room, Mood or Artist</h4>
+            <button class="page__title-button">Search</button>
+        </div>
+
+        <ul class="grid" >
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/animals_category.jpg' %}" alt="Animals Category image">
+                    <h3 class="grid__item-title">Animals</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/abstract_category.jpg' %}" alt="Abstract Category image">
+                    <h3 class="grid__item-title">Abstract</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/architecture_category.jpg' %}" alt="Architecture Category image">
+                    <h3 class="grid__item-title">Architecture</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/food_category.jpg' %}" alt="Food & Drink Category image">
+                    <h3 class="grid__item-title">Food & Drink</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/flowers_category.jpg' %}" alt="Flowers Category image">
+                    <h3 class="grid__item-title">Flowers</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/painting_category.jpg' %}" alt="Painting Category image">
+                    <h3 class="grid__item-title">Painting</h3>
+                </a>
+            </li>
+            <li class="grid__item" >
+                <a class="grid__link" href="#">
+                    <img class="grid__image" src="{% static 'images/other_category.jpg' %}" alt="Other Category image">
+                    <h3 class="grid__item-title">Other</h3>
+                </a>
+            </li>
+        </ul>
+
+    </section>
+
+<!-- Container for the prhone on the intro page -->
+    <!-- <div class="device">
+		<div class="device__screen"></div>
+	</div> -->
+
+<!-- The button for the scroll -->
+    <!-- <button id="showgrid" class="button--view" aria-label="Show me more">
+		<svg width="100%" height="100%" viewBox="0 0 310 177" preserveAspectRatio="xMidYMid meet">
+			<path fill="#FFFFFF" d="M159.875,174.481L306.945,27.41c2.93-2.929,2.93-7.678,0-10.606L292.803,2.661c-1.406-1.407-3.314-2.197-5.303-2.197c-1.989,0-3.896,0.79-5.303,2.197L154.572,130.287L26.946,2.661c-1.406-1.407-3.314-2.197-5.303-2.197c-1.989,0-3.897,0.79-5.303,2.197L2.197,16.804C0.733,18.269,0,20.188,0,22.107s0.732,3.839,2.197,5.303l147.071,147.071C152.197,177.411,156.945,177.411,159.875,174.481L159.875,174.481z" />
+		</svg>
+	</button> -->
+
+</div>
+
+<!-- <script src="{% static 'js/dynamics.min.js' %}"></script>
+<script src="{% static 'js/intro.js' %}"></script> -->
+{% endblock %}
