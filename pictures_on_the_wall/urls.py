@@ -20,6 +20,7 @@ from authentication.views import logout, login, registration, user_profile
 from home.views import index, index_no_intro
 from authentication import urls as authentication_urls
 from products import urls as products_urls
+from checkout import urls as checkout_urls
 from .settings import MEDIA_ROOT
 from cart import urls as cart_urls
 
@@ -29,6 +30,7 @@ urlpatterns = [
     url(r'^index_no_intro$', index_no_intro, name='index_no_intro'),
     url(r'^authentication/', include(authentication_urls)),
     url(r'^products/', include(products_urls)),
+    url(r'^checkout/', include(checkout_urls)),
     url(r'^cart/', include(cart_urls)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]

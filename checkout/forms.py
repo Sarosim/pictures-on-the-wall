@@ -9,7 +9,7 @@ class MakePaymentForm(forms.Form):
     start_year = datetime.datetime.now().year
     end_year = start_year + 19
 
-    MONTH_CHOICES = [(i, i) for i in range(1, 12)]
+    MONTH_CHOICES = [(i, i) for i in range(1, 13)]
     YEAR_CHOICES = [(i, i) for i in range(start_year, end_year)]
 
     credit_card_number = forms.CharField(label='Credit card number', required=False)

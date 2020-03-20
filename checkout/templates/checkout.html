@@ -4,8 +4,21 @@
 
 {% block page_title %}Cart{% endblock %}
 
+{% block head_js %}
+<!-- Linking the extra javascript into the head of our base.html file -->
+<script src="https://js.stripe.com/v3/"></script>
+<script type="test/javascript">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script> 
+<script type="test/javascript" src="{% static 'js/stripe.js' %}"></script>
+
+{% endblock %}
+
 {% block content %}
 
+<!-- Displaying the cart items -->
 <div class="row row-flex">
 	{% for item in cart_items %}
 	<div class="col-xs-10 m-2 col-sm-6 col-md-4 m-md-3 display panel panel-default">
@@ -39,8 +52,29 @@
 	<p class="mx-1">
 		<i class="fas fa-pound-sign"></i><span>{{ total }}</span>
 	</p>
-	<a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
-	<!--Here comes the url of the checkout view once done-->
 </div>
+
+<!-- Putting the forms after the cart items -->
+<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+    <legend>Payment Details</legend>
+    
+    <!-- The div for Stripe error messages, display-none by default, handled from javascript -->
+    <div id="credit-card-errors" style="display: none;">
+        <div id="alert-message block-message error" id="stripe-error-message"></div>
+    </div>
+    <!-- The order form -->
+    <div class="form-group col-md-6">
+        {{ order_form | as_bootstrap }}
+    </div>
+    <!-- The payment form -->
+    <div class="form-group col-md-6">
+        {{ payment_form | as_bootstrap }}
+    </div>
+
+    {% csrf_token %}
+    <div class="form-group col-md-12">
+        <input class=" btn btn-info" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+    </div>
+</form>
 
 {% endblock %}
