@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.4.1/lux/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	<link rel="stylesheet" href="{% static 'css/custom.css' %}" type="text/css">
 	<link rel="stylesheet" href="{% static 'css/intro.css' %}" type="text/css">
 	<title>Pictures on the Wall | {% block page_title %}{% endblock %}</title>
@@ -28,7 +28,14 @@
 				</li>
 			</ul>
 			<ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i></a></li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'view_cart' %}">
+						<i class="fas fa-shopping-cart"></i>
+						{% if product_count > 0 %}
+						<label class="badge badge-warning">{{ product_count }}</label>
+						{% endif %}
+					</a>
+				</li>
 				{% if user.is_authenticated %}
 				<li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
 				<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
@@ -41,7 +48,7 @@
 	</nav>
 
 	<!-- Sending messages through a modal -->
-	
+
 	<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel"
 		aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -52,13 +59,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
 				</div>
-                {% if messages %}
+				{% if messages %}
 				<div class="modal-body">
 					{% for message in messages %}
 					{{ message }}
 					{% endfor %}
 				</div>
-                {% endif %}
+				{% endif %}
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary" data-dismiss="modal">OK</button>
 				</div>
@@ -71,8 +78,8 @@
 	{% block content %}{% endblock %}
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
