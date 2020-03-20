@@ -1,6 +1,5 @@
 from django.test import TestCase
 from .models import Order, OrderLineItem
-from django.utils import timezone
 
 # Create your tests here.
 
