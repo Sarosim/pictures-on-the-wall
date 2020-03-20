@@ -26,8 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = SECRET_KEY = os.environ.get('SECRET_KEY')
 
-""" this was the old secret key (I generated new one and saved in uncommitted file and added another one to Heroku,
-so it's never been revealed...)  'c4_sm)+br3pf2k%#umljs8jl1ajw*3r3k5-1mqcpb23qcw5$0n' """
+STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.environ.get('STRIPE_SECRET')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
