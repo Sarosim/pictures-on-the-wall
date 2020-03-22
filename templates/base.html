@@ -12,7 +12,14 @@
 	<link rel="stylesheet" href="{% static 'css/intro.css' %}" type="text/css">
 	<title>Pictures on the Wall | {% block page_title %}{% endblock %}</title>
 	<link rel="shortcut icon" href="{% static 'images/cube_icon.ico' %}" type="image/x-icon">
-    {% block head_js %}{% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://js.stripe.com/v2/"></script>
+    <script type="test/javascript">
+	    //<![CDATA[
+            Stripe.publishableKey = '{{ publishable }}';
+        //]]>
+    </script>
+    <script type="test/javascript" src="{% static 'js/stripe.js' %}"></script>
 </head>
 
 <body>
@@ -78,7 +85,7 @@
 	<!-- This is the place for the content: -->
 	{% block content %}{% endblock %}
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
