@@ -4,17 +4,7 @@
 
 {% block page_title %}Cart{% endblock %}
 
-{% block head_js %}
-<!-- Linking the extra javascript into the head of our base.html file -->
-<script src="https://js.stripe.com/v3/"></script>
-<script type="test/javascript">
-    //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
-    //]]>
-</script> 
-<script type="test/javascript" src="{% static 'js/stripe.js' %}"></script>
-
-{% endblock %}
+<!-- Stripe.js loaded in base.html to make it available for each page in order to best leverage Stripe’s advanced fraud functionality -->
 
 {% block content %}
 
@@ -27,7 +17,7 @@
 			<h3>{{ item.product.title }}</h3>
 			<p class="product-description">{{ item.product.description }}</p>
 			<p>
-            <span>Price: <i class="fas fa-pound-sign"></i>{{ item.product.base_repro_fee }}</span></p>
+				<span>Price: <i class="fas fa-pound-sign"></i>{{ item.product.base_repro_fee }}</span></p>
 			<div>
 				<form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
 					{% csrf_token %}
@@ -47,34 +37,43 @@
 	</div>
 	{% endfor %}
 </div>
-<div class="container text-center">
-	<p>Total:&nbsp;</p>
-	<p class="mx-1">
-		<i class="fas fa-pound-sign"></i><span>{{ total }}</span>
-	</p>
+<div class="container">
+	<div class="row d-flex pb-2 pb-md-4 justify-content-center">
+		<div class="checkout-amount">
+			<p>Total:&nbsp;</p>
+			<p class="mb-1">
+				<i class="fas fa-pound-sign"></i><span>{{ total }}</span>
+			</p>
+		</div>
+	</div>
 </div>
 
 <!-- Putting the forms after the cart items -->
-<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-    <legend>Payment Details</legend>
-    
-    <!-- The div for Stripe error messages, display-none by default, handled from javascript -->
-    <div id="credit-card-errors" style="display: none;">
-        <div id="alert-message block-message error" id="stripe-error-message"></div>
-    </div>
-    <!-- The order form -->
-    <div class="form-group col-md-6">
-        {{ order_form | as_bootstrap }}
-    </div>
-    <!-- The payment form -->
-    <div class="form-group col-md-6">
-        {{ payment_form | as_bootstrap }}
-    </div>
+<div class="container">
+	<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+		<legend class="text-center">Payment Details</legend>
 
-    {% csrf_token %}
-    <div class="form-group col-md-12">
-        <input class=" btn btn-info" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
-    </div>
-</form>
+		<!-- The div for Stripe error messages, display-none by default, handled from javascript -->
+		<div id="credit-card-errors" style="display: none;">
+			<div id="alert-message block-message error" id="stripe-error-message"></div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<!-- The order form -->
+				<div class="form-group col-md-6">
+					{{ order_form | as_bootstrap }}
+				</div>
+				<!-- The payment form -->
+				<div class="form-group col-md-6">
+					{{ payment_form | as_bootstrap }}
+				</div>
+			</div>
+		</div>
+		{% csrf_token %}
+		<div class="form-group col-md-12">
+			<input class=" btn btn-info" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+        </div>
+	</form>
+</div>
 
 {% endblock %}
