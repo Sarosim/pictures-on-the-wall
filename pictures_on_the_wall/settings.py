@@ -163,6 +163,18 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MEDIAFILES_LOCATION = 'media'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, 'media')
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 """ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'"""
@@ -174,8 +186,3 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'Admin@pictureshop.com'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = '/media/'
