@@ -77,6 +77,9 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+# delete this from production version, it is just for GitPod to avoid 'Problems':
+    objects = models.Manager()
+
 
 class Rating(models.Model):
     """ Model for Products ratings: """

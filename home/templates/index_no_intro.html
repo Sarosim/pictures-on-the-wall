@@ -8,7 +8,10 @@
         <div class="page__title">
             <h1 class="page__title-main">Browse Wall Art by Categories</h1>
             <h4 class="page__title-sub">alternatively search by #hashtag, Room, Mood or Artist</h4>
-            <button class="page__title-button">Search</button>
+            <form action="{% url 'search' %}" method="get">
+                <input type="text" name="q">
+                <button class="page__title-button" type="submit">Search</button>
+            </form>
         </div>
 
         <ul class="grid" >
