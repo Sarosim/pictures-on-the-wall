@@ -8,12 +8,13 @@
 	{% for product in products %}
 	<div class="col-xs-10 m-2 col-sm-6 col-md-4 m-md-3 display panel panel-default">
 		<div class="panel-body">
-			<div class="product" style="background-image: url({{ MEDIA_URL }}{{ product.image }})"></div>
-			<h3>{{product.title}}</h3>
-			<p class="product-description">{{product.description}}</p>
+            <a href="{% url 'product_details' product.id %}">
+                <div class="product" style="background-image: url({{ MEDIA_URL }}{{ product.image }})"></div>
+                <h3>{{product.title}}</h3>
+            </a>
 			<p>£ {{product.base_repro_fee}}</p>
 			<p>
-				<span>num of orders: </span>
+				<span>num of orders: {{product.title}}</span>
 				<span>num of views: </span>
 				<span>rating: </span>
 			</p>
