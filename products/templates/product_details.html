@@ -30,6 +30,7 @@
 
 	.details-category {
 		margin: 4px 8px;
+        text-transform: capitalize;
 	}
 
 	.details-room {
@@ -40,6 +41,19 @@
         font-size: 1.1rem;
 		font-variant: small-caps;
 	}
+
+    .details-hashtag-group {
+        padding: .5rem 2rem;
+    }
+
+    .details-hashtag {
+        background-color: #0003ff;
+        color: #ddd;
+        padding: .4rem;
+        border-radius: .4rem 1rem;
+    }
+
+
 </style>
 {% endblock %}
 
@@ -49,23 +63,23 @@
 	<div class="row details-container">
 		<div class="col-12 col-md-7">
             <div class="details-title">
-                <h3>{{ pass_to_template.0.title }}</h3>
+                <h3>{{ pass_to_template.selected_prod.title }}</h3>
             </div>
 			<!-- Image and Category, Room, Hashtag info -->
 			<div class="details-image-box col-12">
-				<img class="details-image" src="{{ MEDIA_URL }}{{ pass_to_template.0.image }}" alt="{{ pass_to_template.0.title }}">
+				<img class="details-image" src="{{ MEDIA_URL }}{{ pass_to_template.selected_prod.image }}" alt="{{ pass_to_template.selected_prod.title }}">
 			</div>
 			<div class="col-12">
 				<div class="details-category-room row">
 					<!-- Category and Rooms associated with the artwork -->
 					<div class="details-category">
 						<span class="details-small-title">Category:&nbsp</span>
-						<span>{{ pass_to_template.0.category }}</span>
+						<span>{{ pass_to_template.selected_prod.category }}</span>
 					</div>
 					<div class="details-room">
 						<span class="details-small-title">Room(s):&nbsp</span>
-						{% for room in pass_to_template.0.room.all %}
-                            {% if room == pass_to_template.0.room.all.last %}
+						{% for room in pass_to_template.selected_prod.room.all %}
+                            {% if room == pass_to_template.selected_prod.room.all.last %}
                                 <span>{{ room }}</span>
                             {% else %}
                                 <span>{{ room }},&nbsp;</span>
@@ -75,9 +89,9 @@
 				</div>
 			</div>
             <div class="col-12">
-                <div class="details-hashtags">
+                <div class="details-hashtag-group">
                     <span class="details-hashtag-title">Hashtag(s):&nbsp</span>
-                    {% for hash in pass_to_template.1 %}
+                    {% for hash in pass_to_template.hashtags %}
                         <span class="details-hashtag">{{ hash.hashtag }}</span>
                     {% endfor %}
                 </div>

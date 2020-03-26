@@ -15,11 +15,11 @@ def product_details(request, id):
     hashtags = Hashtag.objects.filter(product = selected_product).distinct()
     for hashtag in hashtags:
         print("XXXXXXXXXXXXXXXXXXX Hash-tags: {}".format(hashtag.hashtag))
-    pass_to_template = [
-        selected_product,
-        hashtags
-    ]
-    print("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY pass_to_templ.: {}!".format(pass_to_template[1]))
+    pass_to_template = {
+        "selected_prod": selected_product,
+        "hashtags": hashtags
+    }
+    print("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY pass_to_templ.: {}!".format(pass_to_template["hashtags"]))
     return render(
         request, 
         "product_details.html",
