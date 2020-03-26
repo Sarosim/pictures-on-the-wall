@@ -7,27 +7,37 @@
 	.details-container {
 		margin-top: 70px;
 	}
+    .details-title {
+        margin-top: 1rem;
+        text-align: center;
+    }
+	.details-image-box {
+        overflow: hidden;
+        padding: 15px 0;
+	}
 
-	.details-image {
-		border: 1px solid red;
+    .details-image {
+        display: block;
+        margin: auto;
+        max-width: 94%;
+        max-height: 70vh;
 	}
 
 	.details-category-room {
 		flex-wrap: wrap;
-		border: 1px solid blue;
+        justify-content: space-evenly;
 	}
 
 	.details-category {
 		margin: 4px 8px;
-		border: 1px solid yellow;
 	}
 
 	.details-room {
 		margin: 4px 8px;
-		border: 1px solid green;
 	}
 
 	.details-small-title {
+        font-size: 1.1rem;
 		font-variant: small-caps;
 	}
 </style>
@@ -35,35 +45,47 @@
 
 {% block content %}
 
-<!-- <h2>Hello World! :)</h2>
-
-<h3>{{ selected_product.title }}</h3> -->
-
 <div class="container-fluid ">
 	<div class="row details-container">
 		<div class="col-12 col-md-7">
-			<!-- ez az oszlop a kepnek es a kategoriaknak-->kep es kat
-			<div class="details-image col-12">
-				<!-- Ez a kep helye --><span> kep</span>
+            <div class="details-title">
+                <h3>{{ pass_to_template.0.title }}</h3>
+            </div>
+			<!-- Image and Category, Room, Hashtag info -->
+			<div class="details-image-box col-12">
+				<img class="details-image" src="{{ MEDIA_URL }}{{ pass_to_template.0.image }}" alt="{{ pass_to_template.0.title }}">
 			</div>
-			<div class="details-category-room col-12">
-				<div class="row">
-					<!-- Flexbox to display category and Rooms associated with the artwork -->
+			<div class="col-12">
+				<div class="details-category-room row">
+					<!-- Category and Rooms associated with the artwork -->
 					<div class="details-category">
 						<span class="details-small-title">Category:&nbsp</span>
-						<span>{{ selected_product.category }}</span>
+						<span>{{ pass_to_template.0.category }}</span>
 					</div>
 					<div class="details-room">
 						<span class="details-small-title">Room(s):&nbsp</span>
-						{% for room in selected_product.room.all %}
-						<span>{{ room }}</span>
+						{% for room in pass_to_template.0.room.all %}
+                            {% if room == pass_to_template.0.room.all.last %}
+                                <span>{{ room }}</span>
+                            {% else %}
+                                <span>{{ room }},&nbsp;</span>
+                            {% endif %}    
 						{% endfor %}
 					</div>
 				</div>
 			</div>
+            <div class="col-12">
+                <div class="details-hashtags">
+                    <span class="details-hashtag-title">Hashtag(s):&nbsp</span>
+                    {% for hash in pass_to_template.1 %}
+                        <span class="details-hashtag">{{ hash.hashtag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
 		</div>
+
 		<div class="col-12 col-md-5">
-			<!-- ez az oszlop a meretnek es az infoknak -->info side
+			<!-- Sizes, Price and other details -->
 		</div>
 	</div>
 </div>
