@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, Category, Hashtag
+from .models import Product, Category, Hashtag, Rating
 
 # Create your views here.
 
@@ -11,17 +11,26 @@ def all_products(request):
 def product_details(request, id):
     """ The view rendering the page for one selected product and all of its details """
     selected_product = Product.objects.get(pk = id)
-    print("XXXXXXXXXXXXXXXXXXX sel_prod: {}".format(selected_product))
+    # filtering the hashtags associated with the selected product - excluding duplicates:
     hashtags = Hashtag.objects.filter(product = selected_product).distinct()
-    for hashtag in hashtags:
-        print("XXXXXXXXXXXXXXXXXXX Hash-tags: {}".format(hashtag.hashtag))
+    # filtering all the relevant ratings from the Rating model:
+    ratings = Rating.objects.filter(product = selected_product)
+    ratings_total = 0
+    ratings_count = 0
+    if ratings:
+        for rating in ratings:
+            ratings_total += rating
+            ratings_count += 1
+        ratings_average = ratings_total / ratings_count
+    else:
+        ratings_average = 0
+    ratings_data = {
+        "ratings_average": ratings_average,
+        "ratings_count": ratings_count
+    }
     pass_to_template = {
         "selected_prod": selected_product,
-        "hashtags": hashtags
+        "hashtags": hashtags,
+        "ratings_data": ratings_data
     }
-    print("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY pass_to_templ.: {}!".format(pass_to_template["hashtags"]))
-    return render(
-        request, 
-        "product_details.html",
-        {"pass_to_template": pass_to_template}
-        )
+    return render(request, "product_details.html", {"pass_to_template": pass_to_template})
