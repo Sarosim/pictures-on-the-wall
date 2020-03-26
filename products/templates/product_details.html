@@ -2,10 +2,70 @@
 
 {% block page_title %}Product Details{% endblock %}
 
+{% block style-tag %}
+<style>
+	.details-container {
+		margin-top: 70px;
+	}
+
+	.details-image {
+		border: 1px solid red;
+	}
+
+	.details-category-room {
+		flex-wrap: wrap;
+		border: 1px solid blue;
+	}
+
+	.details-category {
+		margin: 4px 8px;
+		border: 1px solid yellow;
+	}
+
+	.details-room {
+		margin: 4px 8px;
+		border: 1px solid green;
+	}
+
+	.details-small-title {
+		font-variant: small-caps;
+	}
+</style>
+{% endblock %}
+
 {% block content %}
 
-<h2>Hello World! :)</h2>
+<!-- <h2>Hello World! :)</h2>
 
-<h3>{{ selected_product.title }}</h3>
+<h3>{{ selected_product.title }}</h3> -->
+
+<div class="container-fluid ">
+	<div class="row details-container">
+		<div class="col-12 col-md-7">
+			<!-- ez az oszlop a kepnek es a kategoriaknak-->kep es kat
+			<div class="details-image col-12">
+				<!-- Ez a kep helye --><span> kep</span>
+			</div>
+			<div class="details-category-room col-12">
+				<div class="row">
+					<!-- Flexbox to display category and Rooms associated with the artwork -->
+					<div class="details-category">
+						<span class="details-small-title">Category:&nbsp</span>
+						<span>{{ selected_product.category }}</span>
+					</div>
+					<div class="details-room">
+						<span class="details-small-title">Room(s):&nbsp</span>
+						{% for room in selected_product.room.all %}
+						<span>{{ room }}</span>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-5">
+			<!-- ez az oszlop a meretnek es az infoknak -->info side
+		</div>
+	</div>
+</div>
 
 {% endblock %}

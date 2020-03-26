@@ -20,6 +20,8 @@
         //]]>
     </script>
     <script type="test/javascript" src="{% static 'js/stripe.js' %}"></script>
+    {% block style-tag %}{% endblock %}
+    <!-- custom.css hosted on AWS S3, which makes development impossible, to overcome this, I keep styles here for development -->
 </head>
 
 <body>

@@ -38,3 +38,14 @@ body {
     font-size: 1.2rem;
     padding: 4px;
 }
+
+/******************* CHECKOUT HTML ******************************/
+
+.details-container {
+    margin-top: 70px;
+}
+
+.details-category-room {
+    display: flexbox;
+    flex-wrap: wrap;
+}
