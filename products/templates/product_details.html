@@ -55,6 +55,10 @@
 		border-radius: .4rem 1rem;
 	}
 
+    .second-container {
+        border: 0px solid red;
+    }
+
 	.details-size-header {
 		margin-top: 1rem;
 		text-align: center;
@@ -75,16 +79,20 @@
 		justify-content: space-evenly;
 	}
 
-    /* .details-technologies {
-        text-align: center;
+	.details-technologies {
+		text-align: center;
 		margin-top: .2rem;
-		font-size: 3rem;
-    } */
+	}
+
+	.details-rating {
+		text-align: center;
+		margin-top: .2rem;
+	}
 
 	.details-stars {
 		text-align: center;
-		margin-top: .2rem;
-		font-size: 2.5rem;
+		margin-top: .4rem;
+		font-size: 2rem;
 	}
 
 	.stars-outer {
@@ -93,12 +101,13 @@
 		font-style: normal;
 		font-variant: normal;
 		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;        
+		-webkit-font-smoothing: antialiased;
 		font-family: 'Font Awesome 5 Free';
 	}
 
 	.stars-outer::before {
 		content: "\f005 \f005 \f005 \f005 \f005";
+		color: #0003ff;
 	}
 
 	.stars-inner {
@@ -109,16 +118,39 @@
 		overflow: hidden;
 		font-style: normal;
 		font-variant: normal;
-        font-weight: 900;
+		font-weight: 900;
 		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;          
+		-webkit-font-smoothing: antialiased;
 		/* width: 0; */
 	}
 
 	.stars-inner::before {
 		content: "\f005 \f005 \f005 \f005 \f005";
-		color: #f8ce0b;
+		color: #0003ff;
 	}
+
+    .details-technologies-list {
+        text-transform: capitalize;
+    }
+
+    #technology {
+		text-align: center;
+		margin-top: .8rem;
+        text-transform: capitalize;
+    }
+
+    .details-price-and-buttons {
+        position: absolute;
+        bottom: .5rem;
+        right: 0;
+        text-align: center;
+    }
+
+    .detalis-price {
+        font-size: 1.7rem;
+    }
+
+
 </style>
 {% endblock %}
 
@@ -163,35 +195,36 @@
 				</div>
 			</div>
 
-			<div class="col-12 col-md-5">
+			<div class="col-12 col-md-5 second-container">
 				<!-- Sizes, Price and other details -->
-				<div class="details-size-header col-12">
+				
+                <div class="details-size-header col-12">
 					<h3>Available sizes</h3>
 				</div>
-				<div class="details-size col-12">
+				
+                <div class="details-size col-12">
 					<h4>Here come the sizes</h4>
 				</div>
+
 				<div class="details-description col-12">
 					<p>{{ pass_to_template.selected_prod.description }}</p>
 				</div>
+
 				<div class="col-12">
 					<div class="details-techn-and-rating row">
-						<!-- Available technologies dropdown and customer rating for the artwork -->
+						<!-- Available technologies and customer rating for the artwork -->
 						<div class="details-technologies">
 							<span class="details-small-title">Available Technologies:&nbsp</span>
-							<div class="dropdown show text-center">
-								<button class="btn btn-secondary btn-outline-warning dropdown-toggle mt-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Technologies
-                            </button>
-
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									<span class="details-small-title">Available Technologies:&nbsp</span>
-									{% for technology in pass_to_template.selected_prod.available_technologies.all %}
-									<a class="dropdown-item" href="#">{{ technology.technology_name }}</a>
-									{% endfor %}
-								</div>
+							<div class="form-group col-12">
+								<select required class="form-control" id="technology" name="available_techn">
+                                    <option selected disabled class="details-technologies-list">Select Technology</option>
+                                    {% for technology in pass_to_template.selected_prod.available_technologies.all %}
+                                    <option class="details-technologies-list">{{ technology.technology_name }}</option>    
+                                    {% endfor %}    
+                                </select>
 							</div>
 						</div>
+
 						<div class="details-rating">
 							<span class="details-small-title">Average Rating:&nbsp</span>
 							<div class="details-stars">
@@ -202,19 +235,28 @@
 						</div>
 					</div>
 				</div>
+
+                <div class="col-12 details-price-and-buttons">
+                    <!-- Price -->
+                    <p class="detalis-price"><strong>£{{ pass_to_template.selected_prod.base_repro_fee }}</strong></p>
+                    <div class="details-btn-container">
+                    <button class="btn btn-warning btn-lg" type="submit">
+                        <span>Update Cart</span>
+                    </button>
+                    </div>
+                </div>
+
 			</div>
 		</div>
 	</div>
 
 	<script>
-    // setting the with of the star-inner class to display the necessary number of stars
+		// setting the with of the star-inner class to display the necessary number of stars
 		var starsElement = document.querySelector(`.stars-inner`)
         const starPercentage = "{{ pass_to_template.ratings_data.ratings_percent }}"; 
         const starPercString = starPercentage + '%';
-        console.log("Star Percent:", starPercString);
-        console.log("Star element:", starsElement);
-        const foo = "{{ pass_to_template.selected_prod.available_technologies.all }}";
-        console.log("Foo: ", foo);
+        const foo = "{{ cart_items }}"
+        console.log("Cart.items(): ", foo);
         starsElement.style.width = starPercString; 
 	</script>
 
