@@ -19,13 +19,15 @@ def product_details(request, id):
     ratings_count = 0
     if ratings:
         for rating in ratings:
-            ratings_total += rating
+            ratings_total += rating.rating
             ratings_count += 1
         ratings_average = ratings_total / ratings_count
     else:
         ratings_average = 0
+    ratings_percent = round(ratings_average * 20)
     ratings_data = {
         "ratings_average": ratings_average,
+        "ratings_percent": ratings_percent,
         "ratings_count": ratings_count
     }
     pass_to_template = {

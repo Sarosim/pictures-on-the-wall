@@ -70,17 +70,55 @@
 		margin: 1rem;
 	}
 
-    .details-techn-and-rating {
-        flex-wrap: wrap;
+	.details-techn-and-rating {
+		flex-wrap: wrap;
 		justify-content: space-evenly;
-    }
+	}
 
-    .details-rating-figure {
-        font-size: 1.4rem;
+    /* .details-technologies {
+        text-align: center;
+		margin-top: .2rem;
+		font-size: 3rem;
+    } */
+
+	.details-stars {
 		text-align: center;
-    }
+		margin-top: .2rem;
+		font-size: 2.5rem;
+	}
 
+	.stars-outer {
+		display: inline-block;
+		position: relative;
+		font-style: normal;
+		font-variant: normal;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;        
+		font-family: 'Font Awesome 5 Free';
+	}
 
+	.stars-outer::before {
+		content: "\f005 \f005 \f005 \f005 \f005";
+	}
+
+	.stars-inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		white-space: nowrap;
+		overflow: hidden;
+		font-style: normal;
+		font-variant: normal;
+        font-weight: 900;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;          
+		/* width: 0; */
+	}
+
+	.stars-inner::before {
+		content: "\f005 \f005 \f005 \f005 \f005";
+		color: #f8ce0b;
+	}
 </style>
 {% endblock %}
 
@@ -96,72 +134,88 @@
 			<div class="details-image-box col-12">
 				<img class="details-image" src="{{ MEDIA_URL }}{{ pass_to_template.selected_prod.image }}" alt="{{ pass_to_template.selected_prod.title }}">
 			</div>
-			<div class="col-12">
-				<div class="details-category-room row">
-					<!-- Category and Rooms associated with the artwork -->
-					<div class="details-category">
-						<span class="details-small-title">Category:&nbsp</span>
-						<span>{{ pass_to_template.selected_prod.category }}</span>
+				<div class="col-12">
+					<div class="details-category-room row">
+						<!-- Category and Rooms associated with the artwork -->
+						<div class="details-category">
+							<span class="details-small-title">Category:&nbsp</span>
+							<span>{{ pass_to_template.selected_prod.category }}</span>
+						</div>
+						<div class="details-room">
+							<span class="details-small-title">Room(s):&nbsp</span>
+							{% for room in pass_to_template.selected_prod.room.all %}
+							{% if room == pass_to_template.selected_prod.room.all.last %}
+							<span>{{ room }}</span>
+							{% else %}
+							<span>{{ room }},&nbsp;</span>
+							{% endif %}
+							{% endfor %}
+						</div>
 					</div>
-					<div class="details-room">
-						<span class="details-small-title">Room(s):&nbsp</span>
-						{% for room in pass_to_template.selected_prod.room.all %}
-						{% if room == pass_to_template.selected_prod.room.all.last %}
-						<span>{{ room }}</span>
-						{% else %}
-						<span>{{ room }},&nbsp;</span>
-						{% endif %}
+				</div>
+				<div class="col-12">
+					<div class="details-hashtag-group">
+						<span class="details-hashtag-title">Hashtag(s):&nbsp</span>
+						{% for hash in pass_to_template.hashtags %}
+						<span class="details-hashtag">{{ hash.hashtag }}</span>
 						{% endfor %}
 					</div>
 				</div>
 			</div>
-			<div class="col-12">
-				<div class="details-hashtag-group">
-					<span class="details-hashtag-title">Hashtag(s):&nbsp</span>
-					{% for hash in pass_to_template.hashtags %}
-					<span class="details-hashtag">{{ hash.hashtag }}</span>
-					{% endfor %}
-				</div>
-			</div>
-		</div>
 
-		<div class="col-12 col-md-5">
-			<!-- Sizes, Price and other details -->
-			<div class="details-size-header col-12">
-				<h3>Available sizes</h3>
-			</div>
-			<div class="details-size col-12">
-				<h4>Here come the sizes</h4>
-			</div>
-			<div class="details-description col-12">
-				<p>{{ pass_to_template.selected_prod.description }}</p>
-			</div>
-            <div class="col-12">
-				<div class="details-techn-and-rating row">
-					<!-- Category and Rooms associated with the artwork -->
-					<div class="details-technologies">
-						<span class="details-small-title">Available Technologies:&nbsp</span>
-                        <div class="dropdown show text-center">
-                            <button class="btn btn-secondary btn-sm btn-outline-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<div class="col-12 col-md-5">
+				<!-- Sizes, Price and other details -->
+				<div class="details-size-header col-12">
+					<h3>Available sizes</h3>
+				</div>
+				<div class="details-size col-12">
+					<h4>Here come the sizes</h4>
+				</div>
+				<div class="details-description col-12">
+					<p>{{ pass_to_template.selected_prod.description }}</p>
+				</div>
+				<div class="col-12">
+					<div class="details-techn-and-rating row">
+						<!-- Available technologies dropdown and customer rating for the artwork -->
+						<div class="details-technologies">
+							<span class="details-small-title">Available Technologies:&nbsp</span>
+							<div class="dropdown show text-center">
+								<button class="btn btn-secondary btn-outline-warning dropdown-toggle mt-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Technologies
                             </button>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <span class="details-small-title">Available Technologies:&nbsp</span>
-                                {% for technology in pass_to_template.selected_product.available_technologies %}
-                                    <a class="dropdown-item" href="#">{{ technology }}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-					</div>
-					<div class="details-rating">
-                        <span class="details-small-title">Average Rating:&nbsp</span>
-						<div class="details-rating-figure">{{ pass_to_template.ratings_data.ratings_average }}</div>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<span class="details-small-title">Available Technologies:&nbsp</span>
+									{% for technology in pass_to_template.selected_prod.available_technologies.all %}
+									<a class="dropdown-item" href="#">{{ technology.technology_name }}</a>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+						<div class="details-rating">
+							<span class="details-small-title">Average Rating:&nbsp</span>
+							<div class="details-stars">
+								<div class="stars-outer">
+									<div class="stars-inner" id="stars"></div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-{% endblock %}
+	<script>
+    // setting the with of the star-inner class to display the necessary number of stars
+		var starsElement = document.querySelector(`.stars-inner`)
+        const starPercentage = "{{ pass_to_template.ratings_data.ratings_percent }}"; 
+        const starPercString = starPercentage + '%';
+        console.log("Star Percent:", starPercString);
+        console.log("Star element:", starsElement);
+        const foo = "{{ pass_to_template.selected_prod.available_technologies.all }}";
+        console.log("Foo: ", foo);
+        starsElement.style.width = starPercString; 
+	</script>
+
+	{% endblock %}
