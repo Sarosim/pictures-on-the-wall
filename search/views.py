@@ -4,6 +4,6 @@ from products.models import Product, Category
 # Create your views here.
 def search_by_title(request):
     """ Search amongst the Artworks (products) by their title """
-    products = Product.objects.filter(title__icontains=request.GET['q'])
+    products = Product.objects.filter(title__icontains=request.GET['name_search'])
 
     return render(request, 'products.html', {"products": products})
