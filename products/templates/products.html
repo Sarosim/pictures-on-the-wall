@@ -6,17 +6,16 @@
 
 <div class="row row-flex">
 	{% for product in products %}
-	<div class="col-xs-10 m-2 col-sm-6 col-md-4 m-md-3 display panel panel-default">
+	<div class="col-xs-10 m-2 col-sm-6 col-md-3 m-md-2 display panel panel-default">
 		<div class="panel-body">
             <a href="{% url 'product_details' product.id %}">
                 <div class="product" style="background-image: url({{ MEDIA_URL }}{{ product.image }})"></div>
                 <h3>{{product.title}}</h3>
             </a>
-			<p>£ {{product.base_repro_fee}}</p>
+			<p>£{{product.base_repro_fee}}</p>
 			<p>
-				<span>num of orders: {{product.title}}</span>
-				<span>num of views: </span>
-				<span>rating: </span>
+				<span>num of orders: {{ product.title }}</span>
+				<span>num of views: {{ product.num_of_views }}</span>
 			</p>
 			<form method="post" action="{% url 'add_to_cart' product.id %}">
 				{% csrf_token %}
