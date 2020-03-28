@@ -244,12 +244,12 @@ body {
 }
 
 /* Tweek sizes for small screens */
-@media screen and (max-width: 56em) {
+@media screen and (max-width: 991px) {
 	.header {
-		padding: 1em;
+		padding: 1.1em;
 	}
 	.title-wrap {
-		font-size: 53%;
+		font-size: 65%;
 		margin: 85px 0 0 0;
 	}
 	.page__title-main {
@@ -264,3 +264,22 @@ body {
 	}
 }
 
+@media screen and (max-width: 767px) {
+	.header {
+		padding: 1em;
+	}
+	.title-wrap {
+		font-size: 53%;
+		margin: 65px 0 0 0;
+	}
+	.page__title-main {
+		font-size: 1.2em;
+	}
+	.page__title-sub {
+		margin-bottom: 1em;
+	}
+	.grid__item {
+		width: 100%;
+		max-width: none;
+	}
+}
