@@ -6,8 +6,24 @@
     <section class="page page--static">
         
         <div class="page__title">
-            <h1 class="page__title-main">Browse Wall Art by Categories</h1>
-            <h4 class="page__title-sub">alternatively search by #hashtag, Room, Mood or Artist</h4>
+            <h1 class="page__title-main">
+                <span>Browse Wall Art by </span>
+                <a href="{% url 'index_no_intro' page_structure.filter_by %}"><span>{{ page_structure.filter_by }}</span></a>
+            </h1>
+            <h4 class="page__title-sub">
+                <span>alternatively search by </span>
+                <a href="{% url 'index_no_intro' page_structure.others.0 %}"><span>{{ page_structure.others.0 }}</span></a><span>,</span>
+                <a href="{% url 'index_no_intro' page_structure.others.1 %}"><span>{{ page_structure.others.1 }}</span></a><span>&nbsp;or</span>
+                <a href="{% url 'index_no_intro' page_structure.others.2 %}"><span>{{ page_structure.others.2 }}</span></a>
+
+                <!-- {% for other in page_structure.others %}
+                {% if other == page_structure.others.2 %}
+							<a href="{% url 'index_no_intro' other %}"><span>{{ other }}</span></a>
+							{% else %}
+							<a href="{% url 'index_no_intro' other %}"><span>{{ other }}</span></a><span>,&nbsp;</span>
+                {% endif %}
+                {% endfor %}                 -->
+            </h4>
         </div>
 
         <ul class="grid" >
@@ -58,5 +74,11 @@
     </section>
 
 </div>
+
+	<script>
+		// just for testing
+        const toLog = "{{ page_structure.others.2 }}"; 
+        console.log("PRINT THIS: ", toLog);
+	</script>
 
 {% endblock %}

@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='index'),
     url(r'^index_no_intro$', index_no_intro, name='index_no_intro'),
+    url(r'^index_no_intro/(?P<filter_group>\w+)', index_no_intro, name='index_no_intro'),
     url(r'^authentication/', include(authentication_urls)),
     url(r'^products/', include(products_urls)),
     url(r'^checkout/', include(checkout_urls)),
