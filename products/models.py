@@ -28,7 +28,8 @@ class Artist(models.Model):
     """ Model for the Artists uploading their artwork to the site """
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
-    display_name = models.CharField(max_length=16)
+    artist_name = models.CharField(max_length=16)
+    # artis_name is the display name for the artists, named in this format to match other filter name structures
     avatar = models.ImageField(upload_to='images')
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
     address = models.CharField(max_length=64, default='')
@@ -36,7 +37,7 @@ class Artist(models.Model):
     wants_newsletter = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.display_name
+        return self.artist_name
 
 
 class Technology(models.Model):
