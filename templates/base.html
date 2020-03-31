@@ -15,12 +15,12 @@
 	<link rel="shortcut icon" href="{% static 'images/cube_icon.ico' %}" type="image/x-icon">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://js.stripe.com/v2/"></script>
-    <script type="test/javascript">
+    <script type="text/javascript">
 	    //<![CDATA[
             Stripe.publishableKey = '{{ publishable }}';
         //]]>
     </script>
-    <script type="test/javascript" src="{% static 'js/stripe.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
     {% block style-tag %}{% endblock %}
     <!-- custom.css hosted on AWS S3, which makes development impossible, to overcome this, I keep styles here for development -->
 </head>
