@@ -11,8 +11,8 @@ def all_products(request):
 def product_details(request, id):
     """ The view rendering the page for one selected product and all of its details """
     selected_product = Product.objects.get(pk = id)
-    # filtering the hashtags associated with the selected product - excluding duplicates:
-    hashtags = Hashtag.objects.filter(product = selected_product).distinct()
+    # filtering the hashtags associated with the selected product:
+    hashtags = Hashtag.objects.filter(product = selected_product)
     print(f"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxwwwwwwwwwwwwwwwww**********selected_product : {hashtags}")
     # filtering all the relevant ratings from the Rating model:
     ratings = Rating.objects.filter(product = selected_product)
