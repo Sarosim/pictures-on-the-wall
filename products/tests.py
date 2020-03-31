@@ -6,7 +6,7 @@ from .models import Product, Category, Badge, Technology, Rating, Artist, Size, 
 class TestArtist(TestCase):
     """ Testing the Badge model """
     def test_artist(self):
-        artist_name = Artist(display_name = "Test name")
+        artist_name = Artist(artist_name = "Test name")
         self.assertEqual(str(artist_name), "Test name")
 
 class TestTechnology(TestCase):
