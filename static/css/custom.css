@@ -1,14 +1,15 @@
 body {
     background-color: bisque;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
-.navbar{
-    padding: 0.5em 1em;
+.navbar {
+    padding: 1rem;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1001;
+    background-color: rgba(255, 255, 255, .7)
 }
 
 .fa-shopping-cart {
@@ -52,6 +53,7 @@ body {
 
 	.details-image-box {
 		overflow: hidden;
+        min-height: 60vh;
 		padding: 15px 0;
 	}
 
@@ -87,8 +89,10 @@ body {
 
 	.details-hashtag {
 		background-color: #0093ff;
-		color: #ddd;
-		padding: .4rem;
+		color: #eee;
+		padding: .2rem .3rem;
+        margin: .3rem;
+        line-height: 200%;
 		border-radius: .4rem 1rem;
 	}
 
