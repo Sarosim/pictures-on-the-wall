@@ -31,6 +31,10 @@ body {
 	padding: 0 2em;
 }
 
+.page__title .row {
+    padding: 1rem -5rem;
+}
+
 .page__title-main {
 	margin: 0 auto;
 	padding: 0.2em 0 0;
@@ -136,10 +140,10 @@ body {
 
 .cta {
     display: block;
-    padding: 2rem;
     margin: 0 0 40px 0;
-    width: 80%;
-    /* background-color:  */
+    background: #ffe175;
+    padding: 2rem;
+    font-size: 1.0rem;
     box-shadow: 8px 8px 17px #a1a1a1,
                 -8px -8px 15px #fff;
 }

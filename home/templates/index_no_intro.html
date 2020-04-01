@@ -3,91 +3,100 @@
 {% block content %}
 
 <div class="view">
-    <section class="page page--static">
-        
-        <div class="page__title">
-            <h1 class="page__title-main">
-                <span>Browse Wall Art by </span>
-                <span>{{ page_structure.filter_by }}</span>
-            </h1>
-            <h4 class="page__title-sub">
-                <span>alternatively search by </span>
-                <a href="{% url 'index_no_intro' page_structure.others.0 %}"><span>{{ page_structure.others.0 }}</span></a><span>,</span>
-                <a href="{% url 'index_no_intro' page_structure.others.1 %}"><span>{{ page_structure.others.1 }}</span></a><span>&nbsp;or</span>
-                <a href="{% url 'index_no_intro' page_structure.others.2 %}"><span>{{ page_structure.others.2 }}</span></a>
+	<section class="page page--static">
 
-                <!-- {% for other in page_structure.others %}
-                {% if other == page_structure.others.2 %}
-							<a href="{% url 'index_no_intro' other %}"><span>{{ other }}</span></a>
-							{% else %}
-							<a href="{% url 'index_no_intro' other %}"><span>{{ other }}</span></a><span>,&nbsp;</span>
-                {% endif %}
-                {% endfor %}                 -->
-            </h4>
-        </div>
-
-        <ul class="grid" >
-            <li class="grid__item" >
-                <a class="grid__link" href="{% url 'filtered_products' page_structure.filter_by 'animals' %}">
-                    <img class="grid__image" src="{% static 'images/animals_category.jpg' %}" alt="Animals Category image">
-                    <h3 class="grid__item-title">Animals</h3>
-                </a>
-            </li>
-            <li class="grid__item" >
-                <a class="grid__link" href="#">
-                    <img class="grid__image" src="{% static 'images/abstract_category.jpg' %}" alt="Abstract Category image">
-                    <h3 class="grid__item-title">Abstract</h3>
-                </a>
-            </li>
-            <li class="grid__item" >
-                <a class="grid__link" href="#">
-                    <img class="grid__image" src="{% static 'images/architecture_category.jpg' %}" alt="Architecture Category image">
-                    <h3 class="grid__item-title">Architecture</h3>
-                </a>
-            </li>
-            <li class="grid__item" >
-                <a class="grid__link" href="#">
-                    <img class="grid__image" src="{% static 'images/food_category.jpg' %}" alt="Food & Drink Category image">
-                    <h3 class="grid__item-title">Food & Drink</h3>
-                </a>
-            </li>
-            <li class="grid__item" >
-                <a class="grid__link" href="#">
-                    <img class="grid__image" src="{% static 'images/flowers_category.jpg' %}" alt="Flowers Category image">
-                    <h3 class="grid__item-title">Flowers</h3>
-                </a>
-            </li>
-            <li class="grid__item" >
-                <a class="grid__link" href="#">
-                    <img class="grid__image" src="{% static 'images/painting_category.jpg' %}" alt="Painting Category image">
-                    <h3 class="grid__item-title">Painting</h3>
-                </a>
-            </li>
-            <li class="grid__item" >
-                <a class="grid__link" href="#">
-                    <img class="grid__image" src="{% static 'images/other_category.jpg' %}" alt="Other Category image">
-                    <h3 class="grid__item-title">Other</h3>
-                </a>
-            </li>
-        </ul>
-
-		<!-- CTA for mobile/portrait devices -->
-		<div class="cta">
-			<div class="cta-title">
-				<span>Want to</span>
-				<a href="{% url 'index_no_intro' page_structure.filter_by %}" class="cta-btn">earn</a>
-				<span>money with your artwork?</span>
+		<div class="page__title">
+			<div class="row">
+				<div class="col-12 col-md-8 mt-2">
+					<h1 class="page__title-main">
+						<span>Browse Wall Art by </span>
+						<span>{{ page_structure.filter_by }}</span>
+					</h1>
+					<h4 class="page__title-sub">
+						<span>alternatively search by </span>
+						<a href="{% url 'index_no_intro' page_structure.others.0 %}"><span>{{ page_structure.others.0 }}</span></a>
+                        <span>,</span>
+						<a href="{% url 'index_no_intro' page_structure.others.1 %}"><span>{{ page_structure.others.1 }}</span></a>
+                        <span>&nbsp;or</span>
+						<a href="{% url 'index_no_intro' page_structure.others.2 %}"><span>{{ page_structure.others.2 }}</span></a>
+					</h4>
+				</div>
+				<div class="d-none d-md-block col-4">
+					<div class="cta">
+						<div class="cta-title">
+							<span>Want to</span>
+							<a href="{% url 'index_no_intro' page_structure.filter_by %}" class="cta-btn">earn</a>
+							<span>money with your artwork?</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-        
-    </section>
+
+		<ul class="grid">
+			<li class="grid__item">
+				<a class="grid__link" href="{% url 'filtered_products' page_structure.filter_by 'animals' %}">
+					<img class="grid__image" src="{% static 'images/animals_category.jpg' %}" alt="Animals Category image">
+					<h3 class="grid__item-title">Animals</h3>
+				</a>
+			</li>
+			<li class="grid__item">
+				<a class="grid__link" href="#">
+					<img class="grid__image" src="{% static 'images/abstract_category.jpg' %}" alt="Abstract Category image">
+					<h3 class="grid__item-title">Abstract</h3>
+				</a>
+			</li>
+			<li class="grid__item">
+				<a class="grid__link" href="#">
+					<img class="grid__image" src="{% static 'images/architecture_category.jpg' %}" alt="Architecture Category image">
+					<h3 class="grid__item-title">Architecture</h3>
+				</a>
+			</li>
+			<li class="grid__item">
+				<a class="grid__link" href="#">
+					<img class="grid__image" src="{% static 'images/food_category.jpg' %}" alt="Food & Drink Category image">
+					<h3 class="grid__item-title">Food & Drink</h3>
+				</a>
+			</li>
+			<li class="grid__item">
+				<a class="grid__link" href="#">
+					<img class="grid__image" src="{% static 'images/flowers_category.jpg' %}" alt="Flowers Category image">
+					<h3 class="grid__item-title">Flowers</h3>
+				</a>
+			</li>
+			<li class="grid__item">
+				<a class="grid__link" href="#">
+					<img class="grid__image" src="{% static 'images/painting_category.jpg' %}" alt="Painting Category image">
+					<h3 class="grid__item-title">Painting</h3>
+				</a>
+			</li>
+			<li class="grid__item">
+				<a class="grid__link" href="#">
+					<img class="grid__image" src="{% static 'images/other_category.jpg' %}" alt="Other Category image">
+					<h3 class="grid__item-title">Other</h3>
+				</a>
+			</li>
+		</ul>
+
+		<!-- CTA for mobile/portrait devices -->
+		<div class="row d-block d-md-none m-3">
+			<div class="cta">
+				<div class="cta-title">
+					<span>Want to</span>
+					<a href="{% url 'index_no_intro' page_structure.filter_by %}" class="cta-btn">earn</a>
+					<span>money with your artwork?</span>
+				</div>
+			</div>
+		</div>
+
+	</section>
 
 </div>
 
-	<script>
-		// just for testing
+<script>
+	// just for testing
         const toLog = "{{ page_structure.others.2 }}"; 
         console.log("PRINT THIS: ", "{{page_structure.filter_by}}");
-	</script>
+</script>
 
 {% endblock %}
