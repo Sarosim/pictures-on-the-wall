@@ -132,6 +132,51 @@ body {
 	color: #aab0b6;
 }
 
+/* The Call To Action for photographers to contribute */
+
+.cta {
+    display: block;
+    padding: 2rem;
+    margin: 0 0 40px 0;
+    width: 80%;
+    /* background-color:  */
+    box-shadow: 8px 8px 17px #a1a1a1,
+                -8px -8px 15px #fff;
+}
+
+.cta-title {
+    font-weight: 700;
+    line-height: 220%;
+    color: red;
+}
+
+.cta-btn {
+    text-decoration: none;
+    z-index: 1500;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-weight: 700;
+    text-align: center;
+    padding: .6rem 1.4rem;
+    color: #fff;
+    background-color: #007e00;
+    box-shadow: inset 3px 3px 7px #cbced1,
+                inset -3px -3px 7px #fff;
+    transition: 800ms;
+}
+
+.cta-btn:hover {
+    background: #00ee0c;
+    text-decoration: none;
+}
+
+.cta-btn:active {
+    background: #005e18;
+    text-decoration: none;
+}
+
 /* The mobile device on the intro page */
 /*   needs different sizing for landscape and portrait orientation */
 @media (orientation: landscape) {
@@ -262,6 +307,9 @@ body {
 		width: 50%;
 		max-width: none;
 	}
+    .grid {
+        padding: 0 0 4em;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -282,4 +330,7 @@ body {
 		width: 100%;
 		max-width: none;
 	}
+    .grid {
+        padding: 0 0 2em;
+    }
 }
