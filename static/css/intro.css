@@ -181,6 +181,10 @@ body {
     text-decoration: none;
 }
 
+.info-line {
+    font-size: 1.5rem;
+}
+
 /* The mobile device on the intro page */
 /*   needs different sizing for landscape and portrait orientation */
 @media (orientation: landscape) {
