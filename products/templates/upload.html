@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Upload{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<!-- Row for the explanations content (Pricing, technologies, upload preocess) -->
+	<div class="row">
+		<div class="col-12">
+			<h1>Start earning money, upload your photos!</h1>
+		</div>
+		<div class="col-12">
+			<p>This section is for explaining how the site works. Pricing, technologies, upload preocess, etc</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nisi similique, iure error sunt
+				suscipit perferendis est vel laborum dolores facere tempore aliquam ducimus doloribus at adipisci ipsa
+				tempora distinctio?</p>
+		</div>
+	</div>
+
+	<!-- Row for the requirements content (image- content, quality, resolution, aspect ratio; Creating profile requirements) -->
+	<div class="row">
+		<div class="col-12">
+			<h2>Requirements</h2>
+		</div>
+		<ul class="row">
+			<li class="row">
+				<h3 class="col-12">Profile</h3>
+				<p class="col-11 offset-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore laboriosam
+					voluptatum natus. Repellat repellendus
+					saepe aliquid laudantium laborum? Et quisquam ipsam porro, quis minima consectetur error atque
+					exercitationem suscipit adipisci.</p>
+			</li>
+
+			<li class="row">
+				<h3 class="col-12">Image Content</h3>
+				<p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam repellat
+					cumque
+					architecto dolorem deserunt laborum
+					recusandae voluptatum ipsa neque. Debitis in magni, possimus facilis qui consectetur nobis illum
+					iusto
+					libero?</p>
+			</li>
+			<li class="row">
+				<h3 class="col-12">Image Quality</h3>
+				<p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, aspernatur
+					dignissimos. Deserunt accusamus facilis
+					distinctio optio sint alias voluptatibus delectus maiores et asperiores voluptates ea minus, dolorem
+					reiciendis pariatur ex.</p>
+			</li>
+			<li class="row">
+				<h3 class="col-12">Image Resolution</h3>
+				<p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda
+					necessitatibus ex eveniet, facere fugiat quisquam
+					inventore veritatis suscipit tempora optio animi voluptate explicabo amet eos sapiente ab quis saepe
+					dicta.</p>
+			</li>
+			<li class="row">
+				<h3 class="col-12">Image Aspect Ratio</h3>
+				<p class="col-11 offset-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem magni
+					molestias
+					sunt sed? Labore doloribus
+					doloremque totam voluptatum inventore repellendus eligendi eius quod, nisi cumque, ad cum ut
+					corrupti
+					temporibus.</p>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Row for the image upload part - just a image upload and redirect to Edit view -->
+	<div class="row">
+		<div class="col-12">
+			<h2>Upload your image here</h2>
+		</div>
+		<div class="file-upload">
+			<form action="" method="post">
+				<input type="file" name="name_search">
+				<button class="btn btn-secondary" type="submit">Upload</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

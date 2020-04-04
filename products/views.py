@@ -8,6 +8,7 @@ def all_products(request):
     all_the_products = Product.objects.all()
     return render(request, "products.html", {"products": all_the_products})
 
+
 def product_details(request, id):
     """ The view rendering the page for one selected product and all of its details """
     selected_product = Product.objects.get(pk = id)
@@ -59,3 +60,9 @@ def filtered_products(request, filter_group, filter_name):
 
     print(filtered_products)
     return render(request, "products.html", {"products": filtered_products})
+
+
+def file_upload(request):
+    """ The view rendering the page that explains how to become a contributor
+    and upload an image, as well we the form for file upload"""
+    return render(request, 'upload.html')
