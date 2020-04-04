@@ -66,3 +66,9 @@ def file_upload(request):
     """ The view rendering the page that explains how to become a contributor
     and upload an image, as well we the form for file upload"""
     return render(request, 'upload.html')
+
+
+def edit_artwork(request):
+    """ The view rendering a page for providing details for, or editing the 
+    details of uploaded Artwork """
+    return render(request, 'edit.html')
