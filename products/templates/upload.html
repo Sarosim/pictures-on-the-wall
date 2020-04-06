@@ -67,17 +67,17 @@
 		</ul>
 	</div>
 
-	<!-- Row for the image upload part - just a image upload and redirect to Edit view -->
+	<!-- Row for the link to upload form -->
 	<div class="row">
 		<div class="col-12">
 			<h2>Upload your image here</h2>
 		</div>
-		<div class="file-upload">
-			<form action="" method="post">
-				<input type="file" name="name_search">
-				<button class="btn btn-secondary" type="submit">Upload</button>
-			</form>
+		<div class="go-to-edit mx-auto p-2 p-md-5">
+            <p>
+                <a class="btn btn-lg btn-warning" href="{% url 'edit_artwork' %}">Fill out the Upload Form</a>
+            </p>
 		</div>
+
 	</div>
 </div>
 

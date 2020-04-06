@@ -191,3 +191,16 @@ body {
         font-size: 1.7rem;
     }
 
+/******************* PRODUCT EDIT HTML ******************************/
+
+.edit-form {
+    display: inline;
+}
+
+.edit-form-groups {
+    display: block;
+}
+
+.edit-form-submit {
+    float: right;
+}

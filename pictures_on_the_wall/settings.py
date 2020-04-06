@@ -183,6 +183,7 @@ MEDIA_URL = '/media/'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
+LOGIN_URL = '/authentication/login/'
 
 """ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'"""
 

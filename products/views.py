@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from .models import Product, Category, Hashtag, Rating
+from .models import Product, Category, Hashtag, Rating, Artist, Size
+from .forms import FileUploadForm # probably superseded, to be deleted
+from .forms import EditProductFormOne, EditProductFormThree
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -62,13 +65,58 @@ def filtered_products(request, filter_group, filter_name):
     return render(request, "products.html", {"products": filtered_products})
 
 
+@login_required
 def file_upload(request):
     """ The view rendering the page that explains how to become a contributor
     and upload an image, as well we the form for file upload"""
     return render(request, 'upload.html')
 
-
+@login_required
 def edit_artwork(request):
     """ The view rendering a page for providing details for, or editing the 
     details of uploaded Artwork """
-    return render(request, 'edit.html')
+
+    if request.method == 'POST':
+        # If the form is being submitted:
+        # create a form instance and populate it with data from the request:
+        
+        edit_form_one = EditProductFormOne(request.POST, request.FILES)
+        edit_form_three = EditProductFormThree(request.POST)
+
+        # Getting the logged in user from the request 
+        # and finding the corresponding artist in the Artist model
+        set_artist = Artist.objects.filter(assigned_user=request.user)
+        # getting their id from the QuesrySet
+        set_artist = set_artist.values('id')[0]['id']
+        
+        if edit_form_one.is_valid() and edit_form_three.is_valid():
+            # save the form of the Product model
+            edit_form_one.save()
+
+            # The #hashtags needs to be handled
+            # edit_form_three.save()
+            print("form saved!")
+            # redirect to the products page with all the products listed - this will need adjusting FOR the FINAL VERSION
+            all_the_products = Product.objects.all()
+            return render(request, 'products.html', {"products": all_the_products})
+        else:
+            print(f"file upload form isn't valid  - no file saved")
+
+    
+    else:
+        # if the request is GET create a blank form
+        # with the artist prepopulated with a HiddenInput
+        set_artist = Artist.objects.filter(assigned_user=request.user).values('id')[0]['id']
+        edit_form_one = EditProductFormOne(initial={'artist': set_artist})
+        
+        edit_form_three = EditProductFormThree()
+
+    return render(
+        request,
+        'edit.html',
+        {
+            'edit_form_one': edit_form_one,
+            'edit_form_three': edit_form_three,
+        }
+        )
+
