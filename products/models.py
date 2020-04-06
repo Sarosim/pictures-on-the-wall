@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -29,12 +30,13 @@ class Artist(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     artist_name = models.CharField(max_length=16)
-    # artis_name is the display name for the artists, named in this format to match other filter name structures
+    # artist_name is the display name for the artists, named in this format to match other filter name structures
     avatar = models.ImageField(upload_to='images')
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
     address = models.CharField(max_length=64, default='')
     wants_marketing = models.BooleanField(default=True)
     wants_newsletter = models.BooleanField(default=True)
+    assigned_user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def __str__(self):
         return self.artist_name
@@ -65,7 +67,7 @@ class Product(models.Model):
     title = models.CharField(max_length=32, default='')
     description = models.TextField()
     image = models.ImageField(upload_to='images', default='cube.png')
-    base_repro_fee = models.DecimalField(max_digits=6, decimal_places=2)
+    base_repro_fee = models.DecimalField(max_digits=6, decimal_places=2, default=9.99)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     room = models.ManyToManyField(Room)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default='')
@@ -92,7 +94,7 @@ class Rating(models.Model):
 class Size(models.Model):
     """ Model for exact picture sizes in cm or inch """
     size_name = models.CharField(max_length=16, default='10 x 15 cm')
-    longer_side = models.DecimalField(max_digits=6, decimal_places=2, default=15)
+    longer_side = models.DecimalField(max_digits=6, decimal_places=2)
     shorter_side = models.DecimalField(max_digits=6, decimal_places=2, default=10)
 
     def __str__(self):
