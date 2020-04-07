@@ -21,9 +21,21 @@
 	<section class="page page--static">
 
 		<div class="page__title">
-			<h1 class="page__title-main">Browse Wall Art by Categories</h1>
-			<h4 class="page__title-sub">alternatively search by #hashtag, Room or Artist</h4>
+            <div>
+                <h1 class="page__title-main">Browse Wall Art by Categories</h1>
+                <h4 class="page__title-sub">
+                    <span>alternatively search by </span>
+    
+                    <a href="{% url 'index_no_intro' 'hashtag' %}"><span>Hashtag</span></a>
+                    <span>,</span>
+                    <a href="{% url 'index_no_intro' 'room' %}"><span>Room</span></a>
+                    <span>&nbsp;or</span>
+                    <a href="{% url 'index_no_intro' 'artist' %}"><span>Artist</span></a>
+                </h4>
+            </div>
 		</div>
+
+
 
 		<ul class="grid">
 			<li class="grid__item">

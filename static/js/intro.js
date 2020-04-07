@@ -100,9 +100,11 @@
         // Stopping the pagescroll for the duration of the intro
         mainContainer.classList.add('fix-for-intro'); 
         setTimeout(function(){ 
-            console.log("Ez a SET TIMOUT vege")
-            mainContainer.classList.remove('fix-for-intro'); 
-        }, 2000);
+            console.log("Ez a SET TIMOUT vege");
+            //mainContainer.classList.remove('fix-for-intro'); 
+            var new_url = "index_no_intro";
+            window.location.replace(new_url)
+        }, 3000);
 
         showGridButton.style.display = "none";
 
