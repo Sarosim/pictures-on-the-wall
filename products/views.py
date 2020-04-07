@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import Product, Category, Hashtag, Rating, Artist, Size
 from .forms import FileUploadForm # probably superseded, to be deleted
-from .forms import EditProductFormOne, EditProductFormThree
+from .forms import EditProductFormOne, EditProductFormThree, ArtistProfileForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -101,14 +102,22 @@ def edit_artwork(request):
             return render(request, 'products.html', {"products": all_the_products})
         else:
             print(f"file upload form isn't valid  - no file saved")
-
     
     else:
-        # if the request is GET create a blank form
-        # with the artist prepopulated with a HiddenInput
-        set_artist = Artist.objects.filter(assigned_user=request.user).values('id')[0]['id']
-        edit_form_one = EditProductFormOne(initial={'artist': set_artist})
+        # if the request is GET 
+        # First check whether the user has an Artist profile:
+        try:
+            set_artist = Artist.objects.filter(assigned_user=request.user).values('id')[0]['id']
+            print(f"The artist: {Artist.objects.filter(assigned_user=request.user)} and their ID is {set_artist}")
+            print(f"The user: {request.user} and their ID is {request.user.id}")
+        except:
+            print("No Artist exists for the current user, let's redirect them to Profile")
+            artist_form = ArtistProfileForm(initial={'assigned_user': request.user.id})
+            return render(request, 'artist_profile.html', {'artist_form': artist_form})
+        # create a blank form with the artist prepopulated with a HiddenInput
+        # set_artist = Artist.objects.filter(assigned_user=request.user).values('id')[0]['id']
         
+        edit_form_one = EditProductFormOne(initial={'artist': set_artist})
         edit_form_three = EditProductFormThree()
 
     return render(
@@ -120,3 +129,32 @@ def edit_artwork(request):
         }
         )
 
+
+def artist_profile(request):
+    """ The view rendering the page for Artist profile creation, modification
+    or deletion """
+    if request.method == 'POST':
+        # User submitted an Artist profile form
+        artist_form = ArtistProfileForm(request.POST)
+        if artist_form.is_valid():
+            # Save the form
+            print("artist form valid")
+            artist_form.save()
+            print("...and saved")
+            # Prepare the form for uploading a new artwork and render the page
+            set_artist = Artist.objects.filter(assigned_user=request.user).values('id')[0]['id']
+            edit_form_one = EditProductFormOne(initial={'artist': set_artist})
+            edit_form_three = EditProductFormThree()
+            return render(request, 'edit.html',
+                {
+                    'edit_form_one': edit_form_one,
+                    'edit_form_three': edit_form_three,
+                }
+                )
+        else:
+            print("Form isn't valid, to be handled later")
+    else:
+
+        artist_form = ArtistProfileForm(initial={'assigned_user': request.user.id})
+    
+    return render(request, 'artist_profile.html', {'artist_form': artist_form})
