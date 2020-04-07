@@ -8,6 +8,11 @@ body {
     overflow-x: hidden; 
 }
 
+.view {
+    margin-top: 5rem;
+}
+
+
 /* the main container needs fixing for proper timing of the transition */
 .fix-for-intro {
     position: fixed;
