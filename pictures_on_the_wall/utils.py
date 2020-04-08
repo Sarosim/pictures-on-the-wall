@@ -3,9 +3,10 @@ from products.models import Product, Category, Hashtag, Artist
 # My utilities
 
 def special_filter(model, what):
-    """" My helper function to filter the Products model 
-    with the foreign keys to the 'model' to filter 'field' 
-    by 'what' and return a QuerySet"""
+    """" My helper function to filter the Products model \n
+    with the foreign keys to the 'model' to filter by 'what' \n
+    model - The name of the linked model in the products app \n
+    what - The instance we are looking for."""
 
     # constructing 'field' for the kwargs
     if model == 'hashtag':
@@ -19,6 +20,5 @@ def special_filter(model, what):
     filter_kwargs = model + '__' + field + '__' + 'iexact'
     # the actual filtering
     filtered_products = Product.objects.filter(**{filter_kwargs: what})
-    print(f"the filtered product QuerySet is {filtered_products}")
     return filtered_products
 
