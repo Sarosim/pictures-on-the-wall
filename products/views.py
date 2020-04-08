@@ -55,17 +55,8 @@ def filtered_products(request, filter_group, filter_name):
     """ The view rendering a page for all products (Artwork)
     filtered by a user selected criteria """
 
-
-    # constructing kwargs for the filter
-    if filter_group == 'hashtag':
-        # the hashtag model doesn't have a hashtag_name field
-        filter_subgroup = 'hashtag'
-    else:
-        # we use the 'model'+'_name' fields from the other models
-        filter_subgroup = filter_group + '_name'
-    
     # Call my helper function in utils.py to run the filter
-    filtered_products = special_filter(filter_group, filter_subgroup, filter_name)
+    filtered_products = special_filter(filter_group, filter_name)
 
     return render(request, "products.html", {"products": filtered_products})
 
