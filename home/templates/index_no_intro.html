@@ -34,7 +34,7 @@
 		</div>
 
         <ul class="grid">
-            {% for item in page_structure.filter_group_items %}
+            {% for item in page_structure.filter_group_queryset %}
                 <li class="grid__item">
                     <a href="{% url 'filtered_products' page_structure.filter_by item %}" class="grid__link">
                         <img src="{% static 'images/animals_category.jpg' %}" alt="{{ item }}&nbsp;{{ page_structure.filter_by }}&nbsp;image" class="grid__image">

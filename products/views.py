@@ -4,6 +4,7 @@ from .models import Product, Category, Hashtag, Rating, Artist, Size
 from .forms import FileUploadForm  # probably superseded, to be deleted
 from .forms import EditProductFormOne, EditProductFormThree, ArtistProfileForm
 from django.contrib.auth.decorators import login_required
+from pictures_on_the_wall.utils import special_filter
 
 # Create your views here.
 
@@ -54,10 +55,6 @@ def filtered_products(request, filter_group, filter_name):
     """ The view rendering a page for all products (Artwork)
     filtered by a user selected criteria """
 
-    # setting the values for the variables 'manually'
-    # before actual links properly set on page
-    # filter_group = 'room'
-    # filter_name = 'bathroom'
 
     # constructing kwargs for the filter
     if filter_group == 'hashtag':
@@ -67,12 +64,9 @@ def filtered_products(request, filter_group, filter_name):
         # we use the 'model'+'_name' fields from the other models
         filter_subgroup = filter_group + '_name'
     
-    # the actual keyword argument for the filtering:
-    filter_kwargs = filter_group + '__' + filter_subgroup + '__' + 'iexact'
-    print(filter_kwargs)
-    # the actual filtering
-    filtered_products = Product.objects.filter(**{filter_kwargs: filter_name})
-    print(filtered_products)
+    # Call my helper function in utils.py to run the filter
+    filtered_products = special_filter(filter_group, filter_subgroup, filter_name)
+
     return render(request, "products.html", {"products": filtered_products})
 
 

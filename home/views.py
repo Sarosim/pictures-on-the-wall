@@ -32,21 +32,17 @@ def index_no_intro(request, filter_group="category"):
 
     # collecting the instances from the selected model
     filter_group_queryset = SelectedModel.objects.all()
-    # adding all instances to a list to pass to the frontend
-    filter_group_items = []
-    for item in filter_group_queryset:
-        filter_group_items.append(item)
 
-    # all_categories = Category.objects.all()
-    # all_artists = Artist.objects.all()
-    # all_rooms = Room.objects.all()
-    # all_hashtags = Hashtag.objects.all()
-    # filter_by = filter_group
+    if SelectedModel == Hashtag:
+        print("Hashtag selected, need action to limit list to unique items")
+        # NEED TO DO SOMETHING WITH HASHTAGS to pick one from each 
+
+    for item in filter_group_queryset:
+        print(item)
 
     page_structure = {
         'filter_by': filter_group,
         'others': others,
-        'filter_group_items': filter_group_items,
         'filter_group_queryset': filter_group_queryset
     }
 
