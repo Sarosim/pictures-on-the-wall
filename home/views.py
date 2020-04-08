@@ -37,9 +37,6 @@ def index_no_intro(request, filter_group="category"):
         print("Hashtag selected, need action to limit list to unique items")
         # NEED TO DO SOMETHING WITH HASHTAGS to pick one from each 
 
-    for item in filter_group_queryset:
-        print(item)
-
     page_structure = {
         'filter_by': filter_group,
         'others': others,
