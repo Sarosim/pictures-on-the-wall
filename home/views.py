@@ -2,6 +2,7 @@ from django.shortcuts import render
 from products.models import Artist, Category, Room, Hashtag
 from django.db import models
 from django.apps import apps
+from pictures_on_the_wall.utils import special_filter
 
 def index(request):
     """A view that displays the landing page"""
@@ -33,6 +34,19 @@ def index_no_intro(request, filter_group="category"):
     # collecting the instances from the selected model
     filter_group_queryset = SelectedModel.objects.all()
 
+    # create a list of sample Products that represents each instance in the model
+    sample_list = []
+    for item in filter_group_queryset:
+        sample_prod = special_filter(filter_group, str(item)).order_by('-id').first()
+        sample_list.append(sample_prod)
+
+    # organise the QuerySets and the sample Products into a list of lists,
+    # so it is easy to handle on the frontend in a for loop
+    items = []
+    for i, item in enumerate(filter_group_queryset):
+        # each inner list consists of the QuerySet item and the corresponding sample
+        items.append([item, sample_list[i]])
+
     if SelectedModel == Hashtag:
         print("Hashtag selected, need action to limit list to unique items")
         # NEED TO DO SOMETHING WITH HASHTAGS to pick one from each 
@@ -40,7 +54,9 @@ def index_no_intro(request, filter_group="category"):
     page_structure = {
         'filter_by': filter_group,
         'others': others,
-        'filter_group_queryset': filter_group_queryset
+        'items': items
     }
 
-    return render(request, 'index_no_intro.html', {'page_structure': page_structure})
+    print(page_structure)
+
+    return render(request, 'index_no_intro.html', {'data': page_structure})
