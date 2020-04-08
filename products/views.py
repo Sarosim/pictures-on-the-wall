@@ -56,8 +56,8 @@ def filtered_products(request, filter_group, filter_name):
 
     # setting the values for the variables 'manually'
     # before actual links properly set on page
-    filter_group = 'room'
-    filter_name = 'bathroom'
+    # filter_group = 'room'
+    # filter_name = 'bathroom'
 
     # constructing kwargs for the filter
     if filter_group == 'hashtag':
@@ -69,10 +69,10 @@ def filtered_products(request, filter_group, filter_name):
     
     # the actual keyword argument for the filtering:
     filter_kwargs = filter_group + '__' + filter_subgroup + '__' + 'iexact'
-
+    print(filter_kwargs)
     # the actual filtering
     filtered_products = Product.objects.filter(**{filter_kwargs: filter_name})
-
+    print(filtered_products)
     return render(request, "products.html", {"products": filtered_products})
 
 
