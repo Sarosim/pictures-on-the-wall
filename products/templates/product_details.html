@@ -7,8 +7,13 @@
 <div class="container-fluid ">
 	<div class="row details-container">
 		<div class="col-12 col-md-7">
-			<div class="details-title">
-				<h3>{{ pass_to_template.selected_prod.title }}</h3>
+			<div class="row details-title">
+				<div class="col-12 col-md-5">
+					<h4>Artist: {{ pass_to_template.selected_prod.artist }}</h4>
+				</div>
+				<div class="col-12 col-md-7">
+					<h4>{{ pass_to_template.selected_prod.title }}</h4>
+				</div>
 			</div>
 			<!-- Image and Category, Room, Hashtag info -->
 			<div class="details-image-box col-12">
