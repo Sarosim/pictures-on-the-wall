@@ -17,9 +17,13 @@ def dashboard(request):
     set_artist = Artist.objects.filter(assigned_user=request.user)
     if set_artist:
         # The logged in user has an artist associated 
-        print(set_artist, set_artist.values('first_name')[0]['first_name'])
+        set_artist_id = set_artist.values('id')[0]['id']
+        print(f"Artist {set_artist} has {set_artist_id} id")
+        selected_products = Product.objects.filter(artist=set_artist_id)
+        print(selected_products)
         page_data = {
             'artist': set_artist,
+            'products': selected_products,
         }
         return render(request, 'dashboard.html', {'page_data': page_data})
     else:

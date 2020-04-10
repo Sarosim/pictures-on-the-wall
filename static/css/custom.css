@@ -207,15 +207,87 @@ body {
 }
 /******************* DASHBOARD HTML ******************************/
 
-.dashboard-info {
+.dashboard-header {
     font-size: 1.1rem;
 }
 
-.dashboard-info > p {
+.dashboard-header > p {
     margin-bottom: 4px;
+}
+
+.dashboard-info {
+    font-size: 1rem;
 }
 
 .dashboard-btn-container {
     display: flex;
     flex-direction: column-reverse;
+}
+
+.dashboard-image-container {
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-start;
+    width: 280px;
+    height: 70vh;
+}
+.dashboard-image-box {
+    position: relative;
+    margin: 6px;
+    box-shadow: 3px 3px 6px 4px rgba(0,0,0,0.22);
+    width: 32%;
+    display: inline-block;
+}
+
+.dashboard-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.dashboard-image > img {
+    position: relative;
+    max-width: 100%;
+}
+
+/* the containers that show up on hovering over the image-container  */
+.overlay {
+    position: absolute;
+    bottom: 30px;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    transition: .3s ease;
+}
+/* the one for the edit button */
+.overlay-edit {
+    left: 1.2rem;
+}
+/* the one for the hide button */
+.overlay-hide {
+    right: 3rem;
+}
+
+/* #hovering over the container let's increase the opacity of the overlay */
+.dashboard-image-box:hover .overlay {
+    opacity: .7;
+}
+
+.overlay-icon {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+}
+
+.fas {
+    background-color: #000;
+    padding: 2px;
+    border-radius: 5%;
+}
+/* The icons also colour and background colour when pointing to them */
+.fas:hover {
+    color: #000;
+    background-color: rgba(255, 255, 255, .9);
 }

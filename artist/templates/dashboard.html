@@ -7,7 +7,7 @@
 	<div class="row my-2 my-md-4">
 		<div class="col-8 offset-1">
 			<h2>Welcome {{ page_data.artist.0.artist_name }}!</h2>
-			<div class="dashboard-info">
+			<div class="dashboard-header">
 				<div>Your current badge is: {{ page_data.artist.0.badge }}</div>
 				<div>
 					Your are
@@ -33,26 +33,37 @@
             <a class="btn btn-info" href="{% url 'artist_profile' %}" role="button">Modify Profile</a>
         </div>
 	</div>
+
+
     <div class="row">
         <!-- Dashboard info column -->
-        <div class="col-12 col-md-4" style="border: 1px solid red">
+        <div class="col-12 col-md-4 dashboard-info">
             <p>Number of uploaded artworks: {{ page_data.artist.0.wants_newsletter }}</p>
             <p>Number of items sold: {{ page_data.artist.0.wants_newsletter }}</p>
             <p>Total earnings: £{{ page_data.artist.0.wants_newsletter }}</p>
             <p>Average ratings: {{ page_data.artist.0.wants_newsletter }}</p>
         </div>
-        <!-- Dashboard images column -->
-        <div class="col-12 col-md-8" style="border: 1px solid blue">
 
+        <!-- Dashboard images column -->
+        <div class="col-12 col-md-8 dashboard-image-container">
+            {% for product in page_data.products %}
+                <div class="dashboard-image-box">
+                    <img class="dashboard-image" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.title }}">
+                    <div class="overlay overlay-edit">
+                    <a href="#" class="overlay-icon" title="Edit Artwork">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    </div>
+                    <div class="overlay overlay-hide">
+                    <a href="#" class="overlay-icon" title="Hide Artwork from Site">
+                        <i class="fas fa-eye-slash"></i>
+                    </a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
 	</div>
 
-
 </div>
 
-
-<div class="dashboard-artworks">
-
-
-</div>
 {% endblock %}
