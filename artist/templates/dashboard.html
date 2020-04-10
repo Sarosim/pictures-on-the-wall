@@ -6,31 +6,29 @@
 
 <h1>Welcome {{ page_data.artist.0.artist_name }}!</h1>
 <div class="profile-info">
-<h4>Your current badge is: {{ page_data.artist.0.badge }}</h4>
-<h4>
-    Your are 
-    <span>
+	<h4>Your current badge is: {{ page_data.artist.0.badge }}</h4>
+	<h4>
+		Your are
+		<span>
     {% if not page_data.artist.0.wants_marketing %}
     <strong>not</strong>
     {% endif %}
     subscribed to our marketing communications.
     </span>
-</h4>
-<h4>
-    Your are 
-    <span>
+	</h4>
+	<h4>
+		Your are
+		<span>
     {% if not page_data.artist.0.wants_newsletter %}
     <strong>not</strong>
     {% endif %}
     subscribed to our infrequent newsletters.
     </span>
-</h4>
+	</h4>
+</div>
 
+<div class="profile-artworks">
+    
 
 </div>
-<h3>{{page_data.artist}}</h3>
-<h2>{{ page_data.artist.first }}</h2>
-<h4>{{ page_data.artist_name }}</h4>
-<h5>{{ page_data.artist.0.badge }}</h5>
-
 {% endblock %}
