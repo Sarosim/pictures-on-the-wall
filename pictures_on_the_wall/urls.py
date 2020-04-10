@@ -24,6 +24,7 @@ from checkout import urls as checkout_urls
 from .settings import MEDIA_ROOT
 from cart import urls as cart_urls
 from search import urls as search_urls
+from artist import urls as artist_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -35,5 +36,6 @@ urlpatterns = [
     url(r'^checkout/', include(checkout_urls)),
     url(r'^cart/', include(cart_urls)),
     url(r'^search/', include(search_urls)),
+    url(r'^artist/', include(artist_urls)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]
