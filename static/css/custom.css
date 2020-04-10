@@ -205,3 +205,17 @@ body {
 .edit-form-submit {
     float: right;
 }
+/******************* DASHBOARD HTML ******************************/
+
+.dashboard-info {
+    font-size: 1.1rem;
+}
+
+.dashboard-info > p {
+    margin-bottom: 4px;
+}
+
+.dashboard-btn-container {
+    display: flex;
+    flex-direction: column-reverse;
+}

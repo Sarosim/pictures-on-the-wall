@@ -3,32 +3,56 @@
 {% block page_title %}Dashboard{% endblock %}
 
 {% block content %}
+<div class="container">
+	<div class="row my-2 my-md-4">
+		<div class="col-8 offset-1">
+			<h2>Welcome {{ page_data.artist.0.artist_name }}!</h2>
+			<div class="dashboard-info">
+				<div>Your current badge is: {{ page_data.artist.0.badge }}</div>
+				<div>
+					Your are
+					<span>
+                        {% if not page_data.artist.0.wants_marketing %}
+                            <strong>not</strong>
+                        {% endif %}
+                    </span>
+                    subscribed to our marketing communications.
+				</div>
+				<p>
+					Your are
+					<span>
+                        {% if not page_data.artist.0.wants_newsletter %}
+                            <strong>not</strong>
+                        {% endif %}
+                    </span>
+                    subscribed to our infrequent newsletters.
+				</p>
+			</div>
+		</div>
+        <div class="col-xs-7 xs-offset-4 col-md-3 md-offset-0 dashboard-btn-container">
+            <a class="btn btn-info" href="{% url 'artist_profile' %}" role="button">Modify Profile</a>
+        </div>
+	</div>
+    <div class="row">
+        <!-- Dashboard info column -->
+        <div class="col-12 col-md-4" style="border: 1px solid red">
+            <p>Number of uploaded artworks: {{ page_data.artist.0.wants_newsletter }}</p>
+            <p>Number of items sold: {{ page_data.artist.0.wants_newsletter }}</p>
+            <p>Total earnings: £{{ page_data.artist.0.wants_newsletter }}</p>
+            <p>Average ratings: {{ page_data.artist.0.wants_newsletter }}</p>
+        </div>
+        <!-- Dashboard images column -->
+        <div class="col-12 col-md-8" style="border: 1px solid blue">
 
-<h1>Welcome {{ page_data.artist.0.artist_name }}!</h1>
-<div class="profile-info">
-	<h4>Your current badge is: {{ page_data.artist.0.badge }}</h4>
-	<h4>
-		Your are
-		<span>
-    {% if not page_data.artist.0.wants_marketing %}
-    <strong>not</strong>
-    {% endif %}
-    subscribed to our marketing communications.
-    </span>
-	</h4>
-	<h4>
-		Your are
-		<span>
-    {% if not page_data.artist.0.wants_newsletter %}
-    <strong>not</strong>
-    {% endif %}
-    subscribed to our infrequent newsletters.
-    </span>
-	</h4>
+        </div>
+	</div>
+
+
 </div>
 
-<div class="profile-artworks">
-    
+
+<div class="dashboard-artworks">
+
 
 </div>
 {% endblock %}
