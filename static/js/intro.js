@@ -102,7 +102,7 @@
         setTimeout(function(){ 
             console.log("Ez a SET TIMOUT vege");
             //mainContainer.classList.remove('fix-for-intro'); 
-            var new_url = "index_no_intro";
+            var new_url = "home";
             window.location.replace(new_url)
         }, 3000);
 

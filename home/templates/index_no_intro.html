@@ -14,11 +14,11 @@
 					</h1>
 					<h4 class="page__title-sub">
 						<span>alternatively search by </span>
-						<a href="{% url 'index_no_intro' data.others.0 %}"><span>{{ data.others.0 }}</span></a>
+						<a href="{% url 'home' data.others.0 %}"><span>{{ data.others.0 }}</span></a>
                         <span>,</span>
-						<a href="{% url 'index_no_intro' data.others.1 %}"><span>{{ data.others.1 }}</span></a>
+						<a href="{% url 'home' data.others.1 %}"><span>{{ data.others.1 }}</span></a>
                         <span>&nbsp;or</span>
-						<a href="{% url 'index_no_intro' data.others.2 %}"><span>{{ data.others.2 }}</span></a>
+						<a href="{% url 'home' data.others.2 %}"><span>{{ data.others.2 }}</span></a>
 					</h4>
 				</div>
 				<div class="d-none d-md-block col-md-3">
@@ -52,7 +52,7 @@
 			<div class="cta">
 				<div class="cta-title">
 					<span>Want to</span>
-					<a href="{% url 'index_no_intro' data.filter_by %}" class="cta-btn">earn</a>
+					<a href="{% url 'home' data.filter_by %}" class="cta-btn">earn</a>
 					<span>money with your artwork?</span>
 				</div>
 			</div>
