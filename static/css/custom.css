@@ -281,13 +281,13 @@ body {
     position: absolute;
 }
 
-.fas {
+.overlay-icon .fas {
     background-color: #000;
     padding: 2px;
     border-radius: 5%;
 }
 /* The icons also colour and background colour when pointing to them */
-.fas:hover {
+.overlay-icon .fas:hover {
     color: #000;
     background-color: rgba(255, 255, 255, .9);
 }
