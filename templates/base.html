@@ -43,6 +43,7 @@
             <ul class="navbar-nav mx-auto">
                 <form action="{% url 'search' %}" method="get">
 				<input type="text" title="Empty search will list all the artworks..." name="search">
+                <input type="hidden" name="go-back-to" value="{{ request.path }}">
 				<button class="page__title-button" type="submit">Search</button>
 			</form>
             </ul>
@@ -68,7 +69,7 @@
 
 	<!-- Sending messages in a dismissable alert -->
 
-	{% if messages %}}
+	{% if messages %}
 		<div class="alert message-alert alert-info alert-dismissible fade show m-2 m-d-md-5 p-1 p-md-5" role="alert">
 			<h4>Message for You!</h4>
             <p>
