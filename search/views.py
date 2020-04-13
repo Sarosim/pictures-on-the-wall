@@ -40,4 +40,14 @@ def search_by_title(request):
     # and adding the hashatg QuerySet to the combined one:
     products = products | products_by_hashtag
     
+    if not products:
+        # if nothing found, send a message
+        messages.success(request, f"Sorry, we  couldn't find any content for {request.GET['search']}.")
+        messages.success(request, "You could try to:")
+        messages.success(request, "- check your spelling, or")
+        messages.success(request, "- use a similar but slightly different search term, or")
+        messages.success(request, "- keep your search term simple, or")
+        messages.success(request, "- browse our most popular items below:")
+        # ... and display the most popular items
+        products = Product.objects.order_by('-num_of_orders')[:20]
     return render(request, 'products.html', {"products": products})
