@@ -28,6 +28,11 @@ body {
     /* margin-bottom: -3px; */
 }
 
+
+.message-line {
+    margin: 0;
+}
+
 /******************* PRODUCTS HTML ******************************/
 
 .product {
