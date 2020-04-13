@@ -15,22 +15,29 @@ def validate_chars(string):
         return
 
 def search_by_title(request):
-    """ Search amongst the Artworks (products) by their title """
-    print(f"the search term from the GET: {request.GET['search']}")
+    """ Search amongst the Artworks (products) by their title, \n
+    it also returns products with the search term in their associated category
+    or hashtags"""
+    # validating the search term for special characters
     try:
         validate_chars(request.GET['search'])
     except:
         messages.error(request, 'Your search contains special character, please use only alphanumerics!')
+        # getting the origin of the request from the hidden input in the form:
         go_back_to = request.GET.get('go-back-to', '/')
+        # if the origin was the search page itself, we redirect to 'home' 
         if go_back_to == "/search/":
             go_back_to = '/home'
-        print(f"this is the url from the GET: {go_back_to}")
         return redirect(go_back_to)
+    # filtering by title:
     products_by_title = Product.objects.filter(title__icontains=request.GET['search'])
-    
+    # then filtering by category:
     products_by_category = Product.objects.filter(category__category_name__icontains=request.GET['search'])
+    # Combining the two QueryStes together
     products = products_by_title | products_by_category
+    # then filtering by hashtags
     products_by_hashtag = Product.objects.filter(hashtag__hashtag__icontains=request.GET['search'])
+    # and adding the hashatg QuerySet to the combined one:
     products = products | products_by_hashtag
     
     return render(request, 'products.html', {"products": products})
