@@ -5,8 +5,9 @@ body {
 
 .form-box {
     box-shadow: 4px 6px 30px 8px rgba(0,0,0,0.3);
-    /* padding: 1rem 1rem 1px 1rem;
-    margin: 1rem; */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1rem; 
 }
 
 .navbar {
