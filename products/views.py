@@ -3,8 +3,10 @@ from django.urls import reverse
 from .models import Product, Category, Hashtag, Rating, Artist, Size
 from .forms import FileUploadForm  # probably superseded, to be deleted
 from .forms import EditProductFormOne, EditProductFormThree
+from artist.forms import ArtistProfileForm
 from django.contrib.auth.decorators import login_required
 from pictures_on_the_wall.utils import special_filter
+from django.contrib import messages
 
 # Create your views here.
 
@@ -107,6 +109,8 @@ def edit_artwork(request):
                 assigned_user=request.user).values('id')[0]['id']
         except:
             # No Artist exists for the current user -> redirect them to create
+            # with a message about the reason
+            messages.success(request, "In order to be able to upload an artwork you need an Artist profile. Please create yours!")
             artist_form = ArtistProfileForm(
                 initial={'assigned_user': request.user.id})
                 # create a blank form with the artist prepopulated with a HiddenInput
