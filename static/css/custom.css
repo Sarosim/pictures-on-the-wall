@@ -33,6 +33,10 @@ body {
     margin: 0;
 }
 
+
+.display-link {
+    text-decoration: underline;
+}
 /******************* PRODUCTS HTML ******************************/
 
 .product {

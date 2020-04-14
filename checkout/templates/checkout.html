@@ -8,50 +8,8 @@
 
 {% block content %}
 
-<!-- Displaying the cart items -->
-<div class="row row-flex">
-	{% for item in cart_items %}
-	<div class="col-xs-10 m-2 col-sm-6 col-md-4 m-md-3 display panel panel-default">
-		<a href="{% url 'product_details' item.id %}">
-            <div class="product" style="background-image: url({{ MEDIA_URL }}{{ item.product.image }})"></div>
-		</a>
-		<div class="caption">
-			<h3>{{ item.product.title }}</h3>
-			<p class="product-description">{{ item.product.description }}</p>
-			<p>
-				<span>Price: <i class="fas fa-pound-sign"></i>{{ item.product.base_repro_fee }}</span></p>
-			<div>
-				<form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-					{% csrf_token %}
-					<div class="form-group">
-						<label for="exampleInputAmount" class="sr-only">New Qty</label>
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Qty</span>
-							</div>
-							<input name="quantity" id="exampleInputAmount" type="number" min="0" max="999" class="form-control" value="{{item.quantity}}">
-						</div>
-						</div>
-						<button type="submit" class="btn btn-secondary p-2 ml-2">Update</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	{% endfor %}
-</div>
-<!-- Displaying the cart total value -->
-<div class="container">
-	<div class="row d-flex pb-2 pb-md-4 justify-content-center">
-		<div class="checkout-amount">
-			<p>Total:&nbsp;</p>
-			<p class="mb-1">
-				<i class="fas fa-pound-sign"></i><span>{{ total }}</span>
-			</p>
-		</div>
-	</div>
-</div>
 
-<!-- Putting the forms after the cart items -->
+<!-- Displaying the two forms -->
 <div class="container">
 	<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
 		<legend class="text-center">Payment Details</legend>
