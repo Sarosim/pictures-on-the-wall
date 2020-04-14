@@ -41,8 +41,17 @@
 	<p class="mx-1">
 		<i class="fas fa-pound-sign"></i><span>{{ total }}</span>
 	</p>
+    {% if total != 0 %}
 	<a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
-	<!--Here comes the url of the checkout view once done-->
+    {% endif %}
+
+    {% if total == 0 %}
+    <span>Your cart is empty, you can browse artworks</span>
+	<a href="{% url 'products' %}" class="display-link" role="link">here</a>
+    <span>...</span>
+    {% endif %}
+
+
 </div>
 
 {% endblock %}
