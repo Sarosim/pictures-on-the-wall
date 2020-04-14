@@ -17,6 +17,9 @@ def logout(request):
     
 def login(request):
     """Return the LOGIN page"""
+    print(f"request META: {request.META['QUERY_STRING']}")
+    if request.META['QUERY_STRING']:
+        messages.success(request, "You need to be logged in to perform that action!")
     if request.user.is_authenticated:
         return redirect(reverse('home'))
 
