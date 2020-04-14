@@ -21,8 +21,14 @@ def product_details(request, id):
     """ The view rendering the page for one selected
     product and all of its details """
     selected_product = Product.objects.get(pk=id)
+    
+    # get existing number of views, increment and update model
+    number = selected_product.num_of_views + 1
+    Product.objects.filter(pk=id).update(num_of_views=number)
+
     # filtering the hashtags associated with the selected product:
     hashtags = Hashtag.objects.filter(product=selected_product)
+    
     # filtering all the relevant ratings from the Rating model:
     ratings = Rating.objects.filter(product=selected_product)
     ratings_total = 0

@@ -14,7 +14,7 @@
             </a>
 			<p>£{{product.base_repro_fee}}</p>
 			<p>
-				<span>num of orders: {{ product.title }}</span>
+				<span>num of orders: {{ product.num_of_orders }}</span>
 				<span>num of views: {{ product.num_of_views }}</span>
 			</p>
 			<form method="post" action="{% url 'add_to_cart' product.id %}">
