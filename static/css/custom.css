@@ -37,6 +37,20 @@ body {
 .display-link {
     text-decoration: underline;
 }
+
+/* authentication */
+.auth-container {
+    margin-top: 1rem;
+    padding: 1.5rem;
+}
+
+.auth-box {
+    box-shadow: 4px 6px 30px 8px rgba(0,0,0,0.3);
+    padding: 1rem 1rem 1px 1rem;
+}
+
+
+
 /******************* PRODUCTS HTML ******************************/
 
 .product {

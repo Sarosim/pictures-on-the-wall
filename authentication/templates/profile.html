@@ -5,5 +5,10 @@
 {% block page_heading %}{{ user }}'s Profile{% endblock %} 
 
 {% block content %}
-<p>{{ profile.email }}</p>
+<div class="container auth-container">
+	<div class="col-12 col-md-6 offset-md-3 auth-box">
+		<p>Your username is: {{profile}}</p>
+		<p>Your registered email address is: {{ profile.email }}</p>
+	</div>
+</div>
 {% endblock %}
