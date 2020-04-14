@@ -59,9 +59,21 @@ def artist_profile(request):
                 )
         else:
             print("Form isn't valid, to be handled later")
+    
     else:
-        # An empty Profile form instance (with id)
-        artist_form = ArtistProfileForm(
-            initial={'assigned_user': request.user.id})
+        # Check whether user has an artist profile
+        if Artist.objects.filter(assigned_user=request.user):
+            # get the artist id
+            set_artist = Artist.objects.filter(
+                assigned_user=request.user).values('id')[0]['id']
+            # pick the corresponding record from Artist model
+            my_record = Artist.objects.get(id=set_artist)
+            # Set the form instace
+            artist_form = ArtistProfileForm(instance=my_record)
+        else:
+            # Set an empty Profile form instance (with hidden user id)
+            artist_form = ArtistProfileForm(
+                initial={'assigned_user': request.user.id})
 
+    # Populate the form on the template
     return render(request, 'artist_profile.html', {'artist_form': artist_form})
