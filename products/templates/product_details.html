@@ -79,6 +79,7 @@
 						</div>
 
 						<div class="details-rating">
+                            <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
 							<span class="details-small-title">Average Rating:&nbsp</span>
 							<div class="details-stars">
 								<div class="stars-outer">
@@ -108,9 +109,10 @@
 		var starsElement = document.querySelector(`.stars-inner`)
         const starPercentage = "{{ pass_to_template.ratings_data.ratings_percent }}"; 
         const starPercString = starPercentage + '%';
+        starsElement.style.width = starPercString; 
+        // just for debugging:
         const foo = "{{ cart_items }}"
         console.log("Cart.items(): ", foo);
-        starsElement.style.width = starPercString; 
 	</script>
 
 	{% endblock %}

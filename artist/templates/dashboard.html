@@ -38,10 +38,12 @@
     <div class="row">
         <!-- Dashboard info column -->
         <div class="col-12 col-md-4 dashboard-info">
-            <p>Number of uploaded artworks: {{ page_data.artist.0.wants_newsletter }}</p>
-            <p>Number of items sold: {{ page_data.artist.0.wants_newsletter }}</p>
-            <p>Total earnings: £{{ page_data.artist.0.wants_newsletter }}</p>
-            <p>Average ratings: {{ page_data.artist.0.wants_newsletter }}</p>
+            <p>Number of uploaded artworks: 
+                {{ page_data.products.count }}
+            </p>
+            <p>Number of items sold: 0</p>
+            <p>Total earnings: £0</p>
+            <p>Average ratings: {{ page_data.average_rating }}</p>
         </div>
 
         <!-- Dashboard images column -->
