@@ -5,7 +5,7 @@ from .forms import FileUploadForm  # probably superseded, to be deleted
 from .forms import EditProductFormOne, EditProductFormThree
 from artist.forms import ArtistProfileForm
 from django.contrib.auth.decorators import login_required
-from pictures_on_the_wall.utils import special_filter
+from pictures_on_the_wall.utils import special_filter, get_the_ratings_for
 from django.contrib import messages
 
 # Create your views here.
@@ -30,22 +30,8 @@ def product_details(request, id):
     hashtags = Hashtag.objects.filter(product=selected_product)
     
     # filtering all the relevant ratings from the Rating model:
-    ratings = Rating.objects.filter(product=selected_product)
-    ratings_total = 0
-    ratings_count = 0
-    if ratings:
-        for rating in ratings:
-            ratings_total += rating.rating
-            ratings_count += 1
-        ratings_average = ratings_total / ratings_count
-    else:
-        ratings_average = 0
-    ratings_percent = round(ratings_average * 20)
-    ratings_data = {
-        "ratings_average": ratings_average,
-        "ratings_percent": ratings_percent,
-        "ratings_count": ratings_count
-    }
+    ratings_data = get_the_ratings_for(selected_product)
+
     # Bundling the data for the template to a dictionary:
     pass_to_template = {
         "selected_prod": selected_product,
