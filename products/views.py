@@ -134,3 +134,15 @@ def edit_artwork(request):
         }
     )
 
+
+def modify_artwork(request, id):
+    """ The view rendering a page for modifying an already uploaded artwork\n
+    prepopulates a form with the product selected by the user"""
+    selected_product = Product.objects.get(pk=id)
+    edit_form_one = EditProductFormOne(instance=selected_product)
+    edit_form_three = EditProductFormThree()
+    return render(request, 'edit.html', 
+        {
+            'edit_form_one': edit_form_one,
+            'edit_form_three': edit_form_three,
+        })

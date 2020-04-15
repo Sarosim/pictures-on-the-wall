@@ -18,14 +18,11 @@ def dashboard(request):
     if set_artist:
         # The logged in user has an artist associated 
         set_artist_id = set_artist.values('id')[0]['id']
-        print(f"Artist {set_artist} has {set_artist_id} id")
         selected_products = Product.objects.filter(artist=set_artist_id)
-        print(selected_products)
         page_data = {
             'artist': set_artist,
             'products': selected_products,
         }
-        return render(request, 'dashboard.html', {'page_data': page_data})
     else:
         # The logged in user doesn't have an artist profile")
         # Create an empty Profile form instance (with id)
@@ -35,7 +32,7 @@ def dashboard(request):
         messages.error(request, "Please create your Artist profile first!")
         return render(request, "artist_profile.html", {'artist_form': artist_form})
 
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html', {'page_data': page_data})
 
 
 @login_required

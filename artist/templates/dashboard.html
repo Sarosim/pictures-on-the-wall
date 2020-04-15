@@ -50,7 +50,7 @@
                 <div class="dashboard-image-box">
                     <img class="dashboard-image" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.title }}">
                     <div class="overlay overlay-edit">
-                    <a href="#" class="overlay-icon" title="Edit Artwork">
+                    <a href="{% url 'modify_artwork' product.id %}" class="overlay-icon" title="Modify Artwork">
                         <i class="fas fa-edit"></i>
                     </a>
                     </div>
