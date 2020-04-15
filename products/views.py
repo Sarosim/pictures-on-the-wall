@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Product, Category, Hashtag, Rating, Artist, Size
 from .forms import FileUploadForm  # probably superseded, to be deleted
@@ -146,3 +146,46 @@ def modify_artwork(request, id):
             'edit_form_one': edit_form_one,
             'edit_form_three': edit_form_three,
         })
+
+@login_required
+def delete_artwork(request, id):
+    """ A function handling a deleting request for an artwork\n
+    displaying a confirmation page if the user is aloowed to delete"""
+    artwork = get_object_or_404(Product, pk=id)
+    # first we check if the user is the "owner" of the image
+    artist = artwork.artist
+    user = request.user
+    if artist.assigned_user == user:
+        #if yes, we display the confirmation page
+        return render(request, 'delete_confirm.html', {'product': artwork}) 
+    else:
+        # otherwise we let them know:
+        messages.error(request, 'Sorry It seems you are trying to delete a product that is not yours...')
+    
+    return render(request, 'profile.html')
+
+@login_required
+def delete_confirm(request, id):
+    """ Actually deleting after confirmation\n
+    using a form with post method to confirm deletion """
+    artwork = get_object_or_404(Product, pk=id)
+    if request.method == 'POST':
+        artist = artwork.artist
+        artist_queryset = Artist.objects.filter(id=artist.id)
+        """try:
+            artwork.delete()
+        except:
+            messages.error(request, "Error! We could't delete the specified artwork")"""
+        print(f"{artwork} DELETED") # UNCOMMENT THE DELETE FOR THE PRODUCTION VERSION OR WHEN FINISHED TESTING ITS FUNCTIONALITY!!!!!
+        selected_products = Product.objects.filter(artist=artist.id)
+        # collect information for dashboard and re-render the page
+        page_data = {
+            'artist': artist_queryset,
+            'products': selected_products,
+        }
+        return render(request, 'dashboard.html', {'page_data': page_data})
+    else:
+        # send a message to the tempering 'user' that it won't work...
+        messages.error(request, 'Nice try ... but you are not allowed to delete that product')
+
+    return render(request, 'profile.html')

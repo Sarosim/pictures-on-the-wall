@@ -47,7 +47,7 @@
         <!-- Dashboard images column -->
         <div class="col-12 col-md-8 dashboard-image-container">
             {% for product in page_data.products %}
-                <div class="dashboard-image-box">
+                <div class="dashboard-image-box" title="{{ product.title }}">
                     <img class="dashboard-image" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.title }}">
                     <div class="overlay overlay-edit">
                     <a href="{% url 'modify_artwork' product.id %}" class="overlay-icon" title="Modify Artwork">
@@ -55,7 +55,7 @@
                     </a>
                     </div>
                     <div class="overlay overlay-hide">
-                    <a href="#" class="overlay-icon" title="Hide Artwork from Site">
+                    <a href="{% url 'delete_artwork' product.id %}" class="overlay-icon" title="Delete Artwork">
                         <i class="fas fa-eye-slash"></i>
                     </a>
                     </div>

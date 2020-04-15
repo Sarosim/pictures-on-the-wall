@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row my-2 my-md-4">
+		<div class="col-10 offset-1 text-center">
+			<h2>
+				<span> Do You really want to delete your</span>
+				<span style="color: red;">{{ product.title }}</span>
+				<span>titled artwork ???</span>
+			</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 mx-auto text-center">
+			<form action="{% url 'delete_confirm' product.id %}" method="POST">
+				{% csrf_token %}
+				<button class="btn btn-warning" type="submit">Sure, Go ahead! Delete it!</button>
+
+			</form>
+		</div>
+		<div class="col-6 mx-auto text-center">
+			<a class="btn btn-info" href="{% url 'dashboard' %}">Oooops, no! Cancel!</a>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
