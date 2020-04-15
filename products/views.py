@@ -7,6 +7,7 @@ from artist.forms import ArtistProfileForm
 from django.contrib.auth.decorators import login_required
 from pictures_on_the_wall.utils import special_filter, get_the_ratings_for
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -148,7 +149,8 @@ def delete_artwork(request, id):
         # otherwise we let them know:
         messages.error(request, 'Sorry It seems you are trying to delete a product that is not yours...')
     
-    return render(request, 'profile.html')
+    user = User.objects.get(email=request.user.email)
+    return render(request, 'profile.html', {"profile": user})
 
 @login_required
 def delete_confirm(request, id):
@@ -173,5 +175,6 @@ def delete_confirm(request, id):
     else:
         # send a message to the tempering 'user' that it won't work...
         messages.error(request, 'Nice try ... but you are not allowed to delete that product')
-
-    return render(request, 'profile.html')
+    
+    user = User.objects.get(email=request.user.email)
+    return render(request, 'profile.html', {"profile": user})
