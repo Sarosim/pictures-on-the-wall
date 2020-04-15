@@ -4,7 +4,7 @@ from products.models import Product, Category, Hashtag, Rating, Artist
 from .forms import ArtistProfileForm
 from products.forms import EditProductFormOne, EditProductFormThree
 from django.contrib.auth.decorators import login_required
-# from pictures_on_the_wall.utils import special_filter
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,6 +31,8 @@ def dashboard(request):
         # Create an empty Profile form instance (with id)
         artist_form = ArtistProfileForm(
             initial={'assigned_user': request.user.id})
+        # give them a message to create one
+        messages.error(request, "Please create your Artist profile first!")
         return render(request, "artist_profile.html", {'artist_form': artist_form})
 
     return render(request, 'dashboard.html')
