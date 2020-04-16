@@ -10,6 +10,11 @@ body {
     margin-top: 1rem; 
 }
 
+.errorlist {
+    color: red;
+    list-style-type: none;
+}
+
 .navbar {
     padding: 1rem;
     position: fixed;

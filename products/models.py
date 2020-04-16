@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
@@ -61,12 +62,17 @@ class Room(models.Model):
     def __str__(self):
         return self.room_name
 
+def image_size_validator(image):
+    size = image.file.size
+    limit_mb = 1
+    if size > limit_mb * 1024 * 1024:
+        raise ValidationError(f"! The maximum file size is {limit_mb} MB (for the prototype, commercial version will be different) !")
 
 class Product(models.Model):
     """The Artwork (Product) model, contains all the artworks """
     title = models.CharField(max_length=32, default='')
     description = models.TextField()
-    image = models.ImageField(upload_to='images', default='cube.png')
+    image = models.ImageField(upload_to='images', validators=[image_size_validator])
     base_repro_fee = models.DecimalField(max_digits=6, decimal_places=2, default=9.99)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     room = models.ManyToManyField(Room)
