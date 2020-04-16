@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from pictures_on_the_wall.utils import special_filter, get_the_ratings_for
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .utils import image_manipulation
 
 # Create your views here.
 
@@ -82,9 +83,24 @@ def edit_artwork(request):
         set_artist = set_artist.values('id')[0]['id']
 
         if edit_form_one.is_valid() and edit_form_three.is_valid():
-            # save the form of the Product model
-            edit_form_one.save()
-
+            # get the file from the request
+            uploaded_file = request.FILES['image']
+            # send it to the Pillow function to process
+            image_data = image_manipulation(uploaded_file)
+            # get an object that hasn’t yet been saved to the database
+            new_product = edit_form_one.save(commit=False)
+            # save the extra fields:
+            new_product.max_print_size = image_data['format']
+            # room = edit_form_one.cleaned_data['room']
+            # available_technologies = edit_form_one.cleaned_data['available_technologies']
+            
+            new_product.base_repro_fee = image_data['longer_side'] / 100
+            # save the modifications
+            new_product.save()
+            # Now, save the many-to-many data for the form:
+            edit_form_one.save_m2m()
+            
+            
             # The #hashtags need to be handled - TO BE IMPLEMENTED...
             # edit_form_three.save()
             # redirect to the products page with all the products listed
@@ -160,10 +176,10 @@ def delete_confirm(request, id):
     if request.method == 'POST':
         artist = artwork.artist
         artist_queryset = Artist.objects.filter(id=artist.id)
-        """try:
+        try:
             artwork.delete()
         except:
-            messages.error(request, "Error! We could't delete the specified artwork")"""
+            messages.error(request, "Error! We could't delete the specified artwork")
         print(f"{artwork} DELETED") # UNCOMMENT THE DELETE FOR THE PRODUCTION VERSION OR WHEN FINISHED TESTING ITS FUNCTIONALITY!!!!!
         selected_products = Product.objects.filter(artist=artist.id)
         # collect information for dashboard and re-render the page
