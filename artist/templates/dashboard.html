@@ -49,6 +49,11 @@
 
         <!-- Dashboard images column -->
         <div class="col-12 col-md-8 dashboard-image-container">
+            {% if page_data.products.count == 0 %}
+            <div>
+                <h5>You don't have any artworks uploaded yet, Click on the Upload Artwork button to start</h5>
+            </div>
+            {% endif %}
             {% for product in page_data.products %}
                 <div class="dashboard-image-box" title="{{ product.title }}">
                     <img class="dashboard-image" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.title }}">
