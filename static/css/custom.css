@@ -15,6 +15,10 @@ body {
     list-style-type: none;
 }
 
+.error-msg {
+    color: red;
+}
+
 .navbar {
     padding: 1rem;
     position: fixed;

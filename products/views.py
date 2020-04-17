@@ -60,7 +60,7 @@ def filtered_products(request, filter_group, filter_name):
 @login_required
 def file_upload(request):
     """ The view rendering the page that explains how to become a contributor
-    and upload an image, as well we the form for file upload"""
+    and upload an image, as well as the form for file upload"""
 
 
     if request.method == 'POST':
@@ -118,98 +118,60 @@ def file_upload(request):
     )
 
 
-
-
-
-
-    # return render(request, 'upload.html')
-
-
-@login_required
-def edit_artwork(request):
-    """ The view rendering a page for providing details for, or editing the 
-    details of uploaded Artwork """
+def modify_artwork(request, id):
+    """ The view rendering a page for modifying an already uploaded artwork\n
+    pre-populates a form with the product selected by the user and saves the POST"""
+    selected_product = get_object_or_404(Product, id=id)
+    print(selected_product)
 
     if request.method == 'POST':
         # If the form is being submitted:
         # create a form instance and populate it with data from the request:
 
-        edit_form_one = EditProductFormOne(request.POST, request.FILES)
-        edit_form_three = EditProductFormThree(request.POST)
-
-        # Getting the logged in user from the request
-        # and finding the corresponding artist in the Artist model
-        set_artist = Artist.objects.filter(assigned_user=request.user)
-        # getting their id from the QuesrySet
-        set_artist = set_artist.values('id')[0]['id']
-
+        edit_form_one = EditProductFormOne(request.POST, request.FILES, instance=selected_product)
+        edit_form_three = EditProductFormThree(request.POST, instance=selected_product)
         if edit_form_one.is_valid() and edit_form_three.is_valid():
             # get the file from the request
             uploaded_file = request.FILES['image']
-            # send it to the Pillow function to process
+            # send it to my Pillow utility function to process
             image_data = image_manipulation(uploaded_file)
             # get an object that hasn’t yet been saved to the database
             new_product = edit_form_one.save(commit=False)
             # save the extra fields:
             new_product.max_print_size = image_data['format']
-            # room = edit_form_one.cleaned_data['room']
-            # available_technologies = edit_form_one.cleaned_data['available_technologies']
-            
             new_product.base_repro_fee = image_data['longer_side'] / 100
+            # ... more to be done here ... 
             # save the modifications
             new_product.save()
             # Now, save the many-to-many data for the form:
             edit_form_one.save_m2m()
             
-            
-            # The #hashtags need to be handled - TO BE IMPLEMENTED...
-            # edit_form_three.save()
-            # redirect to the products page with all the products listed
-            # - this will need adjusting FOR the FINAL VERSION...
-            all_the_products = Product.objects.all()
-            return render(request, 'products.html', {"products": all_the_products})
+            # The #hashtags need to be handled here ...  - TO BE IMPLEMENTED...
+            return redirect('dashboard')
         else:
             print(f"file upload form isn't valid  - no file saved")
 
     else:
         # if the request is GET
-        try:
-            # First check whether the user has an Artist profile:
-            set_artist = Artist.objects.filter(
-                assigned_user=request.user).values('id')[0]['id']
-        except:
-            # No Artist exists for the current user -> redirect them to create
-            # with a message about the reason
-            messages.success(request, "In order to be able to upload an artwork you need an Artist profile. Please create yours!")
-            artist_form = ArtistProfileForm(
-                initial={'assigned_user': request.user.id})
-                # create a blank form with the artist prepopulated with a HiddenInput
-            return render(request, 'artist_profile.html', {'artist_form': artist_form})
+        # Check whether the Product with the id belongs to the user
+        set_artist = Artist.objects.filter(
+                assigned_user=request.user)
+        product_artist = selected_product.artist
+        if set_artist.values('id')[0]['id'] == product_artist.id:
+            edit_form_one = EditProductFormOne(instance=selected_product)
+            edit_form_three = EditProductFormThree(instance=selected_product)
+        else:
+            messages.error(request, "It's interesting how you ended up here... ")
+            messages.error(request, "... either something went wrong on our side or you are trying to be cheeky.")
+            return redirect(reverse('home'))
         
-        edit_form_one = EditProductFormOne(initial={'artist': set_artist})
-        edit_form_three = EditProductFormThree()
-
-    return render(
-        request,
-        'edit.html',
+    return render(request, 'modify.html',
         {
             'edit_form_one': edit_form_one,
             'edit_form_three': edit_form_three,
-        }
-    )
-
-
-def modify_artwork(request, id):
-    """ The view rendering a page for modifying an already uploaded artwork\n
-    prepopulates a form with the product selected by the user"""
-    selected_product = Product.objects.get(pk=id)
-    edit_form_one = EditProductFormOne(instance=selected_product)
-    edit_form_three = EditProductFormThree()
-    return render(request, 'edit.html', 
-        {
-            'edit_form_one': edit_form_one,
-            'edit_form_three': edit_form_three,
+            'product': selected_product
         })
+
 
 @login_required
 def delete_artwork(request, id):
@@ -228,6 +190,7 @@ def delete_artwork(request, id):
     
     user = User.objects.get(email=request.user.email)
     return render(request, 'profile.html', {"profile": user})
+
 
 @login_required
 def delete_confirm(request, id):

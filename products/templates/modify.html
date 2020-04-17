@@ -7,8 +7,8 @@
 {% block content %}
 
 <div class="row container-fluid edit-container">
-	<form class="container-fluid edit-form" enctype="multipart/form-data" action="{% url 'edit_artwork' %}" method="post">
-		<legend>Upload / Edit Your Artwork</legend>
+	<form class="container-fluid edit-form" enctype="multipart/form-data" action="{% url 'modify_artwork' product.id %}" method="post">
+		<legend>Edit Your Artwork</legend>
 		{% csrf_token %}
 		
 		<div class="container-fluid text-center">
