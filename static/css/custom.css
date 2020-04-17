@@ -48,6 +48,12 @@ body {
 
 .display-link {
     text-decoration: underline;
+    color: rgb(0, 119, 255);
+}
+
+.display-link:hover {
+    font-weight: 900;
+    color: rgb(0, 0, 255);
 }
 
 /* authentication */

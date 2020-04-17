@@ -9,16 +9,16 @@
 			<div class="row">
 				<div class="col-12 col-md-8 mt-2 offset-md-1">
 					<h1 class="page__title-main">
-						<span>Browse Wall Art by </span>
+						<span>Browse Wall Art by </span> 
 						<span>{{ data.filter_by }}</span>
 					</h1>
 					<h4 class="page__title-sub">
 						<span>alternatively search by </span>
-						<a href="{% url 'home' data.others.0 %}"><span>{{ data.others.0 }}</span></a>
+						<a class="display-link" href="{% url 'home' data.others.0 %}"><span>{{ data.others.0 }}</span></a>
                         <span>,</span>
-						<a href="{% url 'home' data.others.1 %}"><span>{{ data.others.1 }}</span></a>
+						<a class="display-link" href="{% url 'home' data.others.1 %}"><span>{{ data.others.1 }}</span></a>
                         <span>&nbsp;or</span>
-						<a href="{% url 'home' data.others.2 %}"><span>{{ data.others.2 }}</span></a>
+						<a class="display-link" href="{% url 'home' data.others.2 %}"><span>{{ data.others.2 }}</span></a>
 					</h4>
 				</div>
 				<div class="d-none d-md-block col-md-3">
