@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     # 'storages',
     'search',
     'artist',
+    'django_unused_media',
+    'django_cleanup.apps.CleanupConfig', # should keep last!!!
 ]
 
 MIDDLEWARE = [
