@@ -17,11 +17,15 @@ def logout(request):
     
 def login(request):
     """Return the LOGIN page"""
-    print(f"request META: {request.META['QUERY_STRING']}")
+    print(f"REquest.path = {request.path}")
     if request.META['QUERY_STRING']:
         messages.success(request, "You need to be logged in to perform that action!")
+        if request.META['QUERY_STRING'] == 'next=/products/upload/':
+            next_page = 'file_upload'
+    else:
+        next_page = 'home'
     if request.user.is_authenticated:
-        return redirect(reverse('home'))
+        return redirect(reverse(next_page))
 
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
@@ -34,7 +38,7 @@ def login(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully been logged in.")
-                return redirect(reverse('home'))
+                return redirect(reverse(next_page))
             else:
                 login_form.add_error(None, "Username or Password is incorrect!")
     else:
