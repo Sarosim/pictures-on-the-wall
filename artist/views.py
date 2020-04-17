@@ -55,17 +55,8 @@ def artist_profile(request):
         if artist_form.is_valid():
             # Save the form
             artist_form.save()
-            # Prepare the form for uploading a new artwork and render the page
-            set_artist = Artist.objects.filter(
-                assigned_user=request.user).values('id')[0]['id']
-            edit_form_one = EditProductFormOne(initial={'artist': set_artist})
-            edit_form_three = EditProductFormThree()
-            return render(request, 'edit.html',
-                {
-                    'edit_form_one': edit_form_one,
-                    'edit_form_three': edit_form_three,
-                }
-                )
+            
+            return redirect('dashboard')
         else:
             print("Form isn't valid, to be handled later")
     
