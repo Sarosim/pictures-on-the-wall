@@ -66,19 +66,48 @@
 			</li>
 		</ul>
 	</div>
+    <div class="row container-fluid edit-container">
+        <form class="container-fluid edit-form" enctype="multipart/form-data" action="{% url 'edit_artwork' %}" method="post">
+            <legend>Upload Your Artwork</legend>
+            {% csrf_token %}
+		
+            <div class="container-fluid text-center">
+                <div class="row">
+                    <div class="col-12 col-md-7 edit-form-groups">
+                        <legend>Part one</legend>
+                        {{ edit_form_one.as_p }}
+                    </div>
+                    <!-- adding hashtags -->
+                    <div class="col-12 col-md-5">
+                        <legend>Part two</legend>
+                        <div class="edit-hashtags">
+                            <!-- two separate containers for selected and other already existing hashtags -->
+                            <div class="edit-selected-hashtags">
+                                <p>selected hashtags here</p>
+                                {{ edit_form_three }}
+                            </div>
+                            <div class="edit-other-hashtags">
+                                <p>other hashtags here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input class="edit-form-submit btn btn-primary" type="submit" value="Upload">
+        </form>
+	</div>
 
-	<!-- Row for the link to upload form -->
+
+
+	<!-- Row for the link to edit existing artwork -->
 	<div class="row">
-		<div class="col-12">
-			<h2>Upload your image here</h2>
-		</div>
 		<div class="go-to-edit mx-auto p-2 p-md-5">
             <p>
-                <a class="btn btn-lg btn-warning" href="{% url 'edit_artwork' %}">Fill out the Upload Form</a>
+                <a class="btn btn-warning" href="{% url 'edit_artwork' %}">Or Edit Existing</a>
             </p>
 		</div>
-
 	</div>
+
 </div>
 
 

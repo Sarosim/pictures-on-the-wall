@@ -61,7 +61,68 @@ def filtered_products(request, filter_group, filter_name):
 def file_upload(request):
     """ The view rendering the page that explains how to become a contributor
     and upload an image, as well we the form for file upload"""
-    return render(request, 'upload.html')
+
+
+    if request.method == 'POST':
+        edit_form_one = EditProductFormOne(request.POST, request.FILES)
+        edit_form_three = EditProductFormThree(request.POST)
+
+        set_artist = Artist.objects.filter(assigned_user=request.user)
+        set_artist = set_artist.values('id')[0]['id']
+
+        if edit_form_one.is_valid() and edit_form_three.is_valid():
+            uploaded_file = request.FILES['image']
+            image_data = image_manipulation(uploaded_file)
+            new_product = edit_form_one.save(commit=False)
+            new_product.max_print_size = image_data['format']
+            new_product.base_repro_fee = image_data['longer_side'] / 100
+            new_product.save()
+            edit_form_one.save_m2m()
+            
+            
+            # The #hashtags need to be handled - TO BE IMPLEMENTED...
+            # edit_form_three.save()
+            # redirect to the products page with all the products listed
+
+
+            # - this will need adjusting FOR the FINAL VERSION...
+            all_the_products = Product.objects.all()
+            return render(request, 'products.html', {"products": all_the_products})
+        else:
+            print(f"file upload form isn't valid  - no file saved")
+
+    else:
+        try:
+            # First check whether the user has an Artist profile:
+            set_artist = Artist.objects.filter(
+                assigned_user=request.user).values('id')[0]['id']
+        except:
+            # No Artist exists for the current user -> redirect them to create
+            # with a message about the reason
+            messages.success(request, "In order to be able to upload an artwork you need an Artist profile. Please create yours!")
+            artist_form = ArtistProfileForm(
+                initial={'assigned_user': request.user.id})
+                # create a blank form with the artist prepopulated with a HiddenInput
+            return render(request, 'artist_profile.html', {'artist_form': artist_form})
+        
+        edit_form_one = EditProductFormOne(initial={'artist': set_artist})
+        edit_form_three = EditProductFormThree()
+
+    return render(
+        request,
+        'upload.html',
+        {
+            'edit_form_one': edit_form_one,
+            'edit_form_three': edit_form_three,
+        }
+    )
+
+
+
+
+
+
+    # return render(request, 'upload.html')
 
 
 @login_required
