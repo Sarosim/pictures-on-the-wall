@@ -110,6 +110,7 @@ class Rating(models.Model):
 
 class Size(models.Model):
     """ Model for exact picture sizes in cm or inch """
+    format_name = models.ForeignKey(Format, on_delete=models.CASCADE, default='')
     size_name = models.CharField(max_length=16, default='10 x 15 cm')
     longer_side = models.DecimalField(max_digits=6, decimal_places=2)
     shorter_side = models.DecimalField(max_digits=6, decimal_places=2, default=10)

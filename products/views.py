@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from pictures_on_the_wall.utils import special_filter, get_the_ratings_for
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .utils import image_manipulation
+from .utils import image_manipulation, create_size_entries
 
 # Create your views here.
 

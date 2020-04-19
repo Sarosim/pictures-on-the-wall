@@ -1,5 +1,24 @@
 from PIL import Image
+from products.models import Format, Product
+from products.forms import SizeForm
 
+
+def create_size_entries(asp_r, format_id):
+    """a function to programmatically create size variant entries in the model"""
+    size_form = SizeForm()
+    aspect_ratio = asp_r
+    format_id = int(format_id)
+    multiplicators = [1, 2, 3, 4, 6, 8, 10, 12]
+    for m in multiplicators:
+        new_size = size_form.save(commit=False)
+        ss = round(10 * m)
+        ls = round(ss * aspect_ratio)
+        new_size.format_name = Format.objects.get(id=format_id)
+        new_size.size_name = f"{ss} x {ls} cm"
+        new_size.longer_side = ls
+        new_size.shorter_side = ss
+        new_size.save()
+    return 'done'
 
 def image_manipulation(image):
     """ The function handling the uploaded image"""

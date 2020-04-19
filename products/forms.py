@@ -53,3 +53,13 @@ class EditProductFormThree(forms.ModelForm):
         fields = ['hashtag']
 
 
+class SizeForm(forms.ModelForm):
+    """ create the size variants programmatically with a util function"""
+    class Meta:
+        model = Size
+        fields = [
+            'format_name',
+            'size_name',
+            'longer_side',
+            'shorter_side',
+            ]
