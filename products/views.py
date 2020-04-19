@@ -34,11 +34,16 @@ def product_details(request, id):
     # filtering all the relevant ratings from the Rating model:
     ratings_data = get_the_ratings_for(selected_product)
 
+    # filtering all the sizes from the Size model:
+    sizes = Size.objects.filter(format_name=selected_product.aspect_ratio)
+    print(f"SIZES: {sizes}")
+
     # Bundling the data for the template to a dictionary:
     pass_to_template = {
         "selected_prod": selected_product,
         "hashtags": hashtags,
-        "ratings_data": ratings_data
+        "ratings_data": ratings_data,
+        'sizes': sizes,
     }
     return render(
         request,

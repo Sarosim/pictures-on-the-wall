@@ -15,10 +15,11 @@
 					<h4>{{ pass_to_template.selected_prod.title }}</h4>
 				</div>
 			</div>
-			<!-- Image and Category, Room, Hashtag info -->
-			<div class="details-image-box col-12">
-				<img class="details-image" src="{{ MEDIA_URL }}{{ pass_to_template.selected_prod.image }}" alt="{{ pass_to_template.selected_prod.title }}">
-			</div>
+            <div class="row">
+			    <!-- Image and Category, Room, Hashtag info -->
+                <div class="details-image-box col-12">
+                    <img class="details-image" src="{{ MEDIA_URL }}{{ pass_to_template.selected_prod.image }}" alt="{{ pass_to_template.selected_prod.title }}">
+                </div>
 				<div class="col-12">
 					<div class="details-category-room row">
 						<!-- Category and Rooms associated with the artwork -->
@@ -47,49 +48,61 @@
 					</div>
 				</div>
 			</div>
+        </div>
+		
+        <div class="col-12 col-md-5 second-container">
+            <!-- Sizes, Price and other details -->
+            <div class="row details-title">
+                <div class="col-12">
+                    <h4>Details</h4>
+                </div>
+            </div>
+            <div class="second-content row">
+                <div class="details-description col-12">
+                    <span class="details-small-title">Artwork Description:</span>
+                    <div class="details-description-box p-2" >
+                        <p>{{ pass_to_template.selected_prod.description }}</p>
+                    </div>
+                </div>
 
-			<div class="col-12 col-md-5 second-container">
-				<!-- Sizes, Price and other details -->
-				
-                <div class="details-size-header col-12">
-					<h3>Available sizes</h3>
-				</div>
-				
-                <div class="details-size col-12">
-					<h4>Here come the sizes</h4>
-				</div>
-
-				<div class="details-description col-12">
-					<p>{{ pass_to_template.selected_prod.description }}</p>
-				</div>
-
-				<div class="col-12">
-					<div class="details-techn-and-rating row">
-						<!-- Available technologies and customer rating for the artwork -->
-						<div class="details-technologies">
-							<span class="details-small-title">Available Technologies:&nbsp</span>
-							<div class="form-group col-12">
-								<select required class="form-control" id="technology" name="available_techn">
+                <div class="col-12">
+                    <div class="details-size-techn-and-rating row pt-3">
+                        <!-- Available sizes, technologies and customer rating for the artwork -->
+                        <div class="details-technologies">
+                            <span class="details-small-title">Available Sizes:</span>
+                            <div class="form-group col-12">
+                                <select required class="form-control" id="size" name="available_sizes">
+                                    <option selected disabled class="details-technologies-list">Select Size</option>
+                                    {% for size in pass_to_template.sizes.all %}
+                                    <option class="details-technologies-list">{{ size.size_name }}</option>    
+                                    {% endfor %}    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="details-technologies">
+                            <span class="details-small-title">Available Technologies:&nbsp</span>
+                            <div class="form-group col-12">
+                                <select required class="form-control" id="technology" name="available_techn">
                                     <option selected disabled class="details-technologies-list">Select Technology</option>
                                     {% for technology in pass_to_template.selected_prod.available_technologies.all %}
                                     <option class="details-technologies-list">{{ technology.technology_name }}</option>    
                                     {% endfor %}    
                                 </select>
-							</div>
-						</div>
-
-						<div class="details-rating">
+                            </div>
+                        </div>
+            
+                        <div class="details-rating">
                             <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
-							<span class="details-small-title">Average Rating:&nbsp</span>
-							<div class="details-stars">
-								<div class="stars-outer">
-									<div class="stars-inner" id="stars"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
+                            <span class="details-small-title">Average Rating:&nbsp</span>
+                            <div class="details-stars">
+                                <div class="stars-outer">
+                                    <div class="stars-inner" id="stars"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="col-12 details-price-and-buttons">
                     <!-- Price -->
                     <p class="detalis-price"><strong>£{{ pass_to_template.selected_prod.base_repro_fee }}</strong></p>
@@ -99,20 +112,20 @@
                     </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-			</div>
-		</div>
-	</div>
+<script>
+    // setting the with of the star-inner class to display the necessary number of stars
+    var starsElement = document.querySelector(`.stars-inner`)
+    const starPercentage = "{{ pass_to_template.ratings_data.ratings_percent }}"; 
+    const starPercString = starPercentage + '%';
+    starsElement.style.width = starPercString; 
+    // just for debugging:
+    const foo = "{{ cart_items }}"
+    console.log("Cart.items(): ", foo);
+</script>
 
-	<script>
-		// setting the with of the star-inner class to display the necessary number of stars
-		var starsElement = document.querySelector(`.stars-inner`)
-        const starPercentage = "{{ pass_to_template.ratings_data.ratings_percent }}"; 
-        const starPercString = starPercentage + '%';
-        starsElement.style.width = starPercString; 
-        // just for debugging:
-        const foo = "{{ cart_items }}"
-        console.log("Cart.items(): ", foo);
-	</script>
-
-	{% endblock %}
+{% endblock %}

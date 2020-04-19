@@ -98,7 +98,7 @@ body {
 /******************* PRODUCT DETAILS HTML ******************************/
 
 	.details-container {
-		margin-top: 1rem;
+		margin: 1rem 0 0 0;
 	}
 
 	.details-title {
@@ -152,9 +152,14 @@ body {
 	}
 
     .second-container {
-        border: 0px solid red;
+        margin: 1rem 0 0 0:
     }
 
+    .second-content {
+        flex-direction: column;
+		justify-content: space-between;
+        min-height: 60vh;
+    }
 	.details-size-header {
 		margin-top: 1rem;
 		text-align: center;
@@ -167,11 +172,17 @@ body {
 	}
 
 	.details-description {
-		margin: 1rem;
+		
 	}
 
-	.details-techn-and-rating {
-		flex-wrap: wrap;
+    .details-description-box {
+        height: 5rem;
+        box-shadow: 3px 3px 6px 4px rgba(0,0,0,0.22);
+    }
+
+	.details-size-techn-and-rating {
+		flex-direction: row;
+        flex-wrap: wrap;
 		justify-content: space-evenly;
 	}
 
@@ -234,11 +245,16 @@ body {
 		margin-top: .8rem;
         text-transform: capitalize;
     }
+    #size {
+		text-align: center;
+		margin-top: .8rem;
+        text-transform: capitalize;
+    }
 
     .details-price-and-buttons {
-        position: absolute;
+        /* position: absolute;
         bottom: .5rem;
-        right: 0;
+        right: 0; */
         text-align: center;
     }
 
