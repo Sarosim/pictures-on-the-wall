@@ -152,7 +152,7 @@ body {
 	}
 
     .second-container {
-        margin: 1rem 0 0 0:
+        margin: 1rem 0 0 0;
     }
 
     .second-content {
@@ -171,11 +171,8 @@ body {
 		background-color: #a7a7ff;
 	}
 
-	.details-description {
-		
-	}
-
     .details-description-box {
+        margin-top: 1rem;
         height: 5rem;
         box-shadow: 3px 3px 6px 4px rgba(0,0,0,0.22);
     }
@@ -237,7 +234,7 @@ body {
 	}
 
     .details-technologies-list {
-        text-transform: capitalize;
+        text-transform: none;
     }
 
     #technology {
@@ -248,7 +245,7 @@ body {
     #size {
 		text-align: center;
 		margin-top: .8rem;
-        text-transform: capitalize;
+        text-transform: none;
     }
 
     .details-price-and-buttons {

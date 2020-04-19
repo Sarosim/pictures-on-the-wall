@@ -47,6 +47,7 @@ class Technology(models.Model):
     """ Model for valiable printing technologies. Each artwork is assigned to all relevant print technologies"""
     technology_name = models.CharField(max_length=32)
     technology_description = models.TextField
+    technology_price_coefficient = models.DecimalField(max_digits=4, decimal_places=2, null=True)
 
     def __str__(self):
         return self.technology_name
