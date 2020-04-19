@@ -85,9 +85,7 @@ def file_upload(request):
             # redirect to the products page with all the products listed
 
 
-            # - this will need adjusting FOR the FINAL VERSION...
-            all_the_products = Product.objects.all()
-            return render(request, 'products.html', {"products": all_the_products})
+            return redirect('dashboard')
         else:
             print(f"file upload form isn't valid  - no file saved")
 
