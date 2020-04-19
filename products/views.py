@@ -22,7 +22,7 @@ def all_products(request):
 def product_details(request, id):
     """ The view rendering the page for one selected
     product and all of its details """
-    selected_product = Product.objects.get(pk=id)
+    selected_product = get_object_or_404(Product, id=id)
     
     # get existing number of views, increment and update model
     number = selected_product.num_of_views + 1
