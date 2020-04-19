@@ -13,22 +13,28 @@ def image_manipulation(image):
 
     aspect_ratio = longer_side / shorter_side
     if aspect_ratio < 1.05:
-        format_name = 'Square'
+        # format_name = 'Square'
+        format_id = '36'
     elif aspect_ratio < 1.25:
-        format_name = '5 : 4'
+        # format_name = '5 : 4'
+        format_id = '37'
     elif aspect_ratio < 1.37:
-        format_name = '4 : 3'
+        # format_name = '4 : 3'
+        format_id = '38'
     elif aspect_ratio < 1.42:
-        format_name = 'ISO'
+        # format_name = 'ISO'
+        format_id = '39'
     elif aspect_ratio < 1.6:
-        format_name = '3 : 2'
+        # format_name = '3 : 2'
+        format_id = '40'
     elif aspect_ratio < 1.9:
-        format_name = '16 : 9'
+        # format_name = '16 : 9'
+        format_id = '41'
     else:
         format_name = 'Panorama'
-
+        format_id = '42'
     image_data = {
-        'format': format_name,
+        'format_id': format_id,
         'longer_side': longer_side,
         'shorter_side': shorter_side,
     }

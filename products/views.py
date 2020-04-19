@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Product, Category, Hashtag, Rating, Artist, Size
+from .models import Product, Category, Hashtag, Rating, Artist, Size, Format
 from .forms import FileUploadForm  # probably superseded, to be deleted
 from .forms import EditProductFormOne, EditProductFormThree
 from artist.forms import ArtistProfileForm
@@ -74,8 +74,8 @@ def file_upload(request):
             uploaded_file = request.FILES['image']
             image_data = image_manipulation(uploaded_file)
             new_product = edit_form_one.save(commit=False)
-            new_product.max_print_size = image_data['format']
-            new_product.base_repro_fee = image_data['longer_side'] / 100
+            new_product.aspect_ratio = Format.objects.get(id=image_data['format_id'])
+            new_product.max_print_size = image_data['longer_side']
             new_product.save()
             edit_form_one.save_m2m()
             
@@ -136,8 +136,8 @@ def modify_artwork(request, id):
             # get an object that hasn’t yet been saved to the database
             new_product = edit_form_one.save(commit=False)
             # save the extra fields:
-            new_product.max_print_size = image_data['format']
-            new_product.base_repro_fee = image_data['longer_side'] / 100
+            new_product.aspect_ratio = Format.objects.get(id=image_data['format_id'])
+            new_product.max_print_size = image_data['longer_side']
             # ... more to be done here ... 
             # save the modifications
             new_product.save()
