@@ -68,6 +68,16 @@ def image_size_validator(image):
     if size > limit_mb * 1024 * 1024:
         raise ValidationError(f"! The maximum file size is {limit_mb} MB (for the prototype, commercial version will be different) !")
 
+
+class Format(models.Model):
+    """ Model for Picutre formats, aka aspect ratio """
+    format_name = models.CharField(max_length=16, default='')
+    format_description = models.CharField(max_length=60, default='')
+
+    def __str__(self):
+        return self.format_name
+
+
 class Product(models.Model):
     """The Artwork (Product) model, contains all the artworks """
     title = models.CharField(max_length=32, default='')
@@ -77,6 +87,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     room = models.ManyToManyField(Room)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default='')
+    aspect_ratio = models.ForeignKey(Format, on_delete=models.CASCADE, default='', null=True)
     max_print_size = models.CharField(max_length=16, default='')
     available_technologies = models.ManyToManyField(Technology)
     num_of_orders = models.IntegerField(default=0)
@@ -105,14 +116,6 @@ class Size(models.Model):
 
     def __str__(self):
         return self.size_name
-
-class Format(models.Model):
-    """ Model for Picutre formats, aka aspect ratio """
-    format_name = models.CharField(max_length=16, default='')
-    size = models.ForeignKey(Size, on_delete=models.CASCADE, default='')
-
-    def __str__(self):
-        return self.format_name
 
 class Hashtag(models.Model):
     """ Model for Products ratings: """
