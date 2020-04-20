@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import Product, Category, Hashtag, Rating, Artist, Size, Format
+from .models import Product, Category, Hashtag, Rating, Artist, Size, Format, Technology
 from .forms import FileUploadForm  # probably superseded, to be deleted
 from .forms import EditProductFormOne, EditProductFormThree
 from artist.forms import ArtistProfileForm
@@ -38,12 +38,15 @@ def product_details(request, id):
     sizes = Size.objects.filter(format_name=selected_product.aspect_ratio)
     print(f"SIZES: {sizes}")
 
+    technologies = Technology.objects.all()
+
     # Bundling the data for the template to a dictionary:
     pass_to_template = {
         "selected_prod": selected_product,
         "hashtags": hashtags,
         "ratings_data": ratings_data,
         'sizes': sizes,
+        'technologies': technologies,
     }
     return render(
         request,

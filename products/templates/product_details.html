@@ -72,9 +72,12 @@
                             <span class="details-small-title">Available Sizes:</span>
                             <div class="form-group col-12">
                                 <select required class="form-control" id="size" name="available_sizes">
-                                    <option selected disabled class="details-technologies-list">Select Size</option>
                                     {% for size in pass_to_template.sizes.all %}
+                                    {% if size == pass_to_template.sizes.0 %}
+                                    <option selected class="details-technologies-list">{{ size.size_name }}</option>
+                                    {% else %}
                                     <option class="details-technologies-list">{{ size.size_name }}</option>    
+                                    {% endif %}
                                     {% endfor %}    
                                 </select>
                             </div>
@@ -83,9 +86,12 @@
                             <span class="details-small-title">Available Technologies:&nbsp</span>
                             <div class="form-group col-12">
                                 <select required class="form-control" id="technology" name="available_techn">
-                                    <option selected disabled class="details-technologies-list">Select Technology</option>
                                     {% for technology in pass_to_template.selected_prod.available_technologies.all %}
+                                    {% if technology == pass_to_template.selected_prod.available_technologies.0 %}
+                                    <option selected class="details-technologies-list">{{ technology.technology_name }}</option>
+                                    {% else %}
                                     <option class="details-technologies-list">{{ technology.technology_name }}</option>    
+                                    {% endif %}
                                     {% endfor %}    
                                 </select>
                             </div>
@@ -105,7 +111,12 @@
                 
                 <div class="col-12 details-price-and-buttons">
                     <!-- Price -->
-                    <p class="detalis-price"><strong>£{{ pass_to_template.selected_prod.base_repro_fee }}</strong></p>
+                    <p>selected termek egy size_name-je: (most asp.ratio) {{ pass_to_template.selected_prod.aspect_ratio }}</p>
+                    <p>selected termek egy longer_side-ja: {{ pass_to_template.sizes.0.longer_side }}</p>
+                    <p>selected termek egy longer_side-ja: {{ pass_to_template.sizes.0.shorter_side }}</p>
+                    <p>egy technology price coeff: {{ pass_to_template.technologies.0.technology_price_coefficient }}</p>
+                    <p class="detalis-price">£&nbsp;<strong id="price"></strong></p>
+                    <p id="target-p"></p>
                     <div class="details-btn-container">
                     <button class="btn btn-warning btn-lg" type="submit">
                         <span>Update Cart</span>
@@ -123,9 +134,67 @@
     const starPercentage = "{{ pass_to_template.ratings_data.ratings_percent }}"; 
     const starPercString = starPercentage + '%';
     starsElement.style.width = starPercString; 
+    
+    var sizeElement = document.getElementById('size');
+    var techElement = document.getElementById('technology');
+    var priceElement = document.getElementById('price');
+    var selected_size, selected_tech;
+    var ss, ls, tech_coeff;
+    var base_repro_fee = "{{ pass_to_template.selected_prod.base_repro_fee }}";
+    var price, repro_fee;
+
+    priceElement.innerHTML = getPrice();
+    
+    function getPrice() {
+        // take the size from the <select>
+        selected_size = sizeElement.value;
+        // extract the shorter and longer size dimensions
+        ss = selected_size.split(" ")[0];
+        ls = selected_size.split(" ")[2];
+        // define the technologies coefficient from the tech <select>
+        selected_tech = techElement.value;
+        console.log(selected_tech);
+        switch(selected_tech) {
+            case "Photo Print": 
+                tech_coeff = 1;
+                break;
+            case "Canvas Print": 
+                tech_coeff = 2.1;
+                break;
+            case "Metal Print": 
+                tech_coeff = 3.2;
+                break;
+            case "Acrylic Print": 
+                tech_coeff = 1.4;
+                break;
+            case "Framed Print": 
+                tech_coeff = 1.8;
+                break;
+            default:
+                tech_coeff = 1;
+        };
+        repro_fee = parseFloat(base_repro_fee) + Math.round(( ls * ss ) / 300);
+        var diagonal = Math.sqrt( ss * ss + ls * ls);
+        price = Math.round( diagonal / 10 * 2 * tech_coeff + repro_fee ) - 0.01;
+        return price;
+    }
+
+
+    // Event listeners for the drop down select boxes
+    sizeElement.addEventListener("click", function(){
+        priceElement.innerHTML = getPrice();
+        }
+    );
+
+    techElement.addEventListener("click", function(){
+        priceElement.innerHTML = getPrice();
+        }
+    );
+    
     // just for debugging:
     const foo = "{{ cart_items }}"
     console.log("Cart.items(): ", foo);
+    
 </script>
 
 {% endblock %}
