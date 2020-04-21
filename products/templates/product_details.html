@@ -16,7 +16,7 @@
 				</div>
 			</div>
             <div class="row">
-			    <!-- Image and Category, Room, Hashtag info -->
+                <!-- Image and Category, Room, Hashtag info -->
                 <div class="details-image-box col-12">
                     <img class="details-image" src="{{ MEDIA_URL }}{{ pass_to_template.selected_prod.image }}" alt="{{ pass_to_template.selected_prod.title }}">
                 </div>
@@ -57,73 +57,75 @@
                     <h4>Details</h4>
                 </div>
             </div>
-            <div class="second-content row">
-                <div class="details-description col-12">
-                    <span class="details-small-title">Artwork Description:</span>
-                    <div class="details-description-box p-2" >
-                        <p>{{ pass_to_template.selected_prod.description }}</p>
+            <form action="" method="post">
+                {% csrf_token %}   
+                <div class="second-content row">
+                    <div class="details-description col-12">
+                        <span class="details-small-title">Artwork Description:</span>
+                        <div class="details-description-box p-2" >
+                            <p>{{ pass_to_template.selected_prod.description }}</p>
+                        </div>
                     </div>
-                </div>
+                    <div class="col-12">
+                        <div class="details-size-techn-and-rating row pt-3">
+                            <!-- Available sizes, technologies and customer rating for the artwork -->
+                            
+                                <div class="details-technologies">
+                                    <span class="details-small-title">Available Sizes:</span>
+                                    <div class="form-group col-12">
 
-                <div class="col-12">
-                    <div class="details-size-techn-and-rating row pt-3">
-                        <!-- Available sizes, technologies and customer rating for the artwork -->
-                        <div class="details-technologies">
-                            <span class="details-small-title">Available Sizes:</span>
-                            <div class="form-group col-12">
-                                <select required class="form-control" id="size" name="available_sizes">
-                                    {% for size in pass_to_template.sizes.all %}
-                                    {% if size == pass_to_template.sizes.0 %}
-                                    <option selected class="details-technologies-list">{{ size.size_name }}</option>
-                                    {% else %}
-                                    <option class="details-technologies-list">{{ size.size_name }}</option>    
-                                    {% endif %}
-                                    {% endfor %}    
-                                </select>
-                            </div>
-                        </div>
-                        <div class="details-technologies">
-                            <span class="details-small-title">Available Technologies:&nbsp</span>
-                            <div class="form-group col-12">
-                                <select required class="form-control" id="technology" name="available_techn">
-                                    {% for technology in pass_to_template.selected_prod.available_technologies.all %}
-                                    {% if technology == pass_to_template.selected_prod.available_technologies.0 %}
-                                    <option selected class="details-technologies-list">{{ technology.technology_name }}</option>
-                                    {% else %}
-                                    <option class="details-technologies-list">{{ technology.technology_name }}</option>    
-                                    {% endif %}
-                                    {% endfor %}    
-                                </select>
-                            </div>
-                        </div>
-            
-                        <div class="details-rating">
-                            <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
-                            <span class="details-small-title">Average Rating:&nbsp</span>
-                            <div class="details-stars">
-                                <div class="stars-outer">
-                                    <div class="stars-inner" id="stars"></div>
+                                            <select required class="form-control" id="size" name="available_sizes">
+                                                {% for size in pass_to_template.sizes.all %}
+                                                {% if size == pass_to_template.sizes.0 %}
+                                                <option selected class="details-technologies-list">{{ size.size_name }}</option>
+                                                {% else %}
+                                                <option class="details-technologies-list">{{ size.size_name }}</option>    
+                                                {% endif %}
+                                                {% endfor %}    
+                                            </select>
+                                        
+                                    </div>
+                                </div>
+                                <div class="details-technologies">
+                                    <span class="details-small-title">Available Technologies:&nbsp</span>
+                                    <div class="form-group col-12">
+                                        <select required class="form-control" id="technology" name="available_techn">
+                                            {% for technology in pass_to_template.selected_prod.available_technologies.all %}
+                                            {% if technology == pass_to_template.selected_prod.available_technologies.0 %}
+                                            <option selected class="details-technologies-list">{{ technology.technology_name }}</option>
+                                            {% else %}
+                                            <option class="details-technologies-list">{{ technology.technology_name }}</option>    
+                                            {% endif %}
+                                            {% endfor %}    
+                                        </select>
+                                    </div>
+                                </div>
+                            
+                            <div class="details-rating">
+                                <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
+                                <span class="details-small-title">Average Rating:&nbsp</span>
+                                <div class="details-stars">
+                                    <div class="stars-outer">
+                                        <div class="stars-inner" id="stars"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-12 details-price-and-buttons">
-                    <!-- Price -->
-                    <p>selected termek egy size_name-je: (most asp.ratio) {{ pass_to_template.selected_prod.aspect_ratio }}</p>
-                    <p>selected termek egy longer_side-ja: {{ pass_to_template.sizes.0.longer_side }}</p>
-                    <p>selected termek egy longer_side-ja: {{ pass_to_template.sizes.0.shorter_side }}</p>
-                    <p>egy technology price coeff: {{ pass_to_template.technologies.0.technology_price_coefficient }}</p>
-                    <p class="detalis-price">£&nbsp;<strong id="price"></strong></p>
-                    <p id="target-p"></p>
-                    <div class="details-btn-container">
-                    <button class="btn btn-warning btn-lg" type="submit">
-                        <span>Update Cart</span>
-                    </button>
+                    
+                    <div class="col-12 details-price-and-buttons">
+                        <!-- Price -->
+                        
+                        <p class="detalis-price">£&nbsp;<strong id="price"></strong></p>
+                        <!-- <p id="target-p"></p> -->
+                        <div class="details-btn-container">
+                            <button class="btn btn-warning btn-lg" type="submit">
+                                <span>Update Cart</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
