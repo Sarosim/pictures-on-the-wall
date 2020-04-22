@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Artist, Hashtag, Size, Badge
+from .models import Product, Artist, Hashtag, Size, Badge, Rating
 
 class FileUploadForm(forms.ModelForm):
     class Meta:
@@ -63,3 +63,27 @@ class SizeForm(forms.ModelForm):
             'longer_side',
             'shorter_side',
             ]
+
+class RatingForm(forms.ModelForm):
+    """ The form for adding a rating to the database """
+    
+    rating = forms.ChoiceField(
+                label='Your rating',
+                choices = [(i, i) for i in range(1, 6)],
+                required=True)
+
+    class Meta:
+        model = Rating
+        fields = [
+            'product',
+            'rating',
+        ]
+
+        widgets = {
+            'product': forms.HiddenInput(
+                # attrs={
+                #     'class': 'not-needed',
+                #     # 'value': ''
+                # }
+            ),
+        }

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="container-fluid ">
+<div class="container">
 	<div class="row details-container">
 		<div class="col-12 col-md-7">
 			<div class="row details-title">
@@ -104,11 +104,13 @@
                             <div class="details-rating">
                                 <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
                                 <span class="details-small-title">Average Rating:&nbsp</span>
-                                <div class="details-stars">
-                                    <div class="stars-outer">
-                                        <div class="stars-inner" id="stars"></div>
+                                <a href="{% url 'rate_artwork' pass_to_template.selected_prod.id %}" title="Click here for rating this artwork">
+                                    <div class="details-stars">
+                                        <div class="stars-outer">
+                                            <div class="stars-inner" id="stars"></div>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

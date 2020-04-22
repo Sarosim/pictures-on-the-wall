@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Product, Category, Hashtag, Rating, Artist, Size, Format, Technology
 from .forms import FileUploadForm  # probably superseded, to be deleted
-from .forms import EditProductFormOne, EditProductFormThree
+from .forms import EditProductFormOne, EditProductFormThree, RatingForm
 from artist.forms import ArtistProfileForm
 from django.contrib.auth.decorators import login_required
 from pictures_on_the_wall.utils import special_filter, get_the_ratings_for
@@ -224,3 +224,36 @@ def delete_confirm(request, id):
     
     user = User.objects.get(email=request.user.email)
     return render(request, 'profile.html', {"profile": user})
+
+
+@login_required
+def rate_artwork(request, id):
+    """ The view rendering the page for rating and artwork"""
+    product = get_object_or_404(Product, pk=id)
+
+    if request.method == 'POST':
+        rating_form = RatingForm(request.POST)
+        if rating_form.is_valid:
+            rating_form.save()
+            hashtags = Hashtag.objects.filter(product=product)
+            ratings_data = get_the_ratings_for(product)
+            sizes = Size.objects.filter(format_name=product.aspect_ratio)
+            technologies = Technology.objects.all()
+            pass_to_template = {
+                "selected_prod": product,
+                "hashtags": hashtags,
+                "ratings_data": ratings_data,
+                'sizes': sizes,
+                'technologies': technologies,
+            }
+            return render(
+                request,
+                "product_details.html",
+                {"pass_to_template": pass_to_template}
+            )
+        else: 
+            messages.error(request, 'Invalid entry, not saved')
+    else:
+        rating_form = RatingForm(initial={'product': product})
+    
+    return render(request, "rate.html", {"product": product, 'rating_form': rating_form})
