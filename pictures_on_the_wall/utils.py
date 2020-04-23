@@ -3,7 +3,7 @@ from products.models import Product, Category, Hashtag, Artist, Rating
 # My utilities
 
 def special_filter(model, what):
-    """" My helper function to filter the Products model \n
+    """ My helper function to filter the Products model \n
     with the foreign keys to the 'model' to filter by 'what' \n
     model - The name of the linked model in the products app \n
     what - The instance we are looking for."""
