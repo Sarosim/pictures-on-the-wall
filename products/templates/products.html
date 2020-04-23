@@ -6,8 +6,7 @@
 
 {% block content %}
 
-<div class="row row-flex ml-3">
-
+<div class="row row-flex mx-3">
 
     <div class="container-fluid mx-auto">
         <section class="row filtering-row my-3">
@@ -34,14 +33,18 @@
                         </p>
                     </div>
                     <div class="overlay overlay-rate">
-                        <a href="" class="overlay-icon" title="Rate Artwork">
+                        <a href="{% url 'rate_artwork' product.id %}" class="overlay-icon" title="Rate Artwork">
                             <i class="far fa-thumbs-up"></i>
                         </a>
                     </div>
                     <div class="overlay overlay-cart">
-                        <a href="" class="overlay-icon" title="Add To Cart">
-                            <i class="fas fa-cart-plus"></i>
-                        </a>
+                        <form method="post" class="overlay-icon" title="Add To Shopping Cart" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                            <input type="hidden" name="name" value="value" /> 
+                            <a onclick="this.parentNode.submit();">
+                                <i class="fas fa-cart-plus"></i>
+                            </a>
+                        </form>
                     </div>
                 </div>
                 {% endfor %}
