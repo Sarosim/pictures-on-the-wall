@@ -1,33 +1,53 @@
 {% extends 'base.html' %}
 
+{% load bootstrap_tags %}
+
 {% block page_title %} | Products{% endblock %}
 
 {% block content %}
 
-<div class="row row-flex">
-	{% for product in products %}
-	<div class="col-xs-10 m-2 col-sm-6 col-md-3 m-md-2 display panel panel-default">
-		<div class="panel-body">
-            <a href="{% url 'product_details' product.id %}">
-                <div class="product" style="background-image: url({{ MEDIA_URL }}{{ product.image }})"></div>
-                <h3>{{product.title}}</h3>
-            </a>
-			<p>£{{product.base_repro_fee}}</p>
-			<p>
-				<span>num of orders: {{ product.num_of_orders }}</span>
-				<span>num of views: {{ product.num_of_views }}</span>
-			</p>
-			<form method="post" action="{% url 'add_to_cart' product.id %}">
-				{% csrf_token %}
-				<div class="input-group">
-					<span class="input-group-btn">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#feedbackModal" >Add</button>
-                    </span>
-				</div>
-			</form>
-		</div>
-	</div>
-	{% endfor %}
+<div class="row row-flex ml-3">
+
+
+    <div class="container-fluid mx-auto">
+        <section class="row filtering-row my-3">
+            <div class="filter-dropdown col-12 col-sm-6 col-md-3" style="border: 1px solid red; height:100px;">
+            </div>
+            <div class="filter-dropdown col-12 col-sm-6 col-md-3" style="border: 1px solid red; height:100px;">
+            </div>
+            <div class="filter-dropdown col-12 col-sm-6 col-md-3" style="border: 1px solid red; height:100px;">
+            </div>
+            <div class="filter-dropdown col-12 col-sm-6 col-md-3" style="border: 1px solid red; height:100px;">
+            </div>
+        </section>
+
+        <section class="row image-display" style="border: 1px solid blue;">
+            <div class="image-display-container mx-2">
+                {% for product in products %}
+                <div class="products-image-box mb-3">
+                    <a href="{% url 'product_details' product.id %}">
+                        <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{product.title}} image" class="products-image">
+                    </a>
+                    <div class="overlay overlay-title">
+                        <p class="overlay-icon">
+                            <span class="overlay-title-text">{{ product.title }}</span>
+                        </p>
+                    </div>
+                    <div class="overlay overlay-rate">
+                        <a href="" class="overlay-icon" title="Rate Artwork">
+                            <i class="far fa-thumbs-up"></i>
+                        </a>
+                    </div>
+                    <div class="overlay overlay-cart">
+                        <a href="" class="overlay-icon" title="Add To Cart">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
 
 </div>
 
