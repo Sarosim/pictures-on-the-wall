@@ -52,7 +52,7 @@
 					<a class="nav-link" href="{% url 'view_cart' %}">
 						<i class="fas fa-shopping-cart"></i>
 						{% if product_count > 0 %}
-						<label class="badge badge-warning">{{ product_count }}</label>
+						<label class="badge badge-warning cart-badge" style="position: relative;">{{ product_count }}</label>
 						{% endif %}
 					</a>
 				</li>

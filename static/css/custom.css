@@ -38,6 +38,14 @@ body {
     height: 2.8rem;
 }
 
+.cart-badge {
+    padding: 5px 5px 5px 6px;
+    position: relative;
+    top: -1rem;
+    right: 0.3rem;
+    border-radius: 50%;
+}
+
 .fa-shopping-cart {
     font-size: 1rem;
     /* margin-top: -3px; */
