@@ -39,7 +39,13 @@ def search_by_title(request):
     products_by_hashtag = Product.objects.filter(hashtag__hashtag__icontains=request.GET['search'])
     # and adding the hashatg QuerySet to the combined one:
     products = products | products_by_hashtag
+    # then filtering in the description field
+    products_by_description = Product.objects.filter(description__icontains=request.GET['search'])
+    # and adding the description QuerySet to the combined one:
+    products = products | products_by_description
     
+    products = products.order_by('date_uploaded')
+
     if not products:
         # if nothing found, send a message
         messages.success(request, f"Sorry, we  couldn't find any content for {request.GET['search']}.")
@@ -49,5 +55,5 @@ def search_by_title(request):
         messages.success(request, "- keep your search term simple, or")
         messages.success(request, "- browse our most popular items below:")
         # ... and display the most popular items
-        products = Product.objects.order_by('-num_of_orders')[:20]
+        products = Product.objects.order_by('date_uploaded')[:20]
     return render(request, 'products.html', {"products": products})
