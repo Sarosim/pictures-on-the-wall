@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.contrib.auth.validators import UnicodeUsernameValidator
 
 # Create your models here.
 
@@ -30,7 +31,7 @@ class Artist(models.Model):
     """ Model for the Artists uploading their artwork to the site """
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
-    artist_name = models.CharField(max_length=16)
+    artist_name = models.CharField(max_length=16, unique=True, validators=[UnicodeUsernameValidator])
     # artist_name is the display name for the artists, named in this format to match other filter name structures
     avatar = models.ImageField(upload_to='images')
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)
@@ -68,7 +69,7 @@ def image_size_validator(image):
     limit_mb = 1
     if size > limit_mb * 1024 * 1024:
         raise ValidationError(f"! The maximum file size is {limit_mb} MB (for the prototype, commercial version will be different) !")
-
+    # maybe add min limit 600 pixel for longer side 
 
 class Format(models.Model):
     """ Model for Picutre formats, aka aspect ratio """
@@ -84,7 +85,7 @@ class Product(models.Model):
     title = models.CharField(max_length=32, default='')
     description = models.TextField()
     image = models.ImageField(upload_to='images', validators=[image_size_validator])
-    base_repro_fee = models.DecimalField(max_digits=6, decimal_places=2, default=9.99)
+    base_repro_fee = models.DecimalField(max_digits=6, decimal_places=2, default=4.99)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     room = models.ManyToManyField(Room)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, default='')
