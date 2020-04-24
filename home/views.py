@@ -37,7 +37,7 @@ def index_no_intro(request, filter_group="category"):
     # create a list of sample Products that represents each instance in the model
     sample_list = []
     for item in filter_group_queryset:
-        sample_prod = special_filter(filter_group, str(item)).order_by('-id').first()
+        sample_prod = special_filter(filter_group, str(item)).order_by('id').first()
         sample_list.append(sample_prod)
 
     # organise the QuerySets and the sample Products into a list of lists,
