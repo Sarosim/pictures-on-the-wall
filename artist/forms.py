@@ -1,5 +1,5 @@
 from django import forms
-from products.models import Product, Artist, Hashtag, Size, Badge
+from products.models import Product, Artist, Size, Badge
 
 
 class ArtistProfileForm(forms.ModelForm):

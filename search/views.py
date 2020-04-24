@@ -16,8 +16,8 @@ def validate_chars(string):
 
 def search_by_title(request):
     """ Search amongst the Artworks (products) by their title, \n
-    it also returns products with the search term in their associated category
-    or hashtags"""
+    it also returns products with the search term in their associated category,
+    Product.description or hashtags"""
     # validating the search term for special characters
     try:
         validate_chars(request.GET['search'])
@@ -36,7 +36,7 @@ def search_by_title(request):
     # Combining the two QueryStes together
     products = products_by_title | products_by_category
     # then filtering by hashtags
-    products_by_hashtag = Product.objects.filter(hashtag__hashtag__icontains=request.GET['search'])
+    products_by_hashtag = Product.objects.filter(hashtag__icontains=request.GET['search'])
     # and adding the hashatg QuerySet to the combined one:
     products = products | products_by_hashtag
     # then filtering in the description field
@@ -48,12 +48,13 @@ def search_by_title(request):
 
     if not products:
         # if nothing found, send a message
-        messages.success(request, f"Sorry, we  couldn't find any content for {request.GET['search']}.")
-        messages.success(request, "You could try to:")
-        messages.success(request, "- check your spelling, or")
-        messages.success(request, "- use a similar but slightly different search term, or")
-        messages.success(request, "- keep your search term simple, or")
-        messages.success(request, "- browse our most popular items below:")
-        # ... and display the most popular items
-        products = Product.objects.order_by('date_uploaded')[:20]
+        messages.info(request, f"Sorry, we  couldn't find any content for {request.GET['search']}.")
+        messages.info(request, "You could try to:")
+        messages.info(request, "- check your spelling, or")
+        messages.info(request, "- use a similar but slightly different search term, or")
+        messages.info(request, "- keep your search term simple, or")
+        messages.info(request, "- browse our most popular items below:")
+        # ... and display the items sorted by the selected sort criteria
+        sort_criteria = 'date_uploaded' # here comes in the sorting FORM later on
+        products = Product.objects.order_by(sort_criteria)[:20]
     return render(request, 'products.html', {"products": products})

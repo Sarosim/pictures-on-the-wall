@@ -10,7 +10,7 @@ def index(request):
 
 def index_no_intro(request, filter_group="category"):
     """The view that displays the landing page without the intro, so users
-    already on the page don't get disrupted bu the intro every time
+    already on the page don't get disrupted by the intro every time
     they go back to the home page"""
     # Different filtering can be selected, therefore links and page content 
     # need presetting
@@ -30,10 +30,10 @@ def index_no_intro(request, filter_group="category"):
     
     # Pick the Model for the selected filter
     SelectedModel = apps.get_model('products', filter_group)
-
+    print(f"SelectedModel {SelectedModel}")
     # collecting the instances from the selected model
     filter_group_queryset = SelectedModel.objects.all()
-
+    print(f"filter_group_queryset: a selected modelbol minden Product {filter_group_queryset}")
     # create a list of sample Products that represents each instance in the model
     sample_list = []
     for item in filter_group_queryset:
@@ -48,8 +48,8 @@ def index_no_intro(request, filter_group="category"):
         items.append([item, sample_list[i]])
 
     if SelectedModel == Hashtag:
-        print("Hashtag selected, need action to limit list to unique items")
-        # NEED TO DO SOMETHING WITH HASHTAGS to pick one from each 
+    print("Hashtag selected, THIS IS NOT GOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOODDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
+    # HASHTAGS to be excluded from filtering 
 
     page_structure = {
         'filter_by': filter_group,

@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 def index(request):
-    """Return teh index.html page"""
+    """Return the index.html page"""
     return render(request, 'index.html')
 
 @login_required
