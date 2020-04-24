@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Product, Category, Hashtag, Rating, Artist, Size, Format, Technology
 from .forms import FileUploadForm  # probably superseded, to be deleted
-from .forms import EditProductFormOne, EditProductFormThree, RatingForm
+from .forms import EditProductFormOne, EditProductFormThree, RatingForm, SortForm
 from artist.forms import ArtistProfileForm
 from django.contrib.auth.decorators import login_required
 from pictures_on_the_wall.utils import special_filter, get_the_ratings_for
@@ -257,3 +257,31 @@ def rate_artwork(request, id):
         rating_form = RatingForm(initial={'product': product})
     
     return render(request, "rate.html", {"product": product, 'rating_form': rating_form})
+
+
+def sort_and_filter(request):
+    """Sorting and filtering products"""
+    
+    
+    if request.method == 'POST':
+        print("POST *****************************")
+        sort_form = SortForm(request.POST)
+        print(sort_form.cleaned_data)
+    else:
+        print("GET WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+        sort_form = SortForm()
+
+    # print(f"Sort form {sort_form}")
+
+    filtered_products = Product.objects.all()
+    filter_group = ''
+    filter_name = ''
+
+    context= {
+        "products": filtered_products,
+        # "filter": filter_group,
+        # "keyword": filter_name,
+        #'sort_form': sort_form,
+    }
+
+    return render(request, "filtered_products.html", { 'context': context })

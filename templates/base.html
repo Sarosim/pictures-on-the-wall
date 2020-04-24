@@ -76,10 +76,11 @@
 			<h4>Message for You!</h4>
             <p>
                 {% for message in messages %}
-                <p class="message-line">
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <!-- <p class="message-line">
                 {{ message }}
                 </p>
-                {% endfor %}
+                {% endfor %} -->
             </p>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
