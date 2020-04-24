@@ -48,8 +48,8 @@ def index_no_intro(request, filter_group="category"):
         items.append([item, sample_list[i]])
 
     if SelectedModel == Hashtag:
-    print("Hashtag selected, THIS IS NOT GOOODDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
-    # HASHTAGS to be excluded from filtering 
+        print("Hashtag selected, THIS IS NOT GOOODDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
+        # HASHTAGS to be excluded from filtering 
 
     page_structure = {
         'filter_by': filter_group,
