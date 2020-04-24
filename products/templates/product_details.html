@@ -104,7 +104,7 @@
                             <div class="details-rating">
                                 <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
                                 <span class="details-small-title">Average Rating:&nbsp</span>
-                                <a href="{% url 'rate_artwork' pass_to_template.selected_prod.id %}" title="Click here for rating this artwork">
+                                <a href="{% url 'rate_artwork' pass_to_template.selected_prod.id %}" title="{{pass_to_template.ratings_data.ratings_average}} | Click here to rate!">
                                     <div class="details-stars">
                                         <div class="stars-outer">
                                             <div class="stars-inner" id="stars"></div>
