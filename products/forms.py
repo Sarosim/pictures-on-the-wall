@@ -87,3 +87,15 @@ class RatingForm(forms.ModelForm):
                 # }
             ),
         }
+
+class SortForm(forms.Form):
+    """Form to select the sort field """
+
+    SORT_CHOICES = [
+        'category', 
+        'num_of_orders', 
+        'num_of_views', 
+        'date_uploaded'
+    ]
+
+    sort_field = forms.ChoiceField(label='Sort by', choices=SORT_CHOICES, required=False)
