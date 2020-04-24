@@ -11,6 +11,12 @@
 
 <!-- Displaying the two forms -->
 <div class="container">
+    <div class="container text-center mt-2 mt-md-4">
+        <h3>Total:&nbsp;</h3>
+        <h3 class="mx-1">
+            <span>£{{ total }}</span>
+        </h3>
+    </div>
 	<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
 		<legend class="text-center">Payment Details</legend>
 

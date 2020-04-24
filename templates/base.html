@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg">
+	<nav class="navbar navbar-expand-md navbar-light bg-warning p-2">
 		<a class="navbar-brand" href="{% url 'index' %}">
             <img class="navbar-logo" src="{% static 'images/Logo_transparent.png' %}" alt="Logo">
         </a>
@@ -34,7 +34,7 @@
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-		<div class="collapse navbar-collapse" id="my-navbar">
+		<div class="collapse navbar-collapse navbar-light bg-warning" id="my-navbar">
 			<ul class="navbar-nav mr-3">
 				<li class="nav-item active">
 					<a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
@@ -48,21 +48,21 @@
 			</form>
             </ul>
 			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'view_cart' %}">
-						<i class="fas fa-shopping-cart"></i>
+				<li class="nav-item active">
+					<a class="nav-link cart-navlink" href="{% url 'view_cart' %}">
+						<i class="fas fa-shopping-cart p-0 m-0"></i>
 						{% if product_count > 0 %}
-						<label class="badge badge-warning cart-badge" style="position: relative;">{{ product_count }}</label>
+						<label class="badge badge-danger cart-badge">{{ product_count }}</label>
 						{% endif %}
 					</a>
 				</li>
 				{% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
-				<li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
-				<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+				<li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+				<li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
 				{% else %}
-				<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-				<li class="nav-item"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
+				<li class="nav-item active"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+				<li class="nav-item active"><a class="nav-link" href="{% url 'registration' %}">Register</a></li>
 				{% endif %}
 			</ul>
 		</div>
