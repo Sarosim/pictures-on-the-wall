@@ -8,9 +8,9 @@
 
 {% block content %}
 <div class="container">
-	<p>If you already have an account, you can <strong><a class="display-link" href="{% url 'login' %}">sign in</a></strong></p>
+	<p class="p-1 ml-1 ml-md-3">If you already have an account, you can <strong><a class="display-link" href="{% url 'login' %}">sign in</a></strong></p>
 
-	<form method="POST">
+	<form method="POST" class="auth-box">
 		{% csrf_token %}
 		{{ registration_form | as_bootstrap }}
 		<button class="btn btn-outline-info" type="submit">Register</button>
