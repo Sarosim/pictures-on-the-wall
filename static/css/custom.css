@@ -350,7 +350,7 @@ body {
     align-content: flex-start;
     width: 280px;
     height: 70vh;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 .dashboard-image-box {
     position: relative;
