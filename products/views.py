@@ -58,7 +58,12 @@ def filtered_products(request, filter_group, filter_name):
     # Call my helper function in utils.py to run the filter
     filtered_products = special_filter(filter_group, filter_name)
 
-    return render(request, "products.html", {"products": filtered_products})
+    context = {
+        "products": filtered_products,
+
+    }
+
+    return render(request, "products.html", {"data": context})
 
 
 @login_required
