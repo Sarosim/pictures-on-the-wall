@@ -65,7 +65,7 @@ def filtered_products(request, filter_group, filter_name):
 def file_upload(request):
     """ The view rendering the page that explains how to become a contributor
     and upload an image, as well as the form for file upload"""
-
+    #similar to modify_upload() view, see comments there for understanding
 
     if request.method == 'POST':
         edit_form_one = EditProductFormOne(request.POST, request.FILES)
@@ -78,16 +78,13 @@ def file_upload(request):
             uploaded_file = request.FILES['image']
             image_data = image_manipulation(uploaded_file)
             new_product = edit_form_one.save(commit=False)
+            new_hashtag, created = Hashtag.objects.get_or_create(hashtag=edit_form_three.cleaned_data['hashtag'])
+            new_product.hashtag = new_hashtag.hashtag
+            print(f"new hashtag: {new_hashtag} es a product.hashtag {new_product.hashtag}")
             new_product.aspect_ratio = Format.objects.get(id=image_data['format_id'])
             new_product.max_print_size = image_data['longer_side']
             new_product.save()
             edit_form_one.save_m2m()
-            
-            
-            # The #hashtags need to be handled - TO BE IMPLEMENTED...
-            # edit_form_three.save()
-            # redirect to the products page with all the products listed
-
 
             return redirect('dashboard')
         else:
@@ -131,7 +128,6 @@ def modify_artwork(request, id):
     """ The view rendering a page for modifying an already uploaded artwork\n
     pre-populates a form with the product selected by the user and saves the POST"""
     selected_product = get_object_or_404(Product, id=id)
-    print(selected_product)
 
     if request.method == 'POST':
         # If the form is being submitted:
@@ -146,6 +142,11 @@ def modify_artwork(request, id):
             image_data = image_manipulation(uploaded_file)
             # get an object that hasn’t yet been saved to the database
             new_product = edit_form_one.save(commit=False)
+            # create the new hashtag in the Hashtag model only if doesn't exist
+            clean_hash = edit_form_three.cleaned_data['hashtag']
+            new_hashtag, created = Hashtag.objects.get_or_create(hashtag=clean_hash)
+            # add the hashtag to the product's hashtag field in Product model
+            new_product.hashtag = new_hashtag.hashtag
             # save the extra fields:
             new_product.aspect_ratio = Format.objects.get(id=image_data['format_id'])
             new_product.max_print_size = image_data['longer_side']
@@ -173,12 +174,19 @@ def modify_artwork(request, id):
             messages.error(request, "It's interesting how you ended up here... ")
             messages.error(request, "... either something went wrong on our side or you are trying to be cheeky.")
             return redirect(reverse('home'))
-        
+    
+    # get all the hashtags from the model and prepare a list for autocomplete in JS
+    hashtags = []
+    for hashtag in Hashtag.objects.all().values('hashtag'):
+        hash = hashtag['hashtag']
+        hashtags.append(hash)
+    
     return render(request, 'modify.html',
         {
             'edit_form_one': edit_form_one,
             'edit_form_three': edit_form_three,
-            'product': selected_product
+            'product': selected_product,
+            'hashtags': hashtags,
         })
 
 
@@ -238,7 +246,7 @@ def rate_artwork(request, id):
         rating_form = RatingForm(request.POST)
         if rating_form.is_valid:
             rating_form.save()
-            hashtags = Hashtag.objects.filter(product=product)
+            hashtags = Hashtag.objects.all()
             ratings_data = get_the_ratings_for(product)
             sizes = Size.objects.filter(format_name=product.aspect_ratio)
             technologies = Technology.objects.all()

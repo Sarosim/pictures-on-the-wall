@@ -4,6 +4,10 @@
 
 {% block page_title %} | Modify Artwork{% endblock %}
 
+{% block style-tag %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock %}
+
 {% block content %}
 
 <div class="row container-fluid edit-container">
@@ -31,9 +35,7 @@
 							<p>selected hashtags here</p>
 							{{ edit_form_three }}
 						</div>
-						<div class="edit-other-hashtags">
-							<p>other hashtags here</p>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -47,6 +49,21 @@
 
 		</div>
 
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    var autocompleteElement = document.getElementById('id_hashtag')
+    var mySource = {{ hashtags | safe }}
+    // mySource = ["#ilovephotography", "#coffee", "#love", "#adorable", "#funny", "#totalawesomeness", "flower"]
+    console.log(mySource)
 
 
-		{% endblock %}
+
+    $( "#id_hashtag" ).autocomplete({
+        source: mySource
+    });
+
+
+</script>
+
+{% endblock %}
