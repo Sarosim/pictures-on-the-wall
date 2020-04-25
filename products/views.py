@@ -109,6 +109,12 @@ def file_upload(request):
         
         edit_form_one = EditProductFormOne(initial={'artist': set_artist})
         edit_form_three = EditProductFormThree()
+    # get all the hashtags from the model and prepare a list for autocomplete in JS
+    hashtags = []
+    for hashtag in Hashtag.objects.all().values('hashtag'):
+        hash = hashtag['hashtag']
+        hashtags.append(hash)
+        # [0]['hashtag']
 
     return render(
         request,
@@ -116,6 +122,7 @@ def file_upload(request):
         {
             'edit_form_one': edit_form_one,
             'edit_form_three': edit_form_three,
+            'hashtags': hashtags,
         }
     )
 

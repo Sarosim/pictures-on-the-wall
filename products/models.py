@@ -123,7 +123,7 @@ class Size(models.Model):
 
 class Hashtag(models.Model):
     """ Model for Products ratings: """
-    hashtag = models.CharField(max_length=32, default='#ilovephotography')
+    hashtag = models.CharField(max_length=32, default='')
 
     def __str__(self):
         return self.hashtag
