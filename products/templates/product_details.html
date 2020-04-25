@@ -42,7 +42,11 @@
 				<div class="col-12">
 					<div class="details-hashtag-group">
 						<span class="details-hashtag-title">Hashtag:&nbsp</span>
-						<span class="details-hashtag">{{ hashtag }}</span>
+                        {% if pass_to_template.selected_prod.hashtag %}
+						<span class="details-hashtag">{{ pass_to_template.selected_prod.hashtag }}</span>
+                        {% else %}
+                        <span>No hastag added</span>
+                        {% endif %}
 					</div>
 				</div>
 			</div>

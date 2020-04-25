@@ -28,9 +28,6 @@ def product_details(request, id):
     number = selected_product.num_of_views + 1
     Product.objects.filter(pk=id).update(num_of_views=number)
 
-    # filtering the hashtags associated with the selected product:
-    hashtags = Hashtag.objects.filter(product=selected_product)
-    
     # filtering all the relevant ratings from the Rating model:
     ratings_data = get_the_ratings_for(selected_product)
 
@@ -43,7 +40,6 @@ def product_details(request, id):
     # Bundling the data for the template to a dictionary:
     pass_to_template = {
         "selected_prod": selected_product,
-        "hashtags": hashtags,
         "ratings_data": ratings_data,
         'sizes': sizes,
         'technologies': technologies,
