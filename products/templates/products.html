@@ -9,15 +9,45 @@
 <div class="row row-flex mx-3">
 
     <div class="container-fluid mx-auto">
+
         <section class="row filtering-row my-3">
-            <div class="filter-dropdown col-12 col-sm-6 col-md-3">
-            </div>
-            <div class="filter-dropdown col-12 col-sm-6 col-md-3">
-            </div>
-            <div class="filter-dropdown col-12 col-sm-6 col-md-3">
-            </div>
-            <div class="filter-dropdown col-12 col-sm-6 col-md-3">
-            </div>
+        
+        <div style="height: 100px; width: 100px; border: 2px solid red;">
+        </div>
+
+        <div class="filter-dropdown col-12 col-sm-6 col-md-3" style="border: 1px solid red; height:100px;">
+            <!-- SELECTING FILTER_GROUP -->
+            <form class="input-group mb-3" action="{% url 'filtered_products' filter_group='room' filter_name='shed' %}"> 
+            <!-- action=" url 'filtered_products' data.filter_by item " THIS IS THE SAME URL PATTERN FOR EVERY DROPDOWN -->
+                
+                <select class="filter_group-select" id="FilterGroupSelect" onchange="this.parentNode.submit()">
+                    {% if data.filter_group == 'category' %}
+                    <option selected value="category">category</option>
+                    {% else %}
+                    <option value="category">category</option>
+                    {% endif %}
+                    {% if data.filter_group == 'room' %}
+                    <option selected value="room">room</option>
+                    {% else %}
+                    <option value="room">room</option>
+                    {% endif %}
+                    {% if data.filter_group == 'artist' %}
+                    <option selected value="artist">artist</option>
+                    {% else %}
+                    <option value="artist">artist</option>
+                    {% endif %}
+                    <option selected="{% if data.filter_group == 'category' %}True{% endif %}" value="date_uploaded">Most Recent</option>
+                    <option value="num_of_views">Most Viewed</option>
+                    <option value="num_of_orders">Most Purchased</option>
+                    <option value="rateing">Highest Rated</option>
+                </select>
+
+
+
+
+            </form>
+        </div>
+
         </section>
 
         <section class="row image-display">

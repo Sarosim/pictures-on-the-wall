@@ -83,6 +83,10 @@ body {
     margin: 0 auto;
 }
 
+.input-group select {
+    text-transform: capitalize;
+}
+
 .image-display-container {
     display: flex;
     flex-wrap: wrap;

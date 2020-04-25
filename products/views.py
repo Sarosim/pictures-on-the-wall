@@ -60,9 +60,10 @@ def filtered_products(request, filter_group, filter_name):
 
     context = {
         "products": filtered_products,
-
+        'filter_group': filter_group,
+        'filter_name': filter_name,
     }
-
+    print("CONTEXT ", context)
     return render(request, "products.html", {"data": context})
 
 
