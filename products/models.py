@@ -92,6 +92,7 @@ class Product(models.Model):
     aspect_ratio = models.ForeignKey(Format, on_delete=models.CASCADE, default='', null=True)
     max_print_size = models.CharField(max_length=16, default='')
     available_technologies = models.ManyToManyField(Technology)
+    num_of_likes = models.IntegerField(default=0)
     num_of_orders = models.IntegerField(default=0)
     num_of_views = models.IntegerField(default=0)
     date_uploaded = models.DateTimeField(auto_now=True)
