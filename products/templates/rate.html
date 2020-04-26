@@ -6,27 +6,29 @@
 
 {% block content %}
 
-<div class="container-fluid text-center">
-    <div class="rating-image-container">
-        <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.title }} image" >
-    </div>
+<div class="container page-wrapper">
+    <div class="container-fluid text-center">
+        <div class="rating-image-container">
+            <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.title }} image" >
+        </div>
 
-	<div class="row mx-auto">
-		<form class="rating-form col-12 col-md-6" action="{% url 'rate_artwork' product.id %}" method="post">
-            <div class="row form-box">
-            <!-- onchange="this.form.submit()" -->
-                {% csrf_token %}
-                <div class="rating-select col-6">
-                    {{ rating_form | as_bootstrap }}
+        <div class="row mx-auto">
+            <form class="rating-form col-12 col-md-6" action="{% url 'rate_artwork' product.id %}" method="post">
+                <div class="row form-box">
+                <!-- onchange="this.form.submit()" -->
+                    {% csrf_token %}
+                    <div class="rating-select col-6 my-auto p-2">
+                        {{ rating_form.as_p }}
+                    </div>
+                    <div class="rating-submit col-6 my-auto p-2">
+                        <button class="btn btn-sm btn-warning" type="submit">
+                            <span>Submit Rating</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="rating-submit col-6 my-auto p-3">
-                    <button class="btn btn-warning" type="submit">
-                        <span>Submit Rating</span>
-                    </button>
-                </div>
-            </div>
-		</form>
-	</div>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
