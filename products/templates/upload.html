@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load bootstrap_tags %}
+
 {% block page_title %} | Upload Artwork{% endblock %}
 
 {% block style-tag %}
@@ -8,111 +10,112 @@
 
 {% block content %}
 
-<div class="container">
-	<!-- Row for the explanations content (Pricing, technologies, upload preocess) -->
-	<div class="row">
-		<div class="col-12">
-			<h1>Start earning money, upload your photos!</h1>
-		</div>
-		<div class="col-12">
-			<p>This section is for explaining how the site works. Pricing, technologies, upload preocess, etc</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, nisi similique, iure error sunt
-				suscipit perferendis est vel laborum dolores facere tempore aliquam ducimus doloribus at adipisci ipsa
-				tempora distinctio?</p>
-            <h6>See detailed requirements under the form below...</h6>
-		</div>
-	</div>
+<div class="container page-wrapper p-2 p-md-5">
 
-    <!-- The FORM -->
-    <div class="row container-fluid edit-container">
-        <form class="container-fluid edit-form" enctype="multipart/form-data" action="{% url 'file_upload' %}" method="post">
-            <legend>Upload Your Artwork</legend>
-            {% csrf_token %}
-		
-            <div class="container-fluid text-center">
-                <div class="row">
-                    <div class="col-12 col-md-7 edit-form-groups">
-                        <legend>Part one</legend>
-                        {{ edit_form_one.as_p }}
-                    </div>
-                    <!-- adding hashtags -->
-                    <div class="col-12 col-md-5">
-                        <legend>Part two</legend>
-                        <div class="edit-hashtags">
-                            <!-- two separate containers for selected and other already existing hashtags -->
-                            <div class="edit-selected-hashtags">
-                                <p>selected hashtags here</p>
-                                {{ edit_form_three }}
+    <div class="container">
+        <!-- Row for the explanations content (Pricing, technologies, upload preocess) -->
+        <div class="row">
+            <div class="col-12">
+                <h1>Start earning money, upload your photos!</h1>
+            </div>
+            <div class="col-12 text-container lead">
+                <p>Upload your best images and you can earn some reproduction fee if someone wants to hang your artwork on their wall.
+                You can determine the amount of the reproduction fee for every image, so it's entirely up to you how much money you can make.</p>
+                <p>
+                Use the below form to upload you image and set all its parameters. Chose an attractive title that best describes your subject. 
+                One of the search options on the site is based on the title, you might want to use a good keyword. There is also a hashtag you 
+                can add to your image, that's another keyword opportunity for you...
+                </p>
+                <p >... see more information and the detailed requirements under the form below.</p>
+            </div>
+        </div>
+
+        <!-- The FORM -->
+        <div class="row container-fluid edit-container">
+            <form class="container-fluid edit-form" enctype="multipart/form-data" action="{% url 'file_upload' %}" method="post">
+                <legend>Upload Your Artwork</legend>
+                {% csrf_token %}
+            
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div class="col-12 col-md-7 edit-form-groups">
+                            <legend>Part one</legend>
+                            {{ edit_form_one | as_bootstrap }}
+                        </div>
+                        <!-- adding hashtags -->
+                        <div class="col-12 col-md-5">
+                            <legend>Part two</legend>
+                            <div class="edit-hashtags">
+                                <!-- two separate containers for selected and other already existing hashtags -->
+                                <div class="edit-selected-hashtags">
+                                    {{ edit_form_three | as_bootstrap }}
+                                </div>
+                                
                             </div>
-                            
+
+                            <input class="edit-form-submit btn btn-warning" type="submit" value="Upload">
+                            <!-- Link to edit existing artwork -->
+                            <div class="go-to-edit mx-auto p-2 p-md-5">
+                                <p>
+                                    <a class="btn btn-outline-info" title="Select the one You'd like to edit on Your Dashboard" href="{% url 'dashboard' %}">Or Edit Existing</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </form>
+        </div>
+
+
+        <!-- Row for the requirements content (image- content, quality, resolution, aspect ratio; Creating profile requirements) -->
+        <div class="row mt-2 mt-md-4">
+            <div class="col-12">
+                <h3>Requirements</h3>
             </div>
-            <input class="edit-form-submit btn btn-primary" type="submit" value="Upload">
-        </form>
-	</div>
+            <ul class="row">
+                <li class="row">
+                    <h4 class="col-12">Profile</h4>
+                    <p class="col-11 offset-1">In order to upload images, you need an <strong> artist profile. </strong>Click on the 
+                    PROFILE link in the navigation manu on the top of the page to access your profile. All this requires you to be logged 
+                    in - as you already have realised it :)</p>
+                </li>
 
-	<!-- Link to edit existing artwork -->
-	<div class="row">
-		<div class="go-to-edit mx-auto p-2 p-md-5">
-            <p>
-                <a class="btn btn-warning" title="Select the one You'd like to edit on Your Dashboard" href="{% url 'dashboard' %}">Or Edit Existing</a>
-            </p>
-		</div>
-	</div>
+                <li class="row">
+                    <h4 class="col-12">Image Content</h4>
+                    <p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam repellat
+                        cumque
+                        architecto dolorem deserunt laborum
+                        recusandae voluptatum ipsa neque. Debitis in magni, possimus facilis qui consectetur nobis illum
+                        iusto
+                        libero?</p>
+                </li>
+                <li class="row">
+                    <h4 class="col-12">Image Quality</h4>
+                    <p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, aspernatur
+                        dignissimos. Deserunt accusamus facilis
+                        distinctio optio sint alias voluptatibus delectus maiores et asperiores voluptates ea minus, dolorem
+                        reiciendis pariatur ex.</p>
+                </li>
+                <li class="row">
+                    <h4 class="col-12">Image Resolution</h4>
+                    <p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda
+                        necessitatibus ex eveniet, facere fugiat quisquam
+                        inventore veritatis suscipit tempora optio animi voluptate explicabo amet eos sapiente ab quis saepe
+                        dicta.</p>
+                </li>
+                <li class="row">
+                    <h4 class="col-12">Image Aspect Ratio</h4>
+                    <p class="col-11 offset-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem magni
+                        molestias
+                        sunt sed? Labore doloribus
+                        doloremque totam voluptatum inventore repellendus eligendi eius quod, nisi cumque, ad cum ut
+                        corrupti
+                        temporibus.</p>
+                </li>
+            </ul>
+        </div>
 
-
-
-	<!-- Row for the requirements content (image- content, quality, resolution, aspect ratio; Creating profile requirements) -->
-	<div class="row">
-		<div class="col-12">
-			<h2>Requirements</h2>
-		</div>
-		<ul class="row">
-			<li class="row">
-				<h3 class="col-12">Profile</h3>
-				<p class="col-11 offset-1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore laboriosam
-					voluptatum natus. Repellat repellendus
-					saepe aliquid laudantium laborum? Et quisquam ipsam porro, quis minima consectetur error atque
-					exercitationem suscipit adipisci.</p>
-			</li>
-
-			<li class="row">
-				<h3 class="col-12">Image Content</h3>
-				<p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam repellat
-					cumque
-					architecto dolorem deserunt laborum
-					recusandae voluptatum ipsa neque. Debitis in magni, possimus facilis qui consectetur nobis illum
-					iusto
-					libero?</p>
-			</li>
-			<li class="row">
-				<h3 class="col-12">Image Quality</h3>
-				<p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, aspernatur
-					dignissimos. Deserunt accusamus facilis
-					distinctio optio sint alias voluptatibus delectus maiores et asperiores voluptates ea minus, dolorem
-					reiciendis pariatur ex.</p>
-			</li>
-			<li class="row">
-				<h3 class="col-12">Image Resolution</h3>
-				<p class="col-11 offset-1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda
-					necessitatibus ex eveniet, facere fugiat quisquam
-					inventore veritatis suscipit tempora optio animi voluptate explicabo amet eos sapiente ab quis saepe
-					dicta.</p>
-			</li>
-			<li class="row">
-				<h3 class="col-12">Image Aspect Ratio</h3>
-				<p class="col-11 offset-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem magni
-					molestias
-					sunt sed? Labore doloribus
-					doloremque totam voluptatum inventore repellendus eligendi eius quod, nisi cumque, ad cum ut
-					corrupti
-					temporibus.</p>
-			</li>
-		</ul>
-	</div>
-
+    </div>
 </div>
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>

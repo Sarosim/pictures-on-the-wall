@@ -363,11 +363,21 @@ body {
 }
 
 .edit-form-groups {
-    display: block;
+    display: inline;
 }
 
 .edit-form-submit {
-    float: right;
+    float: bottom;
+    margin: auto;
+}
+
+#id_hashtag {
+    margin-bottom: 6rem;
+}
+
+.text-container p {
+    text-align: justify;
+    text-justify: inter-word;
 }
 /******************* DASHBOARD HTML ******************************/
 

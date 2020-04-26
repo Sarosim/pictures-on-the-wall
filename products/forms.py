@@ -42,6 +42,18 @@ class EditProductFormOne(forms.ModelForm):
                     # 'value': ''
                 }
             ),
+            'room': forms.SelectMultiple(
+                attrs={
+                    'title': 'You can select multiple choices by holding the Ctrl/Command button down',
+                    'class': 'room-dropdown',
+                }
+            ),
+            'available_technologies': forms.SelectMultiple(
+                attrs={
+                    'title': 'You can select multiple choices by holding the Ctrl/Command button down\n Select as many as you can',
+                    'class': 'technologies-dropdown',
+                }
+            ),
         }
 
 
