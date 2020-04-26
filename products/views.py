@@ -51,17 +51,28 @@ def product_details(request, id):
     )
 
 
-def filtered_products(request, filter_group, filter_name):
+def filtered_products(request, filter_group, filter_name, sort_by):
     """ The view rendering a page for all products (Artwork)
     filtered by a user selected criteria """
 
     # Call my helper function in utils.py to run the filter
     filtered_products = special_filter(filter_group, filter_name)
 
+    # sort options can be
+    sort_options = [
+        'num_of_views',
+        'num_of_likes',
+        'date_uploaded',
+        'num_of_orders',
+        'rating',
+
+    ]
+
     context = {
         "products": filtered_products,
         'filter_group': filter_group,
         'filter_name': filter_name,
+        'sort_by': sort_by
     }
     print("CONTEXT ", context)
     return render(request, "products.html", {"data": context})
