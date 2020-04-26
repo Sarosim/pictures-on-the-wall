@@ -152,122 +152,129 @@ body {
 
 /******************* PRODUCT DETAILS HTML ******************************/
 
-	.details-container {
-		margin: 1rem 0 0 0;
-	}
+.details-container {
+    margin: 1rem 0 0 0;
+}
 
-	.details-title {
-		margin-top: 1rem;
-		text-align: center;
-	}
+.details-title {
+    margin-top: 1rem;
+    text-align: center;
+}
 
-	.details-image-box {
-		overflow: hidden;
-        min-height: 60vh;
-		padding: 15px 0;
-	}
+.details-image-box {
+    overflow: hidden;
+    min-height: 60vh;
+    padding: 15px 0;
+}
 
-	.details-image {
-		display: block;
-		margin: auto;
-		max-width: 94%;
-		max-height: 70vh;
-	}
+.details-image {
+    display: block;
+    margin: auto;
+    max-width: 94%;
+    max-height: 70vh;
+}
 
-	.details-category-room {
-		flex-wrap: wrap;
-		justify-content: space-evenly;
-	}
+.details-category-room {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 
-	.details-category {
-		margin: 4px 8px;
-		text-transform: capitalize;
-	}
+.details-category {
+    margin: 4px 8px;
+    text-transform: capitalize;
+}
 
-	.details-room {
-		margin: 4px 8px;
-	}
+.details-room {
+    margin: 4px 8px;
+}
 
-	.details-small-title {
-		font-size: 1.1rem;
-		font-variant: small-caps;
-	}
+.details-small-title {
+    font-size: 1.1rem;
+    font-variant: small-caps;
+}
 
-	.details-hashtag-group {
-		padding: .5rem 2rem;
-	}
+.details-hashtag-group {
+    padding: .5rem 2rem;
+}
 
-	.details-hashtag {
-		background-color: #0093ff;
-		color: #eee;
-		padding: .2rem .3rem;
-        margin: .3rem;
-        line-height: 200%;
-		border-radius: .4rem 1rem;
-	}
+.details-hashtag {
+    background-color: #0093ff;
+    color: #eee;
+    padding: .2rem .3rem;
+    margin: .3rem;
+    line-height: 200%;
+    border-radius: .4rem 1rem;
+}
 
-    .second-container {
-        margin: 1rem 0 0 0;
-    }
+.second-container {
+    margin: 1rem 0 0 0;
+}
 
-    .second-content {
-        flex-direction: column;
-		justify-content: space-between;
-        min-height: 60vh;
-    }
-	.details-size-header {
-		margin-top: 1rem;
-		text-align: center;
-	}
+.second-content {
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 60vh;
+}
+.details-size-header {
+    margin-top: 1rem;
+    text-align: center;
+}
 
-	.details-size {
-		width: 94%;
-		height: 200px;
-		background-color: #a7a7ff;
-	}
+.details-size {
+    width: 94%;
+    height: 200px;
+    background-color: #a7a7ff;
+}
 
-    .details-description-box {
-        margin-top: 1rem;
-        height: 5rem;
-        box-shadow: 3px 3px 6px 4px rgba(0,0,0,0.22);
-    }
+.details-description-box {
+    margin-top: 1rem;
+    height: 5rem;
+    box-shadow: 3px 3px 6px 4px rgba(0,0,0,0.22);
+}
 
-	.details-size-techn-and-rating {
-		flex-direction: row;
-        flex-wrap: wrap;
-		justify-content: space-evenly;
-	}
+.details-likes-ratings-views {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
 
-	.details-technologies {
-		text-align: center;
-		margin-top: .2rem;
-	}
 
-	.details-rating {
-		text-align: center;
-		margin-top: .2rem;
-	}
+.details-size-techn-and-rating {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 
-	.details-stars {
-		text-align: center;
-		margin-top: .4rem;
-		font-size: 2rem;
-	}
+.details-technologies {
+    text-align: center;
+    margin-top: .2rem;
+}
 
-	.stars-outer {
-		display: inline-block;
-		position: relative;
-		font-style: normal;
-		font-variant: normal;
-		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;
-		font-family: 'Font Awesome 5 Free';
-	}
+.details-rating {
+    text-align: center;
+    margin-top: .2rem;
+}
 
-	.stars-outer::before {
-		content: "\f005 \f005 \f005 \f005 \f005";
-		color: #0093ff;
-	}
+.details-stars {
+    text-align: center;
+    margin-top: .4rem;
+    font-size: 2rem;
+}
+
+.stars-outer {
+    display: inline-block;
+    position: relative;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Font Awesome 5 Free';
+}
+
+.stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    color: #0093ff;
+}
 
 	.stars-inner {
 		position: absolute;
