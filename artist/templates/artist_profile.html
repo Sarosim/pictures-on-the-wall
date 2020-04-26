@@ -6,17 +6,19 @@
 
 {% block content %}
 
-<div class="container mt-5 pt-4">
-	<h1 class="artist-form-title text-center">Your Artist profile</h1>
-	<div class="row">
-		<div class="col-10 offset-1 col-md-6 offset-md-3 my-1 my-md-4">
-			<form class="form-box p-2 p-md-4" action="{% url 'artist_profile' %}" method="post">
-				{% csrf_token %}
-				{{ artist_form.as_p }}
-				<input class="artist-form-submit btn btn-primary" type="submit" value="Save">
-            </form>
-		</div>
-	</div>
+<div class="container page-wrapper mt-0">
+    <div class="container pt-4">
+        <h1 class="artist-form-title text-center">Your Artist profile</h1>
+        <div class="row">
+            <div class="col-10 offset-1 col-md-6 offset-md-3 my-1 my-md-4">
+                <form class="form-box p-2 p-md-4" action="{% url 'artist_profile' %}" method="post">
+                    {% csrf_token %}
+                    {{ artist_form.as_p }}
+                    <input class="artist-form-submit btn btn-primary" type="submit" value="Save">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

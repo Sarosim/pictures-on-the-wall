@@ -9,59 +9,59 @@
 {% endblock %}
 
 {% block content %}
+<div class="container page-wrapper">
+	<div class="row container-fluid edit-container">
+		<form class="container-fluid edit-form" enctype="multipart/form-data"
+			action="{% url 'modify_artwork' product.id %}" method="post">
+			<legend>Edit Your Artwork</legend>
+			{% csrf_token %}
 
-<div class="row container-fluid edit-container">
-	<form class="container-fluid edit-form" enctype="multipart/form-data" action="{% url 'modify_artwork' product.id %}" method="post">
-		<legend>Edit Your Artwork</legend>
-		{% csrf_token %}
-		
-		<div class="container-fluid text-center">
-			<div class="row">
-                <!-- Part 1 of 3 -- The picture displayed if edit mode + details and upload -->	
-                <div class="col-12 col-md-7 edit-form-groups">
-					<legend>Part one</legend>
-					<div class="edit-image">
-						<img src="" alt="">
-                    </div>
-					{{ edit_form_one.as_p }}
-				</div>
-
-					<!-- Part 3 of 3 -- #hashtags -->
-				<div class="col-12 col-md-5">
-					<legend>Part three</legend>
-					<div class="edit-hashtags">
-						<!-- two separate containers for selected and other already existing hashtags -->
-						<div class="edit-selected-hashtags">
-							<p>selected hashtags here</p>
-							{{ edit_form_three }}
-						</div>
-
+			<div class="container-fluid text-center">
+				<div class="row">
+					<!-- Part 1 of 3 -- The picture displayed if edit mode + details and upload -->
+					<div class="col-12 col-md-7 edit-form-groups">
+						<legend>Part one</legend>
+						<div class="edit-image">
+							<img src="" alt="">
+                        </div>
+						{{ edit_form_one.as_p }}
 					</div>
-				</div>
-			</div>
-		</div>
-        <div class="hidden">
-            <!-- {{ edit_form_hidden }} -->
-        </div>
-        <input class="edit-form-submit btn btn-primary" type="submit" value="Upload">
-    </form>
 
+                    <!-- Part 3 of 3 -- #hashtags -->
+                    <div class="col-12 col-md-5">
+                        <legend>Part three</legend>
+                        <div class="edit-hashtags">
+                            <!-- two separate containers for selected and other already existing hashtags -->
+                            <div class="edit-selected-hashtags">
+                                <p>selected hashtags here</p>
+                                {{ edit_form_three }}
+                            </div>
 
-		</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden">
+                <!-- {{ edit_form_hidden }} -->
+            </div>
+            <input class="edit-form-submit btn btn-primary" type="submit" value="Upload">
+        </form>
+    </div>
+</div>
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     var autocompleteElement = document.getElementById('id_hashtag')
-    var mySource = {{ hashtags | safe }}
-    // mySource = ["#ilovephotography", "#coffee", "#love", "#adorable", "#funny", "#totalawesomeness", "flower"]
-    console.log(mySource)
+var mySource = {{ hashtags | safe }}
+// mySource = ["#ilovephotography", "#coffee", "#love", "#adorable", "#funny", "#totalawesomeness", "flower"]
+console.log(mySource)
 
 
 
-    $( "#id_hashtag" ).autocomplete({
-        source: mySource
-    });
+$( "#id_hashtag" ).autocomplete({
+    source: mySource
+});
 
 
 </script>
