@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from products.models import Product
+import math
 
 # Create your views here.
 
@@ -25,7 +27,7 @@ def add_to_cart(request, id):
 
 
 def adjust_cart(request, id):
-    """ Adjusts the quantity of the item selected in the form and redirects to the page  """
+    """ Adjusts the quantity of the item selected in the form and redirects to the cart """
     new_quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
 
@@ -34,6 +36,64 @@ def adjust_cart(request, id):
         print('cart[id] after change: ', cart[id])
     else:
         cart.pop(id)
+
+    request.session['cart'] = cart
+    return redirect(reverse('view_cart'))
+
+
+def update_cart(request, id):
+    """ Updating thecart with the selected print technology and size 
+    of the item selected in the form and redirects to the page  """
+
+    # extract data from the request
+    selected_size = request.POST.get('size')
+    selected_tech = request.POST.get('technology')
+    selected_product = get_object_or_404(Product, pk=id)
+    qty = int(request.POST.get('quantity'))
+
+    # calculate the shorter and longer size dimensions
+    ss = int(selected_size.split()[0])
+    ls = int(selected_size.split()[2])
+
+    # define the technologies coefficient from the tech selected
+    if selected_tech == "Photo Print":
+        tech_coeff = 1
+    elif selected_tech == "Canvas Print":
+        tech_coeff = 2.1
+    elif selected_tech == "Metal Print":
+        tech_coeff = 3.2
+    elif selected_tech == "Acrylic Print":
+        tech_coeff = 1.4
+    elif selected_tech == "Framed Print":
+        tech_coeff = 1.8
+    else:
+        tech_coeff = 1
+
+    # get the base repro_fee from the Product model
+    base_repro_fee = float(selected_product.base_repro_fee)
+
+    # reproduction fee increases by size:
+    repro_fee = (base_repro_fee) + round(( ls * ss ) / 300)
+
+    # calculate the price of one item with the selectes size and technology
+    diagonal = math.sqrt( ss * ss + ls * ls)
+    price = round( diagonal / 10 * 2 * tech_coeff + repro_fee ) - 0.01
+
+    print(price)
+
+    cart = request.session.get('cart', {})
+
+    if qty > 0:
+        cart[id] = qty
+        print('cart[id] igy nez ki: ', cart[id])
+    else:
+        cart.pop(id)
+
+
+
+
+
+    
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))

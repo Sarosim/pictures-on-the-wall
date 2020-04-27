@@ -63,7 +63,8 @@
                         <div class="details-rating">
                             <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
                             <span class="details-small-title">Average Rating:&nbsp</span>
-                            <a href="{% url 'rate_artwork' pass_to_template.selected_prod.id %}" title="{{pass_to_template.ratings_data.ratings_average}} | Click here to rate!">
+                            <a href="{% url 'rate_artwork' pass_to_template.selected_prod.id %}" 
+                                title="{{pass_to_template.ratings_data.ratings_average}} | Click here to rate!">
                                 <div class="details-stars">
                                     <div class="stars-outer">
                                         <div class="stars-inner" id="stars"></div>
@@ -105,7 +106,7 @@
                     <h4>Details</h4>
                 </div>
             </div>
-            <form action="{% url 'adjust_cart' pass_to_template.selected_prod.id %}" method="post">
+            <form action="{% url 'update_cart' pass_to_template.selected_prod.id %}" method="post">
                 {% csrf_token %}   
                 <div class="second-content row">
                     <div class="details-description col-12">
@@ -152,10 +153,22 @@
                         </div>
                     </div>
                     
+                    <div class="details-quantity col-12 mx-auto">
+                        <div class="form-group" style="border: 1px solid #888888;">
+                            <label for="exampleInputAmount" class="sr-only bg-info">Quantity</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Qty</span>
+                                </div>
+                                <input name="quantity" id="exampleInputAmount" type="number" min="0" max="999" class="form-control" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="col-12 details-price-and-buttons">
                         <!-- Price -->
                         
-                        <p class="detalis-price">£&nbsp;<strong id="price"></strong></p>
+                        <p class="detalis-price">£&nbsp;<strong id="price"></strong><span style="font-size: 0.8rem;">&nbsp;per item</span></p>
                         <!-- <p id="target-p"></p> -->
                         <div class="details-btn-container">
                             <button class="btn btn-warning btn-lg" type="submit">
@@ -233,7 +246,7 @@
     
     // just for debugging:
     const foo = "{{ cart_items }}"
-    console.log("Cart.items(): ", foo);
+    console.log("cart_items(): ", foo);
     
 </script>
 

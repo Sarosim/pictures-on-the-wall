@@ -356,6 +356,10 @@ body {
         font-size: 1.7rem;
     }
 
+    .details-quantity {
+        width: 220px;
+    }
+
 /******************* PRODUCT EDIT HTML ******************************/
 
 .edit-form {
