@@ -22,6 +22,9 @@ def login(request):
         messages.success(request, "You need to be logged in to perform that action!")
         if request.META['QUERY_STRING'] == 'next=/products/upload/':
             next_page = 'file_upload'
+        else:
+            # other potential nex_pages should be handled here, for now home
+            next_page = 'home'
     else:
         next_page = 'home'
     if request.user.is_authenticated:
