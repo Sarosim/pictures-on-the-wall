@@ -63,9 +63,18 @@
                             </p>
                         </div>
                         <div class="overlay overlay-rate">
-                            <a href="{% url 'rate_artwork' product.id %}" class="overlay-icon" title="Rate Artwork">
-                                <i class="far fa-thumbs-up"></i>
-                            </a>
+                            <form method="GET" class="overlay-icon" title="Add Like" action="{% url 'like_artwork' %}">
+                            {% csrf_token %}
+                                <!-- the like button on the image that triggers the form submission -->
+                                <a onclick="this.parentNode.submit();">
+                                    <i class="far fa-thumbs-up"></i>
+                                </a>
+                                <!-- and hidden sending all the other info needed for rendering the page again -->
+                                <input type="hidden" name="liked_product" value="{{ product.id }}"/> 
+                                <input type="hidden" name="filter_group" value="{{ data.filter_group }}"/> 
+                                <input type="hidden" name="filter_name" value="{{ data.filter_name }}"/> 
+                                <input type="hidden" name="sort_by" value="{{ data.sort_by }}"/> 
+                            </form>
                         </div>
                         <div class="overlay overlay-cart">
                             <form method="post" class="overlay-icon" title="Add To Shopping Cart" action="{% url 'add_to_cart' product.id %}">

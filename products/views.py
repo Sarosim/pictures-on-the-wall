@@ -316,8 +316,42 @@ def sort_and_filter(request):
         filtered_products = special_filter(filter_group, filter_name)
     else:
         filtered_products = Product.objects.all()
+    sort_string = '-' + sort_by
+    filtered_products = filtered_products.order_by(sort_string).distinct()
 
-    filtered_products = filtered_products.order_by(sort_by).distinct()
+    context = {
+        "products": filtered_products,
+        'filter_group': filter_group,
+        'filter_name': filter_name,
+        'sort_by': sort_by
+    }
+
+    return render(request, "products.html", { 'data': context })
+
+
+def like_artwork(request):
+    """Handling the like from the products page and returning there"""
+    prod_id = request.GET.get('liked_product')
+    
+    selected_product = get_object_or_404(Product, pk=prod_id)
+    print(selected_product)
+    # increment number of likes
+    num = selected_product.num_of_likes + 1
+    Product.objects.filter(pk=prod_id).update(num_of_likes=num)
+
+    # get the rest of the data from the request to be able to rerender the page.
+    filter_group = request.GET.get('filter_group')
+    filter_name = request.GET.get('filter_name')
+    sort_by = request.GET.get('sort_by')
+
+    # Call my helper function in utils.py to run the filter if there is filter
+    if filter_group and filter_name:
+        filtered_products = special_filter(filter_group, filter_name)
+    else:
+        filtered_products = Product.objects.all()
+
+    sort_string = '-' + sort_by
+    filtered_products = filtered_products.order_by(sort_string)
 
     context = {
         "products": filtered_products,
