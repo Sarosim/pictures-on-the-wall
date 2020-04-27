@@ -51,7 +51,7 @@ def product_details(request, id):
     )
 
 
-def filtered_products(request, filter_group, filter_name, sort_by):
+def filtered_products(request, filter_group, filter_name):
     """ The view rendering a page for all products (Artwork)
     filtered by a user selected criteria """
 
@@ -67,6 +67,8 @@ def filtered_products(request, filter_group, filter_name, sort_by):
         'rating',
 
     ]
+
+    sort_by = sort_options[0]
 
     context = {
         "products": filtered_products,
@@ -290,26 +292,20 @@ def rate_artwork(request, id):
 def sort_and_filter(request):
     """Sorting and filtering products"""
     
-    
-    if request.method == 'POST':
-        print("POST *****************************")
-        sort_form = SortForm(request.POST)
-        print(sort_form.cleaned_data)
-    else:
-        print("GET WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
-        sort_form = SortForm()
-
+    sort_form = SortForm()
+    filter_group = request.GET.get('filter_group')
+    filter_name = request.GET.get('filter_name')
+    sort_by = request.GET.get('sort_by')
     # print(f"Sort form {sort_form}")
 
     filtered_products = Product.objects.all()
-    filter_group = ''
-    filter_name = ''
+    print("GET WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", sort_by)
 
-    context= {
+    context = {
         "products": filtered_products,
-        # "filter": filter_group,
-        # "keyword": filter_name,
-        #'sort_form': sort_form,
+        'filter_group': filter_group,
+        'filter_name': filter_name,
+        'sort_by': sort_by
     }
 
-    return render(request, "filtered_products.html", { 'context': context })
+    return render(request, "products.html", { 'context': context })

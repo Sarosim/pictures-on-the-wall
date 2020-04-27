@@ -15,18 +15,18 @@
             
                 <div class="filter-dropdown col-12 col-sm-6 col-md-3" style="border: 1px solid red;">
                     <!-- SELECTING SORT CRITERIA -->
-                    <form class="input-group mb-3" action="{% url 'filtered_products' %}" method="GET"> 
+                    <form class="input-group mb-3" action="{% url 'sort' %}" method="GET"> 
                         <div class="form-group">
                         <!-- action=" url 'filtered_products' data.filter_by item " THIS IS THE SAME URL PATTERN FOR EVERY DROPDOWN -->
                             <div class="form-group row">
-                                <input class="form-control" type="hidden" type="text" value="{{ data.filter_group }}" id="filter_group">
+                                <input class="form-control" type="hidden" type="text" value="{{ data.filter_group }}" id="filter_group" name="filter_group">
                             </div>
                             <div class="form-group row">
-                                <input class="form-control" type="hidden" type="text" value="{{ data.filter_name }}" id="filter_name">
+                                <input class="form-control" type="hidden" type="text" value="{{ data.filter_name }}" id="filter_name" name="filter_name">
                             </div>
 
                             <div class="form-group row">
-                                <select class="form-control filter_group-select" id="sort_by" >
+                                <select class="form-control filter_group-select" id="sort_by" name="sort_by">
                                     {% if data.sort_by == 'num_of_views' %}
                                         <option selected value="num_of_views">Most Viewed</option>
                                         {% else %}
