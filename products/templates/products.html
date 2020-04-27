@@ -13,59 +13,38 @@
 
             <section class="row filtering-row my-3">
             
-                <div class="filter-dropdown col-12 col-sm-6 col-md-3" style="border: 1px solid red;">
+                <div class="filter-dropdown col-12 col-sm-6 col-md-3">
                     <!-- SELECTING SORT CRITERIA -->
-                    <form class="input-group mb-3" action="{% url 'sort' %}" method="GET"> 
-                        <div class="form-group">
-                        <!-- action=" url 'filtered_products' data.filter_by item " THIS IS THE SAME URL PATTERN FOR EVERY DROPDOWN -->
-                            <div class="form-group row">
-                                <input class="form-control" type="hidden" type="text" value="{{ data.filter_group }}" id="filter_group" name="filter_group">
-                            </div>
-                            <div class="form-group row">
-                                <input class="form-control" type="hidden" type="text" value="{{ data.filter_name }}" id="filter_name" name="filter_name">
-                            </div>
-
-                            <div class="form-group row">
-                                <select class="form-control filter_group-select" id="sort_by" name="sort_by">
-                                    {% if data.sort_by == 'num_of_views' %}
-                                        <option selected value="num_of_views">Most Viewed</option>
-                                        {% else %}
-                                        <option value="num_of_views">Most Viewed</option>
-                                    {% endif %}
-                                    {% if data.sort_by == 'num_of_likes' %}
-                                        <option selected value="num_of_likes">Most Liked</option>
-                                        {% else %}
-                                        <option value="num_of_likes">Most Liked</option>
-                                    {% endif %}
-                                    {% if data.sort_by == 'date_uploaded' %}
-                                        <option selected value="date_uploaded">Most Recent</option>
-                                        {% else %}
-                                        <option value="date_uploaded">Most Recent</option>
-                                    {% endif %}
-                                    {% if data.sort_by == 'num_of_orders' %}
-                                        <option selected value="num_of_orders">Most Purchased</option>
-                                        {% else %}
-                                        <option value="num_of_orders">Most Purchased</option>
-                                    {% endif %}
-                                    {% if data.sort_by == 'rating' %}
-                                        <option selected value="rating">Highest Rated</option>
-                                        {% else %}
-                                        <option value="rating">Highest Rated</option>
-                                    {% endif %}
-
-                                
-                                </select>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Sign in</button>
-                                </div>
-                            </div>
-
-
-                        </div>
+                    <form class="input-group mb-3" action="{% url 'sort' %}" method="GET" id="sort-form"> 
+                        <input class="form-control" type="hidden" type="text" value="{{ data.filter_group }}" id="filter_group" name="filter_group">
+                        <input class="form-control" type="hidden" type="text" value="{{ data.filter_name }}" id="filter_name" name="filter_name">
+                        <select class="form-control filter_group-select" id="sort_by" name="sort_by" onchange="this.parentNode.submit()">
+                            {% if data.sort_by == 'num_of_views' %}
+                                <option selected value="num_of_views">Most Viewed</option>
+                                {% else %}
+                                <option value="num_of_views">Most Viewed</option>
+                            {% endif %}
+                            {% if data.sort_by == 'num_of_likes' %}
+                                <option selected value="num_of_likes">Most Liked</option>
+                                {% else %}
+                                <option value="num_of_likes">Most Liked</option>
+                            {% endif %}
+                            {% if data.sort_by == 'date_uploaded' %}
+                                <option selected value="date_uploaded">Most Recent</option>
+                                {% else %}
+                                <option value="date_uploaded">Most Recent</option>
+                            {% endif %}
+                            {% if data.sort_by == 'num_of_orders' %}
+                                <option selected value="num_of_orders">Most Purchased</option>
+                                {% else %}
+                                <option value="num_of_orders">Most Purchased</option>
+                            {% endif %}
+                            <!-- {% if data.sort_by == 'rating' %}
+                                <option selected value="rating">Highest Rated</option>
+                                {% else %}
+                                <option value="rating">Highest Rated</option>
+                            {% endif %} -->
+                        </select>
                     </form>
                 </div>
 

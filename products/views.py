@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import Product, Category, Hashtag, Rating, Artist, Size, Format, Technology
 from .forms import FileUploadForm  # probably superseded, to be deleted
-from .forms import EditProductFormOne, EditProductFormThree, RatingForm, SortForm
+from .forms import EditProductFormOne, EditProductFormThree, RatingForm
 from artist.forms import ArtistProfileForm
 from django.contrib.auth.decorators import login_required
 from pictures_on_the_wall.utils import special_filter, get_the_ratings_for
@@ -16,7 +16,24 @@ from .utils import image_manipulation, create_size_entries
 def all_products(request):
     """ The view rendering a page with all products listed """
     all_the_products = Product.objects.all()
-    return render(request, "products.html", {"products": all_the_products})
+    # sort options can be
+    sort_options = [
+        'num_of_views',
+        'num_of_likes',
+        'date_uploaded',
+        'num_of_orders',
+        # 'rating', out of scope in this phase
+    ]
+
+    sort_by = sort_options[0]
+
+    context = {
+        "products": all_the_products,
+        'filter_group': 'none',
+        'filter_name': 'none',
+        'sort_by': sort_by
+    }
+    return render(request, "products.html", {"data": context})
 
 
 def product_details(request, id):
@@ -33,7 +50,6 @@ def product_details(request, id):
 
     # filtering all the sizes from the Size model:
     sizes = Size.objects.filter(format_name=selected_product.aspect_ratio)
-    print(f"SIZES: {sizes}")
 
     technologies = Technology.objects.all()
 
@@ -55,8 +71,11 @@ def filtered_products(request, filter_group, filter_name):
     """ The view rendering a page for all products (Artwork)
     filtered by a user selected criteria """
 
-    # Call my helper function in utils.py to run the filter
-    filtered_products = special_filter(filter_group, filter_name)
+    # Call my helper function in utils.py to run the filter if there is filter
+    if filter_group and filter_name:
+        filtered_products = special_filter(filter_group, filter_name)
+    else:
+        filtered_products = Product.objects.all()
 
     # sort options can be
     sort_options = [
@@ -64,10 +83,8 @@ def filtered_products(request, filter_group, filter_name):
         'num_of_likes',
         'date_uploaded',
         'num_of_orders',
-        'rating',
-
+        # 'rating',
     ]
-
     sort_by = sort_options[0]
 
     context = {
@@ -76,7 +93,6 @@ def filtered_products(request, filter_group, filter_name):
         'filter_name': filter_name,
         'sort_by': sort_by
     }
-    print("CONTEXT ", context)
     return render(request, "products.html", {"data": context})
 
 
@@ -99,7 +115,6 @@ def file_upload(request):
             new_product = edit_form_one.save(commit=False)
             new_hashtag, created = Hashtag.objects.get_or_create(hashtag=edit_form_three.cleaned_data['hashtag'])
             new_product.hashtag = new_hashtag.hashtag
-            print(f"new hashtag: {new_hashtag} es a product.hashtag {new_product.hashtag}")
             new_product.aspect_ratio = Format.objects.get(id=image_data['format_id'])
             new_product.max_print_size = image_data['longer_side']
             new_product.save()
@@ -292,14 +307,17 @@ def rate_artwork(request, id):
 def sort_and_filter(request):
     """Sorting and filtering products"""
     
-    sort_form = SortForm()
     filter_group = request.GET.get('filter_group')
     filter_name = request.GET.get('filter_name')
     sort_by = request.GET.get('sort_by')
-    # print(f"Sort form {sort_form}")
 
-    filtered_products = Product.objects.all()
-    print("GET WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", sort_by)
+    # Call my helper function in utils.py to run the filter if there is filter
+    if filter_group and filter_name:
+        filtered_products = special_filter(filter_group, filter_name)
+    else:
+        filtered_products = Product.objects.all()
+
+    filtered_products = filtered_products.order_by(sort_by).distinct()
 
     context = {
         "products": filtered_products,
@@ -308,4 +326,4 @@ def sort_and_filter(request):
         'sort_by': sort_by
     }
 
-    return render(request, "products.html", { 'context': context })
+    return render(request, "products.html", { 'data': context })
