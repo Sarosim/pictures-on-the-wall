@@ -26,7 +26,6 @@ def dashboard(request):
             prod_ratings = get_the_ratings_for(prod)
             ratings_list.append(prod_ratings)
             sum_rate += prod_ratings['ratings_average']
-        print(sum_rate, selected_products)
         avrg_rate = round(sum_rate / len(ratings_list), 2) if len(ratings_list) > 0 else 0
         page_data = {
             'artist': set_artist,
