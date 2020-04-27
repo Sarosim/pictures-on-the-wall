@@ -43,18 +43,37 @@ def search_by_title(request):
     products_by_description = Product.objects.filter(description__icontains=request.GET['search'])
     # and adding the description QuerySet to the combined one:
     products = products | products_by_description
-    
-    products = products.order_by('date_uploaded')
+
+    if request.GET['sort_by']:
+        if request.GET['sort_by'] == 'none':
+            sort_by = 'date_uploaded'
+        else:
+            sort_by = request.GET['sort_by']
+    else:
+        sort_by = 'date_uploaded'
+
+    sort_string = '-' + sort_by
+
+    products = products.order_by(sort_string)
 
     if not products:
         # if nothing found, send a message
-        messages.info(request, f"Sorry, we  couldn't find any content for {request.GET['search']}.")
+        messages.info(request, f"Sorry, we couldn't find any content for {request.GET['search']}.")
         messages.info(request, "You could try to:")
         messages.info(request, "- check your spelling, or")
         messages.info(request, "- use a similar but slightly different search term, or")
         messages.info(request, "- keep your search term simple, or")
         messages.info(request, "- browse our most popular items below:")
-        # ... and display the items sorted by the selected sort criteria
-        sort_criteria = 'date_uploaded' # here comes in the sorting FORM later on
-        products = Product.objects.order_by(sort_criteria)[:20]
-    return render(request, 'products.html', {"products": products})
+        # ... and display the items sorted by number of likes
+        sort_by = 'num_of_likes'
+        sort_string = '-' + sort_by
+        products = Product.objects.order_by(sort_string)[:20]
+
+    context = {
+        "products": products,
+        'filter_group': '',
+        'filter_name': '',
+        'sort_by': sort_by
+    }
+
+    return render(request, "products.html", { 'data': context })

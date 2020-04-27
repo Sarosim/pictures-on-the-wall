@@ -63,7 +63,7 @@
                             </p>
                         </div>
                         <div class="overlay overlay-rate">
-                            <form method="GET" class="overlay-icon" title="Add Like" action="{% url 'like_artwork' %}">
+                            <form method="GET" class="overlay-icon" title="Add Like! It's {{product.num_of_likes}} so far..." action="{% url 'like_artwork' %}">
                             {% csrf_token %}
                                 <!-- the like button on the image that triggers the form submission -->
                                 <a onclick="this.parentNode.submit();">
@@ -94,8 +94,8 @@
 </div>
 
 <script>
-var filter_group = "{{ data.filter_group }}"
-console.log(filter_group)
+var log_this = "{{ data.sort_by }}"
+console.log("data: ", log_this)
 </script>
 
 {% endblock %}
