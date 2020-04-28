@@ -11,7 +11,7 @@
 
         <div class="row row-flex mx-auto">
             {% for item in cart_items %}
-            <div class="flex-cards card px-0 m-3">
+            <div class="flex-cards card px-0 m-3" title="Click on the image to specify parameters, including size, print type and quantity">
                 <div class="card-header text-center my-2">
                     <h4>
                         {{ item.product.title }}
@@ -26,20 +26,20 @@
                     <span>£{{ item.unit_price }}</span><span style="font-size: 0.7rem;">&nbsp;per item</span>
                     </p>
                     <div class="card-footer">
-                        <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-                            {% csrf_token %}
-                            <div class="form-group" style="border: 1px solid #888888;">
-                                <label for="exampleInputAmount" class="sr-only bg-info">New Qty</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Qty</span>
-                                    </div>
-                                    <input name="quantity" id="exampleInputAmount" type="number" min="0" max="999" class="form-control" value="{{item.quantity}}">
+                        <div class="form-group" style="border: 1px solid #888888;">
+                            <label for="exampleInputAmount" class="sr-only bg-info">New Qty</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Qty</span>
+                                </div>
+                                <div class="mx-auto my-auto">
+                                    {{item.quantity}}
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-warning p-2 ml-2">Update</button>
-                        </form>
+                        </div>
+ 
                     </div>
+                    
                 </div>
             </div>
             {% endfor %}

@@ -35,19 +35,7 @@ def add_to_cart(request, id):
     return redirect(reverse('products'))
 
 
-def adjust_cart(request, id):
-    """ Adjusts the quantity of the item selected in the form and redirects to the cart """
-    new_quantity = int(request.POST.get('quantity'))
-    cart = request.session.get('cart', {})
 
-    if new_quantity > 0:
-        cart[id] = new_quantity
-        print('cart[id] after change: ', cart[id])
-    else:
-        cart.pop(id)
-
-    request.session['cart'] = cart
-    return redirect(reverse('view_cart'))
 
 
 def update_cart(request, id):
