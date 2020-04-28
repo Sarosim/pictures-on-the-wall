@@ -6,28 +6,29 @@ def cart_contents(request):
     
     cart = request.session.get('cart', {})
     """ A cart requesting a session with the existing cart if there is one, or a blank dictionary, if there's not. """
-    size_session = request.session.get('size_session', {})
+    # size_session = request.session.get('size_session', {})
     
 
     cart_items = []
     total = 0
     product_count = 0
     
-    for id, quantity in cart.items():
+    for id, details in cart.items():
         product = get_object_or_404(Product, pk=id)
-        total += quantity * product.base_repro_fee
-        product_count += quantity
-        # 
+        total += details['quantity'] * product.base_repro_fee
+        product_count += details['quantity']
+        size = details['size']
+
         # print("SIZES", size)
         # current_technology = product.available_technologies
         # print("CURRENT TECH", current_technology)
-        cart_items.append({'id': id, 'quantity': quantity, 'product': product})
+        cart_items.append({'id': id, 'quantity': details['quantity'], 'product': product, 'size': details['size'],})
 
-    cart_item_sizes = []
+    # cart_item_sizes = []
 
-    for id, size in size_session.items():
-        product = get_object_or_404(Product, pk=id)
-        print("SIZE: ", size)
-        cart_item_sizes.append({'id': id, 'size': size})
+    # for id, size in size_session.items():
+    #     product = get_object_or_404(Product, pk=id)
+    #     print("SIZE: ", size)
+    #     cart_item_sizes.append({'id': id, 'size': size})
 
-    return {'cart_items': cart_items, 'total': total, 'product_count': product_count, 'cart_item_sizes': cart_item_sizes}
+    return {'cart_items': cart_items, 'total': total, 'product_count': product_count}

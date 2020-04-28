@@ -14,21 +14,27 @@ def add_to_cart(request, id):
     (no quantity is obtained, as 99.99% of the customers will buy only one copy of the artwork)"""
 
     cart = request.session.get('cart', {})
-    size_session = request.session.get('size_session', {})
+    # size_session = request.session.get('size_session', {})
 
     product = get_object_or_404(Product, pk=id)
     
     if id in cart:
         # If the product is in the cart already, it increases the quantity 
-        cart[id] = int(cart[id]) + 1      
+        cart[id]['quantity'] = int(cart[id]['quantity']) + 1      
     else:
         # If it's not in the cart it adds it.
-        cart[id] = cart.get(id, 1) 
+        cart_details = {
+            'size': Size.objects.filter(format_name=product.aspect_ratio).first().size_name,
+            'quantity': 1,
+        }
+        cart[id] = cart.get(id, cart_details) 
+        print("cart: ", cart)
+        print("cart[id]= ", cart[id])
         # we pick one size for the product for the cart
-        size_session[id] = size_session.get(id, Size.objects.filter(format_name=product.aspect_ratio).first().size_name)
+        # size_session[id] = size_session.get(id, Size.objects.filter(format_name=product.aspect_ratio).first().size_name)
 
     request.session['cart'] = cart
-    request.session['size_session'] = size_session
+    # request.session['size_session'] = size_session
     return redirect(reverse('products'))
 
 
