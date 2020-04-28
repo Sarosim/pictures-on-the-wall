@@ -139,14 +139,12 @@
                                     <span class="details-small-title">Available Technologies:&nbsp</span>
                                     <div class="form-group col-12">
                                         <select required class="form-control" id="technology" name="technology">
+                                            <option value="" selected disabled class="details-technologies-list" >Select Technology</option> 
                                             {% for technology in pass_to_template.selected_prod.available_technologies.all %}
-                                            {% if technology == pass_to_template.selected_prod.available_technologies.0 %}
-                                            <option selected class="details-technologies-list">{{ technology.technology_name }}</option>
-                                            {% else %}
-                                            <option class="details-technologies-list">{{ technology.technology_name }}</option>    
-                                            {% endif %}
+                                                <option class="details-technologies-list">{{ technology.technology_name }}</option>    
                                             {% endfor %}    
                                         </select>
+                                        
                                     </div>
                                 </div>
                             

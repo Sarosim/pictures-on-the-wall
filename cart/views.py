@@ -14,7 +14,6 @@ def add_to_cart(request, id):
     (no quantity is obtained, as 99.99% of the customers will buy only one copy of the artwork)"""
 
     cart = request.session.get('cart', {})
-    # size_session = request.session.get('size_session', {})
 
     product = get_object_or_404(Product, pk=id)
     
@@ -24,17 +23,15 @@ def add_to_cart(request, id):
     else:
         # If it's not in the cart it adds it.
         cart_details = {
-            'size': Size.objects.filter(format_name=product.aspect_ratio).first().size_name,
             'quantity': 1,
+            'size': Size.objects.filter(format_name=product.aspect_ratio).first().size_name,
+            'technology': 'Photo Print',
+            'unit_price': float(product.base_repro_fee)
         }
-        cart[id] = cart.get(id, cart_details) 
-        print("cart: ", cart)
-        print("cart[id]= ", cart[id])
-        # we pick one size for the product for the cart
-        # size_session[id] = size_session.get(id, Size.objects.filter(format_name=product.aspect_ratio).first().size_name)
+        cart[id] = cart_details 
 
     request.session['cart'] = cart
-    # request.session['size_session'] = size_session
+
     return redirect(reverse('products'))
 
 
@@ -63,6 +60,8 @@ def update_cart(request, id):
     selected_product = get_object_or_404(Product, pk=id)
     qty = int(request.POST.get('quantity'))
 
+    print(f"size: {selected_size}, tech: {selected_tech}, prod {selected_product} and qty: {qty} coming from form")
+
     # calculate the shorter and longer size dimensions
     ss = int(selected_size.split()[0])
     ls = int(selected_size.split()[2])
@@ -89,26 +88,22 @@ def update_cart(request, id):
 
     # calculate the price of one item with the selectes size and technology
     diagonal = math.sqrt( ss * ss + ls * ls)
-    price = round( diagonal / 10 * 2 * tech_coeff + repro_fee ) - 0.01
+    unit_price = round( diagonal / 10 * 2 * tech_coeff + repro_fee ) - 0.01
 
-    print(price)
+    # PRICE CALCULATION DONE CART MANIPULATION BELOW
 
     cart = request.session.get('cart', {})
-    size_session = request.session.get('size_session', {})
-
+    cart_details = {
+        'quantity': qty,
+        'size': selected_size,
+        'technology': selected_tech,
+        'unit_price': unit_price,
+    }
+    print(f"size: {selected_size}, tech: {selected_tech}, prod {selected_product} and qty: {qty} coming from form")
     if qty > 0:
-        cart[id] = qty
-        print('cart[id] igy nez ki: ', cart[id])
-        size_session[id] = selected_size
-        print('cart_session[id] igy nez ki: ', size_session[id])
+        cart[id] = cart_details 
     else:
         cart.pop(id)
-
-
-
-
-
-    
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))

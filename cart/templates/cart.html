@@ -23,7 +23,7 @@
                 <div class="card-body">
                     
                     <p class="cart-price text-center">
-                    <span>From: £{{ item.product.base_repro_fee }}</span>
+                    <span>£{{ item.unit_price }}</span><span style="font-size: 0.7rem;">&nbsp;per item</span>
                     </p>
                     <div class="card-footer">
                         <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
