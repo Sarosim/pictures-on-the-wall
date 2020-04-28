@@ -238,16 +238,16 @@ body {
 	z-index: 1000;
 	top: 100vh;
 	left: 50%;
-	width: 4em;
-	height: 2.75em;
-	margin: -3em 0 0 -1.5em;
+	width: 8rem;
+	height: 4rem;
+	margin: -5rem 0 0 -4rem;
 	animation: pointDown 0.6s 0.6s ease-in infinite alternate forwards;
 	fill: #ff0;
 }
 
 @keyframes pointDown {
 	from {
-		transform: translate3d(0,-15px,0);
+		transform: translate3d(0,-18px,0);
 	}
 	to {
 		transform: translate3d(0,0,0);
