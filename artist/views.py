@@ -22,15 +22,18 @@ def dashboard(request):
         selected_products = Product.objects.filter(artist=set_artist_id)
         ratings_list = []
         sum_rate = 0
+        sum_sold = 0
         for prod in selected_products:
             prod_ratings = get_the_ratings_for(prod)
             ratings_list.append(prod_ratings)
             sum_rate += prod_ratings['ratings_average']
+            sum_sold += prod.num_of_orders
         avrg_rate = round(sum_rate / len(ratings_list), 2) if len(ratings_list) > 0 else 0
         page_data = {
             'artist': set_artist,
             'products': selected_products,
             'average_rating': avrg_rate,
+            'sum_sold': sum_sold
         }
     else:
         # The logged in user doesn't have an artist profile")
