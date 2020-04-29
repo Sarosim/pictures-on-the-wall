@@ -93,7 +93,22 @@ body {
     margin: 1rem;
 }
 
+/*                                     Quotes*/
 
+.quotes-container {
+    background-color: rgb(36, 68, 123);
+    color: rgb(219, 187, 132);
+}
+
+.quote-card-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.blockquote-footer {
+    color: rgb(219, 187, 132);
+}
 
 /******************* PRODUCTS HTML ******************************/
 
