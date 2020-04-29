@@ -18,31 +18,29 @@
 
 			<div class="container-fluid text-center">
 				<div class="row">
-					<!-- Part 1 of 3 -- The picture displayed if edit mode + details and upload -->
+					<!-- Part 1 of 2 The picture displayed if edit mode + hashtags -->
 					<div class="col-12 col-md-7 edit-form-groups">
 						<legend>Part one</legend>
-						<div class="edit-image">
-							<img src="" alt="">
+						<div class="details-image-box">
+							<img class="details-image" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.id }}">
                         </div>
-						{{ edit_form_one | as_bootstrap }}
+                        <div class="edit-selected-hashtags">
+						{{ edit_form_three | as_bootstrap }}
+                        </div>
 					</div>
 
-                    <!-- Part 3 of 3 -- #hashtags -->
+                    <!-- Part 2 of 2 the details -->
                     <div class="col-12 col-md-5">
-                        <legend>Part three</legend>
+                        <legend>Part two</legend>
                         <div class="edit-hashtags">
-                            <!-- two separate containers for selected and other already existing hashtags -->
                             <div class="edit-selected-hashtags">
                                 <p>selected hashtags here</p>
-                                {{ edit_form_three | as_bootstrap }}
+                                {{ edit_form_one | as_bootstrap }}
                             </div>
 
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="hidden">
-                <!-- {{ edit_form_hidden }} -->
             </div>
             <input class="edit-form-submit btn btn-primary" type="submit" value="Upload">
         </form>
