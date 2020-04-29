@@ -25,12 +25,12 @@
                         <!-- Category and Rooms associated with the artwork -->
                         <div class="details-category">
                             <!-- Category -->
-                            <span class="details-small-title">Category:&nbsp</span>
+                            <span class="details-small-title">Category:&nbsp;</span>
                             <span>{{ pass_to_template.selected_prod.category }}</span>
                         </div>
                         <div class="details-room">
                             <!-- Rooms -->
-                            <span class="details-small-title">Room(s):&nbsp</span>
+                            <span class="details-small-title">Room(s):&nbsp;</span>
                             {% for room in pass_to_template.selected_prod.room.all %}
                             {% if room == pass_to_template.selected_prod.room.all.last %}
                             <span>{{ room }}</span>
@@ -47,7 +47,7 @@
                     <div class="details-likes-ratings-views row">
                         <div class="details-likes">
                             <!-- Likes -->
-                            <span class="details-small-title">Likes:&nbsp</span>
+                            <span class="details-small-title">Likes:&nbsp;</span>
                             <span>{{ pass_to_template.selected_prod.num_of_likes }}</span>
                         
                         </div>
@@ -55,14 +55,14 @@
                         <div class="details-views">
                         
                             <!-- Category -->
-                            <span class="details-small-title">Views:&nbsp</span>
+                            <span class="details-small-title">Views:&nbsp;</span>
                             <span>{{ pass_to_template.selected_prod.num_of_views }}</span>
                         
                         </div>
 
                         <div class="details-rating">
                             <!-- ratings displayed by showing the corresponding number of stars by the script at the end of this file  -->
-                            <span class="details-small-title">Average Rating:&nbsp</span>
+                            <span class="details-small-title">Average Rating:&nbsp;</span>
                             <a href="{% url 'rate_artwork' pass_to_template.selected_prod.id %}" 
                                 title="{{pass_to_template.ratings_data.ratings_average}} | Click here to rate!">
                                 <div class="details-stars">
@@ -76,7 +76,7 @@
                         <div class="details-orders">
                         
                             <!-- Category -->
-                            <span class="details-small-title">Bought:&nbsp</span>
+                            <span class="details-small-title">Bought:&nbsp;</span>
                             <span>{{ pass_to_template.selected_prod.num_of_orders }}</span>
                             <span>times</span>
                         
@@ -88,7 +88,7 @@
 
                 <div class="col-12">
                     <div class="details-hashtag-group">
-                        <span class="details-hashtag-title">Hashtag:&nbsp</span>
+                        <span class="details-hashtag-title">Hashtag:&nbsp;</span>
                         {% if pass_to_template.selected_prod.hashtag %}
                         <span class="details-hashtag">{{ pass_to_template.selected_prod.hashtag }}</span>
                         {% else %}
@@ -126,7 +126,7 @@
                                             <select required class="form-control" id="size" name="size">
                                                 {% for size in pass_to_template.sizes.all %}
                                                 {% if size == pass_to_template.sizes.0 %}
-                                                <option selected class="details-technologies-list">{{ size.size_name }}</option>
+                                                <option selected class="details-technologies-list" value="">{{ size.size_name }}</option>
                                                 {% else %}
                                                 <option class="details-technologies-list">{{ size.size_name }}</option>    
                                                 {% endif %}
@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                                 <div class="details-technologies">
-                                    <span class="details-small-title">Available Technologies:&nbsp</span>
+                                    <span class="details-small-title">Available Technologies:&nbsp;</span>
                                     <div class="form-group col-12">
                                         <select required class="form-control" id="technology" name="technology">
                                             <option value="" selected disabled class="details-technologies-list" >Select Technology</option> 
