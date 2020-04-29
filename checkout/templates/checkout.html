@@ -18,12 +18,12 @@
                 <span>£{{ total }}</span>
             </h3>
         </div>
-        <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+        <form method="post" id="payment-form" action="{% url 'checkout' %}">
             <legend class="text-center">Payment Details</legend>
 
             <!-- The div for Stripe error messages, display-none by default, handled from javascript -->
             <div id="credit-card-errors" style="display: none;">
-                <div id="alert-message block-message error" id="stripe-error-message"></div>
+                <div class="alert-message block-message error" id="stripe-error-message"></div>
             </div>
             <!-- Displaying the two forms -->
             <div class="container">
