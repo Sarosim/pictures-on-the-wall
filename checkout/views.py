@@ -25,16 +25,29 @@ def checkout(request):
             order.save()
             
             cart = request.session.get('cart', {})
+
+    #         number = selected_product.num_of_views + 1
+    # Product.objects.filter(pk=id).update(num_of_views=number)
+
+
             total = 0
-            for id, quantity in cart.items():
+            for id, details in cart.items():
                 product = get_object_or_404(Product, pk=id)
-                total += quantity * product.base_repro_fee
+                qty = details['quantity']
+                size = details['size']
+                technology = details['technology']
+                unit_price = details['unit_price']
+                total += qty * unit_price
+
                 order_line_item = OrderLineItem(
                     order = order, 
                     product = product, 
-                    quantity = quantity
+                    quantity = qty
                     )
                 order_line_item.save()
+                # Update product with number of items sold
+                num = product.num_of_orders + qty
+                Product.objects.filter(pk=id).update(num_of_orders=num)
                 
             try:
                 customer = stripe.Charge.create(
