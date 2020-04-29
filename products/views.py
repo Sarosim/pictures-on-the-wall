@@ -29,8 +29,8 @@ def all_products(request):
 
     context = {
         "products": all_the_products,
-        'filter_group': 'none',
-        'filter_name': 'none',
+        'filter_group': '',
+        'filter_name': '',
         'sort_by': sort_by
     }
     return render(request, "products.html", {"data": context})
