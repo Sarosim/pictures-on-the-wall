@@ -94,6 +94,64 @@
 	<!-- This is the place for the content: -->
 	{% block content %}{% endblock %}
 
+    <!--**********************************************  FOOTER  *********************************************************-->
+    <footer class="conainer-fluid">
+        <div class="social-footer">
+            <a id="facebook" target="_blank" href="#" data-toggle="tooltip" title="Visit us on Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a id="instagram" target="_blank" href="#" data-toggle="tooltip" title="Visit us on Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a id="linkedin" target="_blank" href="#" data-toggle="tooltip" title="Visit us on LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a id="twitter" target="_blank" href="#" data-toggle="tooltip" title="Visit us on Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a id="youtube" target="_blank" href="#" data-toggle="tooltip" title="Visit us on YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        <div class="container text-footer">
+            <div class="row">
+                <div class="footer-items col-sm-6 col-md-3">
+                    <h5>Help / Support</h5>
+                    <ul>
+                        <li><a href="{% url 'file_upload' %}#requirements">Upload requirements</a></li>
+                        <li><a href="#">User Manual</a></li>
+                    </ul>
+                </div>
+                <div class="footer-items col-sm-6 col-md-3">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li>Phone:<br>+44 020 1234 5678</li>
+                        <li>E-mail:<br>info@PicturesOnTheWall.co.uk</li>
+                    </ul>
+                </div>
+                <div class="footer-items col-sm-6 col-md-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms&Conditions</a></li>
+                        <li><a href="#">Using Your Data</a></li>
+                        <li><a href="#">Legal Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-items col-sm-6 col-md-3">
+                    <h5>About</h5>
+                    <ul>
+                        <li><a href="#">Company Info</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>

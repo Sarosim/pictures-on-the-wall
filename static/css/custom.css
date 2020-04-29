@@ -110,6 +110,76 @@ body {
     color: rgb(219, 187, 132);
 }
 
+/*                                               FOOTER */
+
+footer {
+    background-color: #666;
+
+}
+
+.social-footer {
+    height: 60px;
+    text-align: center;
+    background-color: #444;
+}
+
+footer i {
+    font-size: 25px;
+    border: solid #666 4px;
+    border-radius: 50%;
+    background-color: #666;
+    color: white;
+    margin: 11px 10px;
+}
+
+#facebook i {
+    padding: 3px 4px 2px 4px;
+}
+
+#instagram i {
+    padding: 3px 4px 2px 4px;
+}
+
+#linkedin i {
+    padding: 3px 4px 2px 4px;
+}
+
+#twitter i {
+    padding: 3px 2px 2px 4px;
+}
+
+#youtube i {
+    padding: 3px 1px 2px 1px;
+}
+
+.text-footer {
+    color: #ccc;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.text-footer h5 {
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+
+.footer-items ul li a {
+    text-decoration: none;
+    color: #ccc;
+}
+
+.footer-items ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-items {
+    height: 160px;
+}
+
+
+
 /******************* PRODUCTS HTML ******************************/
 
 .product {
