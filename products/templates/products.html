@@ -18,6 +18,7 @@
                     <form class="input-group mb-3" action="{% url 'sort' %}" method="GET" id="sort-form"> 
                         <input class="form-control" type="hidden" type="text" value="{{ data.filter_group }}" id="filter_group" name="filter_group">
                         <input class="form-control" type="hidden" type="text" value="{{ data.filter_name }}" id="filter_name" name="filter_name">
+                        <label class="my-auto mr-2" for="sort_by">Sort by:</label>
                         <select class="form-control filter_group-select" id="sort_by" name="sort_by" onchange="this.parentNode.submit()">
                             {% if data.sort_by == 'num_of_views' %}
                                 <option selected value="num_of_views">Most Viewed</option>
