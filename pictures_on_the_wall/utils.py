@@ -13,7 +13,7 @@ def special_filter(model, what):
     field = model + '_name'
 
     # the actual keyword argument for the filtering:
-    filter_kwargs = model + '__' + field + '__' + 'iexact'
+    filter_kwargs = model + '__' + field + '__' + 'icontains'
     # the actual filtering
     filtered_products = Product.objects.filter(**{filter_kwargs: what})
     return filtered_products
