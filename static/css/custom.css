@@ -129,6 +129,12 @@ body {
     width: 100%;
 }
 
+@media screen and (max-width: 1199px) {
+    .image-display-container {
+        justify-content: space-around;
+    }
+}
+
 .products-image-box {
     display: inline-block;
     position: relative;
@@ -138,7 +144,19 @@ body {
 .products-image {
     display: block;
     max-width: 100%;
-    max-height: 230px;
+    max-height: 220px;
+}
+
+@media screen and (max-width: 1199px) {
+    .products-image {
+        max-height: 190px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .products-image {
+        max-height: 170px;
+    }
 }
 
 .products-image > img {
