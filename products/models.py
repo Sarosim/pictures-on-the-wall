@@ -31,7 +31,7 @@ class Artist(models.Model):
     """ Model for the Artists uploading their artwork to the site """
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
-    artist_name = models.CharField(max_length=16, unique=True, validators=[UnicodeUsernameValidator])
+    artist_name = models.CharField(max_length=16, validators=[UnicodeUsernameValidator])
     # artist_name is the display name for the artists, named in this format to match other filter name structures
     avatar = models.ImageField(upload_to='images')
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE)

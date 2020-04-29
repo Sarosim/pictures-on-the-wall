@@ -50,11 +50,13 @@ def artist_profile(request):
     or deletion """
     if request.method == 'POST':
         # User submitted an Artist profile form
+        set_artist = Artist.objects.filter(
+            assigned_user=request.user).values('id')[0]['id']
+        my_record = Artist.objects.get(id=set_artist)
         artist_form = ArtistProfileForm(request.POST)
         if artist_form.is_valid():
             # Save the form
             artist_form.save()
-            
             return redirect('dashboard')
         else:
             print("Form isn't valid, to be handled later")
