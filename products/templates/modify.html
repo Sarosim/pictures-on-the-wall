@@ -24,7 +24,7 @@
 						<div class="edit-image">
 							<img src="" alt="">
                         </div>
-						{{ edit_form_one.as_p }}
+						{{ edit_form_one | as_bootstrap }}
 					</div>
 
                     <!-- Part 3 of 3 -- #hashtags -->
@@ -34,7 +34,7 @@
                             <!-- two separate containers for selected and other already existing hashtags -->
                             <div class="edit-selected-hashtags">
                                 <p>selected hashtags here</p>
-                                {{ edit_form_three }}
+                                {{ edit_form_three | as_bootstrap }}
                             </div>
 
                         </div>
