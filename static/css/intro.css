@@ -1,7 +1,10 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
 *,
 *::after,
 *::before {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
 body {
@@ -18,9 +21,16 @@ body {
 }
 
 .page--static {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	max-width: 1220px;
 	margin: 0 auto;
 	padding: 2em 0 0;
@@ -52,10 +62,17 @@ body {
 .grid {
 	position: relative;
 	z-index: 100; 
+	display: -webkit-box; 
+	display: -ms-flexbox; 
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	max-width: 100%;
 	margin: 0 auto;
 	padding: 0 0 6em;
@@ -64,7 +81,9 @@ body {
 
 .grid__item {
 	display: block;
-	flex: none;
+	-webkit-box-flex: 0;
+	    -ms-flex: none;
+	        flex: none;
 	width: 33.33%;
 	padding: 10px;
 }
@@ -81,7 +100,6 @@ body {
 }
 
 .grid__item-title {
-	/* font-family: 'Caveat', cursive; */
 	line-height: 1;
 	position: relative;
 	overflow: hidden;
@@ -89,7 +107,8 @@ body {
 	padding: 1em 0.5em;
 	text-align: left;
 	white-space: nowrap;
-	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 	color: #698b8d;
 	background: #fff;
 }
@@ -145,12 +164,16 @@ body {
     background: #ffe175;
     padding: 0.9rem;
     font-size: 1.0rem;
-    box-shadow: 8px 8px 17px #a1a1a1,
+    -webkit-box-shadow: 8px 8px 17px #a1a1a1,
+                -8px -8px 15px #fff;
+            box-shadow: 8px 8px 17px #a1a1a1,
                 -8px -8px 15px #fff;
 }
 
 .cta-md {
-    transform: rotate(8deg);
+    -webkit-transform: rotate(8deg);
+        -ms-transform: rotate(8deg);
+            transform: rotate(8deg);
 }
 
 .cta-title {
@@ -171,8 +194,12 @@ body {
     padding: .6rem 1.4rem;
     color: #fff;
     background-color: #007e00;
-    box-shadow: inset 3px 3px 7px #cbced1,
+    -webkit-box-shadow: inset 3px 3px 7px #cbced1,
                 inset -3px -3px 7px #fff;
+            box-shadow: inset 3px 3px 7px #cbced1,
+                inset -3px -3px 7px #fff;
+    -webkit-transition: 700ms;
+    -o-transition: 700ms;
     transition: 700ms;
 }
 
@@ -242,20 +269,36 @@ body {
 	width: 8rem;
 	height: 4rem;
 	margin: -5rem 0 0 -4rem;
-	animation: pointDown 0.6s 0.6s ease-in infinite alternate forwards;
+	-webkit-animation: pointDown 0.6s 0.6s ease-in infinite alternate forwards;
+	        animation: pointDown 0.6s 0.6s ease-in infinite alternate forwards;
 	fill: #ff0;
+}
+
+@-webkit-keyframes pointDown {
+	from {
+		-webkit-transform: translate3d(0,-18px,0);
+		        transform: translate3d(0,-18px,0);
+	}
+	to {
+		-webkit-transform: translate3d(0,0,0);
+		        transform: translate3d(0,0,0);
+	}
 }
 
 @keyframes pointDown {
 	from {
-		transform: translate3d(0,-18px,0);
+		-webkit-transform: translate3d(0,-18px,0);
+		        transform: translate3d(0,-18px,0);
 	}
 	to {
-		transform: translate3d(0,0,0);
+		-webkit-transform: translate3d(0,0,0);
+		        transform: translate3d(0,0,0);
 	}
 }
 
 .button--view path {
+	-webkit-transition: fill 0.3s;
+	-o-transition: fill 0.3s;
 	transition: fill 0.3s;
 	fill: inherit;
 }
@@ -289,6 +332,7 @@ body {
 
 .view--loaded .button--view {
 	-webkit-transition: opacity 0.3s;
+	-o-transition: opacity 0.3s;
 	transition: opacity 0.3s;
 }
 
