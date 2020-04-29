@@ -126,7 +126,7 @@
                                             <select required class="form-control" id="size" name="size">
                                                 {% for size in pass_to_template.sizes.all %}
                                                 {% if size == pass_to_template.sizes.0 %}
-                                                <option selected class="details-technologies-list" value="">{{ size.size_name }}</option>
+                                                <option selected class="details-technologies-list">{{ size.size_name }}</option>
                                                 {% else %}
                                                 <option class="details-technologies-list">{{ size.size_name }}</option>    
                                                 {% endif %}
