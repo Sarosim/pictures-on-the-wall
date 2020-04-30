@@ -22,10 +22,7 @@ def create_size_entries(asp_r, format_id):
 
 def image_manipulation(image):
     """ The function handling the uploaded image"""
-    print("START MANIPULATION")
-    
     img = Image.open(image)
-    print(f"img size: {img.size}") 
     xsize, ysize = img.size
     longer_side = xsize if xsize > ysize else ysize
     shorter_side = ysize if longer_side == xsize else xsize
@@ -61,17 +58,6 @@ def image_manipulation(image):
     return image_data
 
 
-
-
-"""img = Image.open("media/images/body_web.jpg")
-xsize, ysize = img.size
-print(img.format, img.size, img.info, img.mode)
-# IOError exception is raised if can not be open
-
-#cropping:
-box = (100, 100, 400, 400) 
-region = img.crop(box) #needs a 4-tuple (left, upper, right, lower)
-"""
 def roll(image, delta):
     """Roll an image sideways."""
     xsize, ysize = image.size
@@ -85,19 +71,3 @@ def roll(image, delta):
     image.paste(part2, (0, 0, xsize-delta, ysize))
 
     return image
-
-"""# splitting the bands and swapping them, merging back :
-r, g, b = img.split()
-im = Image.merge("RGB", (b, g, r))
-
-# resize:
-out = im.resize((128, 128))
-# rotate:
-out = im.rotate(45) # degrees counter-clockwise
-
-#transposing
-out = im.transpose(Image.FLIP_LEFT_RIGHT)
-out = im.transpose(Image.FLIP_TOP_BOTTOM)
-out = im.transpose(Image.ROTATE_90)
-out = im.transpose(Image.ROTATE_180)
-out = im.transpose(Image.ROTATE_270)"""
