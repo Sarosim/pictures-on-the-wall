@@ -181,7 +181,7 @@
 </div>
 <script>
     // setting the with of the star-inner class to display the necessary number of stars
-    var starsElement = document.querySelector(`.stars-inner`)
+    var starsElement = document.querySelector(`.stars-inner`);
     const starPercentage = "{{ pass_to_template.ratings_data.ratings_percent }}"; 
     const starPercString = starPercentage + '%';
     starsElement.style.width = starPercString; 
@@ -223,7 +223,7 @@
                 break;
             default:
                 tech_coeff = 1;
-        };
+        }
         repro_fee = parseFloat(base_repro_fee) + Math.round(( ls * ss ) / 300);
         var diagonal = Math.sqrt( ss * ss + ls * ls);
         price = Math.round( diagonal / 10 * 2 * tech_coeff + repro_fee ) - 0.01;
@@ -242,10 +242,7 @@
         }
     );
     
-    // just for debugging:
-    const foo = "{{ cart_items }}"
-    console.log("cart_items(): ", foo);
-    
+        
 </script>
 
 {% endblock %}

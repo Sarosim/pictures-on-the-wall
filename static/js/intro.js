@@ -11,17 +11,16 @@
             // translation values: 
                 // tx and ty: percentages of the item´s width and height
             // s: scale, r: rotation (z) value
-            {tx: -1.1, ty:-.6, s:1.5, r:-32}, // Animals category
+            {tx: -1.1, ty:-0.6, s:1.5, r:-32}, // Animals category
 			{tx: 0, ty:-0.9, s:1.4, r:-4}, // Abstract category
-			{tx: .7, ty:-.7, s:1.55, r:15}, // Architecture category
-			{tx: -.6, ty:-.45, s:1.4, r:-25}, // Food category
-			{tx: -.3, ty:-.5, s:1.1, r:-18}, // Flowers category
-			{tx: .85, ty:-.3, s:1.2, r:35} // Painting category
+			{tx: 0.7, ty:-0.7, s:1.55, r:15}, // Architecture category
+			{tx: -0.6, ty:-0.45, s:1.4, r:-25}, // Food category
+			{tx: -0.3, ty:-0.5, s:1.1, r:-18}, // Flowers category
+			{tx: 0.85, ty:-0.3, s:1.2, r:35} // Painting category
         ],
         deviceEl = mainContainer.querySelector('.device'),
         showGridButton = document.getElementById('showgrid'),
         pageTitleElement = mainContainer.querySelector('.page__title > .page__title-main'),
-        pageSubTitleEl = mainContainer.querySelector('.page__title > .page__title-sub'),
         isAnimating = false,
         currentView = 'stack';
 
@@ -45,7 +44,7 @@
                 center = {
                     x : winsize.width/2 - (itemOffset.left + item.offsetWidth/2),
                     y : winsize.height - (itemOffset.top + item.offsetHeight/2)
-                }
+                };
 
             // first position the items behind the phone
             dynamics.css(item, {
@@ -89,7 +88,7 @@
         var scrollToGrid = function() {
             window.removeEventListener('scroll', scrollToGrid);
             showGrid();
-        }
+        };
         window.addEventListener('scroll', scrollToGrid);
     }
 
@@ -103,7 +102,7 @@
             console.log("Ez a SET TIMOUT vege");
             //mainContainer.classList.remove('fix-for-intro'); 
             var new_url = "home";
-            window.location.replace(new_url)
+            window.location.replace(new_url);
         }, 3000);
 
         showGridButton.style.display = "none";
@@ -143,7 +142,7 @@
             dynamics.stop(item);
             dynamics.animate(item, { scale: 1, translateX: 0, translateY: 0, rotateZ: 0 }, {
                 type: dynamics.easeInOut,
-			    duration: 600
+                duration: 600
             });
         });
         dynamics.animate(pageTitleElement, { translateY: winsize.height/4, opacity: 0 });
