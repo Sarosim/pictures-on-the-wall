@@ -97,9 +97,9 @@
         isAnimating = true;
         
         // Stopping the pagescroll for the duration of the intro
-        mainContainer.classList.add('fix-for-intro'); 
+        document.querySelector('body').classList.add('fix-for-intro'); 
         setTimeout(function(){ 
-            mainContainer.classList.remove('fix-for-intro'); 
+            document.querySelector('body').classList.remove('fix-for-intro'); 
             var new_url = "home";
             window.location.replace(new_url);
         }, 3000);
