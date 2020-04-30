@@ -160,7 +160,7 @@ attributes for customer and contributor, as one user can belong to both groups)
 
 #### 2nd step, identify relationships:
 
-DB relationships JPG here
+![](media/documentation/DBrelationships.jpg)
 
 #### DATABASE:
 
@@ -257,11 +257,11 @@ For learning, exploring and comparison purposes I used two wireframe tools: Bals
  a better option if one needs approval of client, Product owner or any other stakeholder.
 
 #### Landing Page:	
-![alt text](media/documentation/wireframes/landing_page_intro_view.png "Search page")
+![alt text](s3://picture-on-the-wall/media/documentation/wireframes/landing_page_intro_view.png "Search page")
 
 #### Landing page after the intro:	
 
-![alt text](w.jpg "Details view")
+![alt text]( "Details view")
 
 #### and so on
 
