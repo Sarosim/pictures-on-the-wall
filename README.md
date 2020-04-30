@@ -574,7 +574,13 @@ I also used Firefox during the development, even though I’m more used to Chrom
 situations Firefox is more useful to check CSS behaviour and sizes.
 
 
-
+### Known bugs:
+- Providing incorrect card payment details, no feedback is displayed.
+- If an artist is modifying their artist profile a new database enrty is created instead of updating the existing one.
+- The newsletter and marketing communications fields in the product model are not in use, although they appear on the 
+artist dashboard. I haven't tested it until the very end and have just realised, they are not saved properly in the model.
+Boolean fields in the model, but receiving 'on' from the form if selected. 
+- 
 
 # Deployment
 

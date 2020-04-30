@@ -38,12 +38,12 @@ body {
 }
 
 .page__title {
-	padding: 0 1rem;
+	padding: 0 1em;
 }
 
-/* .page__title .row {
-    padding: 1rem 5rem;
-} */
+.page__title .row {
+    padding: 1em 5em;
+}
 
 .page__title-main {
 	margin: 0 auto;
@@ -218,7 +218,7 @@ body {
 }
 
 .padding-for-footer {
-    height: 300vh;
+    height: 110vh;
 }
 
 /* The mobile device on the intro page */
@@ -270,9 +270,9 @@ body {
 	z-index: 1000;
 	top: 100vh;
 	left: 50%;
-	width: 8rem;
-	height: 4rem;
-	margin: -5rem 0 0 -4rem;
+	width: 8em;
+	height: 4em;
+	margin: -5em 0 0 -4em;
 	-webkit-animation: pointDown 0.6s 0.6s ease-in infinite alternate forwards;
 	        animation: pointDown 0.6s 0.6s ease-in infinite alternate forwards;
 	fill: #ff0;
@@ -358,9 +358,9 @@ body {
 		font-size: 65%;
 		margin: 85px 0 0 0;
 	}
-	/* .page__title-main {
+	.page__title-main {
 		font-size: 1.3em;
-	} */
+	} 
 	.page__title-sub {
 		margin-bottom: 1em;
 	}
