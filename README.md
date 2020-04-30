@@ -1,7 +1,5 @@
 # Pictures on the Wall
 
-Full stack Milestone Project with Code Institute, the deployed version is available [here](https://picture-shop.herokuapp.com/)
-
 [![Build Status](https://travis-ci.org/Sarosim/pictures-on-the-wall.svg?branch=master)](https://travis-ci.org/Sarosim/pictures-on-the-wall)
 
 # Pictures on the Wall – Full Stack Frameworks Milestone Project @ Code Institute
@@ -150,15 +148,15 @@ I used https://www.guru99.com/er-diagram-tutorial-dbms.html to guide me through 
 The steps and outcome was as follows (note that the final structure differs at several points, 
 because I had to adjust on multiple occasions):
 #### 1st step, identify entities:
-•	User (there are two types, but instead of handling them as separate entities, will have Boolean 
+- User (there are two types, but instead of handling them as separate entities, will have Boolean 
 attributes for customer and contributor, as one user can belong to both groups)
-•	Artwork (the image and all details)
-•	Artwork type (photo, painting, reproduction from painting, graphic)
-•	Artwork Category (each artwork is assigned to one group, e.g. ‘nature’, or ‘still’ or ‘architecture’)
-•	Print technologies
-•	Hashtags
-•	Sizes
-•	Prices ? not sure if it has to be an entity...
+- Artwork (the image and all details)
+- Artwork type (photo, painting, reproduction from painting, graphic)
+- Artwork Category (each artwork is assigned to one group, e.g. ‘nature’, or ‘still’ or ‘architecture’)
+- Print technologies
+- Hashtags
+- Sizes
+- Prices ? not sure if it has to be an entity...
 
 #### 2nd step, identify relationships:
 
@@ -168,83 +166,80 @@ DB relationships JPG here
 
 Products, in my case Artwork, but let’s call it product, more understandable for other developers.
 Attributes: 
-•	Name
-•	Description
-•	Artist
-•	Base Reproduction Fee (practically this is the base price of the product – can vary based on quality, owner can set it)
-•	Image
-•	Category
-•	ArtformID (photography, fine art [painting, graphic]) – LEFT OUT IN PRODUCTION VERSION
-•	Available sizes? maybe max print size
-•	Available technologies
-•	Format (aspect ratio) 
-•	Rating (5 star scale) – should contain each individual rating as a dictionatry  display 
+- Name
+- Description
+- Artist
+- Base Reproduction Fee (practically this is the base price of the product – can vary based on quality, owner can set it)
+- Image
+- Category
+- ArtformID (photography, fine art [painting, graphic]) – LEFT OUT IN PRODUCTION VERSION
+- Available sizes? maybe max print size
+- Available technologies
+- Format (aspect ratio) 
+- Rating (5 star scale) – should contain each individual rating as a dictionatry  display 
 average stars or each star category with number of ratings in there 
-•	Number of times it’s been ordered
-•	Number of views
-•	Date uploaded
+- Number of times it’s been ordered
+- Number of views
+- Date uploaded
+
 Categories
-•	Nature
-•	Animals
-•	Flowers / Plants
-•	Architecture
-•	Music 
-•	Vehicles
-•	Food & Drinks
-•	Paintings
-•	Abstract
+- Nature
+- Animals
+- Flowers / Plants
+- Architecture
+- Music 
+- Vehicles
+- Food & Drinks
+- Paintings
+- Abstract
+
 Formats:
-•	3:2 – aspect ratio = 1.5
-•	4:3 – aspect ratio = 1.333
-•	Square – aspect ratio = 1
-•	5:4 – aspect ratio = 1.25
-•	16:9 – aspect ratio = 1.777
-•	Panorama – aspect ratio >= 2
-•	ISO – aspect ratio = 1.414
+- 3:2 – aspect ratio = 1.5
+- 4:3 – aspect ratio = 1.333
+- Square – aspect ratio = 1
+- 5:4 – aspect ratio = 1.25
+- 16:9 – aspect ratio = 1.777
+- Panorama – aspect ratio >= 2
+- ISO – aspect ratio = 1.414
+
 Products ratings:
-•	id
-•	productId
-•	rating
-•	date (if needed)
-•	ip (if needed, e.g. to prevent double rating) or userid (of the rater)
+- id
+- productId
+- rating
+- date (if needed)
+- ip (if needed, e.g. to prevent double rating) or userid (of the rater)
 
 Products Moods - LEFT OUT IN PRODUCTION VERSION
-
-•	productId
-•	moodID
+- productId
+- moodID
 
 Product Hashtags
-•	productId
-•	#ID
+- productId
+- #ID
 
 Print technologies:
-•	Acrylic Print
-•	Metal Print
-•	Framed Print
-•	Canvas Print
-•	Photo Print
+- Acrylic Print
+- Metal Print
+- Framed Print
+- Canvas Print
+- Photo Print
 
 Artists:
-•	Name
-•	Address
-•	Profile picture (or avatar)
-•	...
-•	Badge/Level (hobby, advanced, master) – this may determine ‘Base Price’
-•	Wants marketing e-mails (mailing list): True/False
-•	Wants newsletter: True/False
+- Name
+- Address
+- Profile picture (or avatar)
+- Badge/Level (hobby, advanced, master) – this may determine ‘Base Price’
+- Wants marketing e-mails (mailing list): True/False
+- Wants newsletter: True/False
+
 Room:
-•		Nursery
-•		Kitchen
-•		Bathroom
-•		Bedroom
-•		Lounge
-•		Kids Room
-•		Living Room
-•		Children’s Room
-•		Boys Room
-•		Girls Room
-•		Play Room
-•		Office
+- 	Kitchen
+- 	Bathroom
+- 	Bedroom
+- 	Lounge
+- 	Living Room
+- 	Children’s Room
+- 	Office
 
 I created a table for ratings and product_id, so all ratings are kept in one separate 
 table, but I didn’t create this kind of table for room_type and product, so I can see the 
@@ -262,7 +257,7 @@ For learning, exploring and comparison purposes I used two wireframe tools: Bals
  a better option if one needs approval of client, Product owner or any other stakeholder.
 
 #### Landing Page:	
-![alt text]( "Search page")
+![alt text](media/documentation/wireframes/landing_page_intro_view.png "Search page")
 
 #### Landing page after the intro:	
 
