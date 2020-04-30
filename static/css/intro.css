@@ -217,6 +217,10 @@ body {
     font-size: 1.5rem;
 }
 
+.padding-for-footer {
+    height: 120vh;
+}
+
 /* The mobile device on the intro page */
 /*   needs different sizing for landscape and portrait orientation */
 @media (orientation: landscape) {

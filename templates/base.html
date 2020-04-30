@@ -22,7 +22,6 @@
     </script>
     <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
     {% block style-tag %}{% endblock %}
-    <!-- custom.css hosted on AWS S3, which makes development impossible, to overcome this, I keep styles here for development -->
 </head>
 
 <body>
@@ -71,8 +70,8 @@
 		</div>
 	</nav>
     <div class="margin-for-navbar"></div>
-	<!-- Sending messages in a dismissable alert -->
 
+	<!-- Sending messages in a dismissable alert -->
 	{% if messages %}
     <div class="container message-container">
 		<div class="alert message-alert alert-info alert-dismissible fade show mx-1 mx-md-5 my-1 my-md-3 p-1 p-md-3" role="alert">
