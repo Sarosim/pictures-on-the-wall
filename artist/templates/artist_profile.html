@@ -13,7 +13,7 @@
             <div class="col-10 offset-1 col-md-6 offset-md-3 my-1 my-md-4">
                 <form class="form-box p-2 p-md-4" action="{% url 'artist_profile' %}" method="post">
                     {% csrf_token %}
-                    {{ artist_form.as_p }}
+                    {{ artist_form | as_bootstrap }}
                     <input class="artist-form-submit btn btn-primary" type="submit" value="Save">
                 </form>
             </div>
