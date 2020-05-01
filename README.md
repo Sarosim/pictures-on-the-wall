@@ -2,14 +2,14 @@
 
 [![Build Status](https://travis-ci.org/Sarosim/pictures-on-the-wall.svg?branch=master)](https://travis-ci.org/Sarosim/pictures-on-the-wall)
 
-# Pictures on the Wall – Full Stack Frameworks Milestone Project @ Code Institute
+# Full Stack Frameworks Milestone Project @ Code Institute
 
 ## Project purpose
 
 To build a full-stack site based around business logic used to control a centrally-owned dataset, including 
 authentication mechanism and provide paid access to the products/services. 
 
-[Link to the live app on Heroku:](https://picture-shop.herokuapp.com/)
+[Link to the live app on Heroku](https://picture-shop.herokuapp.com/)
 
 ## My aims with the project
 
@@ -18,13 +18,11 @@ and Django and experiment around the capabilities.
 - Also, I wanted to build a visually appealing site that is eye catching and can potentially attract users.
 - I have also put efforts into the business logic, so it can become a viable product.
 
-
 ## Value provided:
-1.	By authenticating on the site and paying for some of its services, users can advance their own goals. 
+1.  By authenticating on the site and paying for some of its services, users can advance their own goals. 
 Before authenticating, the site makes it clear how those goals would be furthered by the site.
-2.	The site owner is able to make money by providing this set of services to the users. There is no way for 
+2.  The site owner is able to make money by providing this set of services to the users. There is no way for 
 a regular user to bypass the site's mechanisms and derive all of the value available to paid users without paying.
-
 
 ## My Project idea - Pictures on the Wall
 
@@ -43,15 +41,10 @@ Purchase amazing photo prints for decorating homes, offices or their business pr
 Start making money. Photographers who don’t have their own website for selling their images (mostly hobby 
 photographers or pros early in their career) can start earning some money by uploading their artwork and presenting it to potential buyers.
 
-#### Get hints how to approach photographing a particular site 
-Check what equipment others used, what technique they applied. Also they may figure out what the best 
-season or time of the day it is to visit a particular scene.
-
 ### Site owner’s goal may include:
 
-#### Make money with their own images 
-
-#### Utilize the site for providing opportunity to other photographers. 
+Make money with their own images 
+Utilize the site for providing opportunity to other photographers. 
 This way potentially gaining critical mass earlier. Also, bigger the selection, better the user experience.
 
 # UX
@@ -60,7 +53,7 @@ This way potentially gaining critical mass earlier. Also, bigger the selection, 
 
 Present a visually appealing site with photos and artwork for purchasing as home decor – printed on various surfaces and in various sizes.
 Let users scroll images, filter by genre, or search by hashtag. Option for browsing images of selected artist.
-Primary target audience is people planning to decorate their home / office / garden shed  
+Primary target audience is people planning to decorate their home / office / garden shed :) 
 Secondary target audience is photographers and fine artists trying to make money with their artwork
 
 ## Scope
@@ -77,18 +70,16 @@ Secondary target audience is photographers and fine artists trying to make money
 - Artwork full page view to include: Artist, Title, description, size options, print type (canvas, acrylic, 
 photo, etc...), quantity, rating, number of likes, views and purchases, category, suggested rooms, hashtag.
 
-
 ### What's out of scope?
 - Order processing after checkout is excluded; the last step of the process is the payment.
 - In order to be viable this kind of service should include visually presenting different printing technologies, but is not included in this project.
 - Potential further features:
-	- Coupon code for promotions,
-	- Discount for multi-buys. 
+    - Coupon code for promotions,
+    - Discount for multi-buys. 
 
 - Marketing the site itself and utilising advertising opportunities within the site is out of scope, therefore no links to social 
 media sites 
 - Legal framework is also excluded, no links to contacts or T&Cs delivery terms, corporate info website.
-
 
 ## Structure 
 
@@ -123,7 +114,6 @@ where users can select from the available sizes and printing technologies as wel
 desired quantity. Quantity is less of an importance in our case than for other web-shops, as 
 normally people will order one copy of a picture they want to hang on their wall. Only commercial 
 buyers (e.g. hotels) will go for multiple copies of the same image.
-
 
 #### Potential contributors
 Potential contributors have a flow of action to fully utilize the page and achieve their goals.
@@ -233,20 +223,19 @@ Artists:
 - Wants newsletter: True/False
 
 Room:
-- 	Kitchen
-- 	Bathroom
-- 	Bedroom
-- 	Lounge
-- 	Living Room
-- 	Children’s Room
-- 	Office
+-   Kitchen
+-   Bathroom
+-   Bedroom
+-   Lounge
+-   Living Room
+-   Children’s Room
+-   Office
 
 I created a table for ratings and product_id, so all ratings are kept in one separate 
 table, but I didn’t create this kind of table for room_type and product, so I can see the 
 difference in handling it later in execution. With hashtags I went for the separate table, 
 as I felt that is the correct way. Later I simplified hashtags, by adding it to the Product 
 model and limiting to just one hashtag per image.
-
 
 ## Skeleton
 
@@ -256,14 +245,24 @@ For learning, exploring and comparison purposes I used two wireframe tools: Bals
 (I’ve found Whimsical easier to use and therefore faster, Balsamiq may be more versatile and can be
  a better option if one needs approval of client, Product owner or any other stakeholder.
 
-#### Landing Page:	
-![alt text](s3://picture-on-the-wall/media/documentation/wireframes/landing_page_intro_view.png "Search page")
+#### Landing Page:  
+![alt text](media/documentation/wireframes/landing_page_intro_view.png "Search page")
 
-#### Landing page after the intro:	
+#### Landing page after the intro:  
 
-![alt text]( "Details view")
+![alt text](media/documentation/wireframes/landing_page_grid_view.png "Details view")
 
-#### and so on
+#### Products Page:
+
+![alt text](media/documentation/wireframes/products_page.png "Details view")
+
+#### Product Details Page:
+
+![alt text](media/documentation/wireframes/details_page.png "Details view")
+
+#### Dashboard
+
+![alt text](media/documentation/wireframes/dashboard.png "Details view")
 
 ### Details of the landing page:
 
@@ -272,22 +271,22 @@ left out to leave more time to actual development...)
 
 Landing Page Polaroid:
 
-1.	Killer Headline
+1.  Killer Headline
 Interest, attention, and understanding. It’s what compels a visitor to stay and learn more about what you’re offering
 Pictures on Your Wall
-2.	Persuasive Subheads
- 	The home of your amazing wall decor prints for your home | office | garden shed ... from just £9.99
-3.	Pictures
+2.  Persuasive Subheads
+    The home of your amazing wall decor prints for your home | office | garden shed ... from just £9.99
+3.  Pictures
 It is essential that the landing page contains image(s) of the product(s).
-4.	An Explanation
+4.  An Explanation
 The landing page needs to make what you’re offering perfectly clear.
-5.	Pain relief
-6.	Pleasure seeking humans
-7.	Methods of Contact
+5.  Pain relief
+6.  Pleasure seeking humans
+7.  Methods of Contact
 Footer with social media and other contact details
-8.	A Guarantee
+8.  A Guarantee
 100% money back guaranty – no questions asked.
-9.	A Powerful call to Action 
+9.  A Powerful call to Action 
 Make it big. Generally speaking, the bigger, the better. Use a button. People have been trained 
 to expect the CTA to be a button. Do not attempt to force back years of expectation by using something 
 other than a button. Stick with the tried and true. People know what to do when they see a button.
@@ -305,7 +304,6 @@ theme that has an appropriate artistic look and adjust where and if needed.
 
 LUX selected from Bootswatch.
 
-
 ## User stories
 
 ### Potential customers
@@ -322,14 +320,16 @@ LUX selected from Bootswatch.
 As a hobby photographer, my pictures hang all over the walls in my house. My friends say I should try to 
 sell them, they’re so good. I’ll upload it here and will see if anyone buys them.
 ### Site owner
-I’d like to make some money with my photos, but I don’t have enough of them for a full web shop, let’s see 
+- I’d like to make some money with my photos, but I don’t have enough of them for a full web shop, let’s see 
 if anyone wants to join me and offer their artwork for sale.
-I’d like to support the potential buyers with artwork rating, so each registered user can rate artwork on a 1-5 scale (stars)
-I need an eye-catching landing page that offers browsing of images in categories as the primary 
+- I’d like to support the potential buyers with artwork rating, so each registered user can rate artwork on a 1-5 scale (stars)
+- I need an eye-catching landing page that offers browsing of images in categories as the primary 
 option as well as explains the site’s purpose in one sentence – a header. 
+
 The eye-catching part being the “Polaroid stack to grid” intro, therefore practically there are two landing pages:
-The initial state with the phone and the polaroids
-The category grid
+  - The initial state with the phone and the polaroids
+  - The category grid
+
 The 1st should have a header about the site purpose, while the 2nd offers the categories and 
 links to details (description for those who want to contribute and those who want to buy)
 
@@ -337,32 +337,39 @@ links to details (description for those who want to contribute and those who wan
 
 ## The final design of the key pages:
 Even though the design is responsive, because of the obvious reasons, a service like this is 
-less likely to be used on small mobile devices. Therefore only desktop versions of the different design elements are shown here:	
+less likely to be used on small mobile devices. Therefore only desktop versions of the different design elements are shown here:    
 ### Home page:
 ![alt text](htktop1.gif "Index page")
 #### Products page:
-![alt text](https://gisktop.jpg "Search page")	
+![alt text](https://gisktop.jpg "Search page")  
 #### Details page
-![alt text](https://giesktop.jpg "Details page")	
+![alt text](https://giesktop.jpg "Details page")    
 #### Dashboard
-
+![alt text](https://giesktop.jpg "Details page")
 
 # Features
 
 When planning the features I was already trying to plan execution. I started where 
 the user arrives - the landing page and then followed the logical path of the user. 
 
-##Customer:
+## Customer:
 
 Arriving on the landing page where there is a short claim what the site is for and the 
 Polaroid stack to grid with the categories. On scroll, the categories expand to grid, and 
 all categories are displayed, each serving as a link to their search view. User can browse 
 pictures, filter hashtags, moods, [also room type (kitchen, bathroom, bedroom, office, shed,
  etc...) if feasible easily]. 
+
 On the page showing multiple images, user can click on a selected image: detailed info page 
-of the chosen image is displayed (user story: “when something caught my attention I’d like to check the details”). Information to be included: bigger image, available sizes, available printing method/type, detailed description, delivery options and price. They can add it to shopping cart and place an order with the selected specifications (size, printing method, delivery option, ...). (user story: “I simply want to go to checkout, select quantity and pay”).
+of the chosen image is displayed (user story: “when something caught my attention I’d like to check the details”). 
+Information to be included: bigger image, available sizes, available printing method/type, detailed description, 
+delivery options and price. 
+
+They can add it to shopping cart and place an order with the selected specifications 
+(size, printing method, delivery option, ...). (user story: “I simply want to go to checkout, select quantity and pay”).
 For basic functionality, there is no need to be registered. These include all searching filtering, 
-browsing as well as ‘liking’ pictures and adding products to cart. Users need to be signed in to access rest of the features though: checkout, rating pictures and becoming a contributor with an Artist Profile and upload photos. 
+browsing as well as ‘liking’ pictures and adding products to cart. Users need to be signed in to access rest of the 
+features though: checkout, rating pictures and becoming a contributor with an Artist Profile and upload photos. 
 
 Regarding print type, there should be a link from the product details page to the description of 
 the selected print type. Also it should be available from navbar.
@@ -384,14 +391,23 @@ I planned pricing like this:
 
 The owner of the picture sets a base price = Reproduction fee, the final selling price is calculated 
 based on this price, plus the price of print, which comes from the printing service and is determined by print technology and size.
+
 Selling price = base price + print price + reward artist if bigger size ordered:
+
 Artist commission = base price + size reward (=base price*£/sqm) 
+
 Example1 (40*30cm metal print):
+
 Base price = £10
+
 Size reward = BP*4*sqm=10*4*(0.3*0.40) = 4.8
+
 Artist Commission = 10 + 4.8 = £14.8
+
 Print price = £68.95
+
 Selling price = Artist commission + print price = 83.75
+
 Comm ratio = 17.9%
 
 Finally the logic had to be different to be able to generate realistic prices. It is based on 
@@ -412,7 +428,9 @@ are added to a dictionary and is stored as the value pair of the product_id key 
 
 To be able to update prices on the detailed product template when a user selects size and technology 
 I had to prepare a workaround due to the lack of my knowledge of API calls: A javaScript function 
-calculates the price with event listeners on the <select> elements for size and technology. This is not ideal and has its flaws, but at least the price updates on the front end...
+calculates the price with event listeners on the <select> elements for size and technology. 
+
+This is not ideal and has its flaws, but at least the price updates on the front end...
 
 ## Checkout - payment
 
@@ -422,19 +440,14 @@ from https://js.stripe.com, rather than included in a bundle or hosted yourself.
 To best leverage Stripe’s advanced fraud functionality, include this script on every page, not 
 just the checkout page. This allows Stripe to detect anomalous behaviour that may be indicative of fraud as customers browse your website.
 
-
-
 # Technologies used
 
 The main technology used for this project is [*Django*](https://www.djangoproject.com/) web framework. I used version 1.11.28
-
 
 Django is a high-level Python web framework, so Python is the language used to build the back end 
 functionality, creating models, accessing database, using forms.
 
 I used [*Pillow==7.0.0*]( https://pypi.org/project/Pillow/) the Python Imaging Library to access and handle image data.
-
-
 
 [*HTML*](https://en.wikipedia.org/wiki/HTML5), 
 
@@ -448,7 +461,6 @@ DOM manipulation and jQuery’s [*Autocomplete*](https://api.jqueryui.com/autoco
 user experience on suggesting hashtags.
 Database: 
 I used [*Postrgesql*](https://www.postgresql.org/), the world's most advanced open source relational database.
-
 
 
 # Testing
@@ -516,7 +528,6 @@ a while until I liked it. Later on I haven’t tested it until the end of the de
 turned out I introduced some malfunctioning with adding background image and footer. Even though the 
 scrolling is blocked on the main container, the background image scrolls behind it.
 
-
 ## User stories
 
 User stories are satisfied except these two:
@@ -539,12 +550,11 @@ Based on this I have built the mechanism to delete artwork from the database. It
 I also included image size restrictions with my own image_size_validator function. The image size logic 
 here is quite different than it would be in a real project. Because of the AWS S3 bucket size and the fact 
 that I’am not handling the uploaded images in my Pillow function, the file size is limited. Contrary to this, 
-in a real project, the image size shouldn’t really be limited – or at least not this much. However, images good
- enough for large prints would quickly break the site, therefore thumbnails should be introduced, saved and 
- used for displaying on the site.
+in a real project, the image size shouldn’t really be limited – or at least not this much. However, images good 
+enough for large prints would quickly break the site, therefore thumbnails should be introduced, saved and 
+used for displaying on the site.
 
 Similarly to the file size validation, minimum pixel size should be implemented to avoid poor quality images.
-
 
 Number of database entries
 As the database is growing, the number of images displayed on the products page is growing and soon it will 
@@ -552,7 +562,6 @@ create problems especially if someone is opening the page on mobile phone with m
 showing many images was to give the impression of abundance to the user, this kind of displaying doesn’t really 
 fit well with pagination, so the number of images can be limited later and more sophisticated filter implemented 
 for more efficient search. Anyway, free AWS S3 bucket limits can be reached sooner than creating problems on the site.
-
 
 ### Testing in different browsers
 
@@ -567,7 +576,6 @@ I asked family members to check the page on Apple devices, it worked well on iPh
 After autoprefixing my CSS, I checked functionality and appearance in Firefox and Edge, no issues found. 
 I also used Firefox during the development, even though I’m more used to Chrome DevTools, in some 
 situations Firefox is more useful to check CSS behaviour and sizes.
-
 
 ### Known bugs:
 - Providing incorrect card payment details, no feedback is displayed.
@@ -656,7 +664,6 @@ These are the one I have:
 **In production, we should never commit secure keys, API keys, usernames and passwords.**
 The very first step I made before initializing git was to remove secure keys to env.py and later on to Heroku.
 
-
 #### When finished with the last bug fix and all the finetuning, I set the DEBUG to **False** in the ```settings.py```
 
 # Credits
@@ -667,13 +674,17 @@ validated with https://jshint.com/
 
 The intro page idea and implementation is from codrops [*tutorial*]( https://tympanus.net/codrops/2016/02/17/polaroid-stack-to-grid-intro-animation/) 
 Transitions in the intro are powered by Dynamics.js, a JavaScript library to create physics-based animations 
+
 The MIT License (MIT)
+
 Copyright (c) 2015 Michael Villar
+
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
 associated documentation files (the 'Software'), to deal in the Software without restriction, including 
 without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
 copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
 LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
