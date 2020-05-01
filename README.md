@@ -319,6 +319,7 @@ LUX selected from Bootswatch.
 ### Potential contributor
 As a hobby photographer, my pictures hang all over the walls in my house. My friends say I should try to 
 sell them, they’re so good. I’ll upload it here and will see if anyone buys them.
+
 ### Site owner
 - I’d like to make some money with my photos, but I don’t have enough of them for a full web shop, let’s see 
 if anyone wants to join me and offer their artwork for sale.
@@ -338,15 +339,16 @@ links to details (description for those who want to contribute and those who wan
 ## The final design of the key pages:
 Even though the design is responsive, because of the obvious reasons, a service like this is 
 less likely to be used on small mobile devices. Therefore only desktop versions of the different design elements are shown here:    
-### Home page:
-![alt text](htktop1.gif "Index page")
-#### Products page:
-![alt text](https://gisktop.jpg "Search page")  
-#### Details page
-![alt text](https://giesktop.jpg "Details page")    
-#### Dashboard
-![alt text](https://giesktop.jpg "Details page")
 
+### Home page:
+    - missing image
+#### Products page:
+    - missing image
+#### Details page
+    - missing image
+#### Dashboard
+    - missing image
+    
 # Features
 
 When planning the features I was already trying to plan execution. I started where 
@@ -583,7 +585,16 @@ situations Firefox is more useful to check CSS behaviour and sizes.
 - The newsletter and marketing communications fields in the product model are not in use, although they appear on the 
 artist dashboard. I haven't tested it until the very end and have just realised, they are not saved properly in the model.
 Boolean fields in the model, but receiving 'on' from the form if selected. 
-- 
+- At the later stages of the process some caused the intro page fall apart on mobile devices. Because of the static files 
+were already collected to AWS S3, the testing became very difficult and it couldn't be solved before submission.
+
+### Submission issue:
+I was making the final fine-tunings on this README.md document when my Virgin Media internet connection disappeared as a result of a 
+Virgin Media Broadband issue in the area. I managed to connect my pc to a hotspot shared from my mobile. 
+
+Two items got left out because of this issue:
+- Lorem ipsum texts remained on the product upload page
+- Screenshots of the app couldn't be included in this README doc.
 
 # Deployment
 
@@ -601,7 +612,7 @@ We can add our SECTRET_KEY
 
 We need to add a couple of more libraries
 Pip install dj-database-url psycopg2. This allows us to connect to the database using a URL rather
- than the standard db driver that Django is using. 
+than the standard db driver that Django is using. 
 
 Pip freeze > requirements.txt 
 
