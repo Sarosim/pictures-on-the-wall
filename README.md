@@ -450,24 +450,21 @@ just the checkout page. This allows Stripe to detect anomalous behaviour that ma
 
 # Technologies used
 
-The main technology used for this project is [*Django*](https://www.djangoproject.com/) web framework. I used version 1.11.28
+- The main technology used for this project is [*Django*](https://www.djangoproject.com/) web framework. I used version 1.11.28
 
-Django is a high-level Python web framework, so Python is the language used to build the back end 
-functionality, creating models, accessing database, using forms.
+- Django is a high-level Python web framework, so Python is the language used to build the back end functionality, creating models, accessing database, using forms.
 
-I used [*Pillow==7.0.0*]( https://pypi.org/project/Pillow/) the Python Imaging Library to access and handle image data.
+- I used [*Pillow==7.0.0*]( https://pypi.org/project/Pillow/) the Python Imaging Library to access and handle image data.
 
-[*HTML*](https://en.wikipedia.org/wiki/HTML5), 
+- [*HTML*](https://en.wikipedia.org/wiki/HTML5), 
 
-[*CSS*](https://en.wikipedia.org/wiki/Cascading_Style_Sheets), 
+- [*CSS*](https://en.wikipedia.org/wiki/Cascading_Style_Sheets), 
 
-[Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) framework, more specifically 
-[**Bootswatch LUX theme**](https://bootswatch.com/lux/).   
+- [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) framework, more specifically [**Bootswatch LUX theme**](https://bootswatch.com/lux/).   
 
-[*JavaScript*](https://www.javascript.com/), I also used [*jQuery*](https://jquery.com/) library to simplify 
-DOM manipulation and jQuery’s [*Autocomplete*](https://api.jqueryui.com/autocomplete/) user interface to improve 
-user experience on suggesting hashtags.
-Database: 
+- [*JavaScript*](https://www.javascript.com/), I also used [*jQuery*](https://jquery.com/) library to simplify DOM manipulation and jQuery’s [*Autocomplete*](https://api.jqueryui.com/autocomplete/) user interface to improve user experience on suggesting hashtags.
+
+- Database: 
 I used [*Postrgesql*](https://www.postgresql.org/), the world's most advanced open source relational database.
 
 
