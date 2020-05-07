@@ -396,19 +396,19 @@ based on this price, plus the price of print, which comes from the printing serv
 
 Selling price = base price + print price + reward artist if bigger size ordered:
 
-Artist commission = base price + size reward (=base price*£/sqm) 
+Artist commission = base price + size reward (=base price x £/sqm) 
 
-Example1 (40*30cm metal print):
+Example1 (40 x 30cm metal print):
 
 Base price = £10
 
-Size reward = BP*4*sqm=10*4*(0.3*0.40) = 4.8
+Size reward = BP x 4 x sqm = 10 x 4 x (0.3 x 0.40) = £4.8
 
 Artist Commission = 10 + 4.8 = £14.8
 
 Print price = £68.95
 
-Selling price = Artist commission + print price = 83.75
+Selling price = Artist commission + print price = £83.75
 
 Comm ratio = 17.9%
 
@@ -430,7 +430,7 @@ are added to a dictionary and is stored as the value pair of the product_id key 
 
 To be able to update prices on the detailed product template when a user selects size and technology 
 I had to prepare a workaround due to the lack of my knowledge of API calls: A javaScript function 
-calculates the price with event listeners on the <select> elements for size and technology. 
+calculates the price with event listeners on the 'select' elements for size and technology. 
 
 This is not ideal and has its flaws, but at least the price updates on the front end...
 
@@ -476,6 +476,7 @@ During testing, I wanted to test:
 - design: compare the final product with the wireframes
 - responsiveness: Check different devices and screen sizes.
 - functioning and operability in different browsers (mobile and pc),
+- the models,
 - against user stories,
 - against misbehaviour (defensive design).
 
@@ -514,21 +515,23 @@ opportunity to build and learn the more complex handling of it :)
 I thoroughly tested the full process from the registration to the deletion of the uploaded artworks 
 and found several bugs during the development, most of them were corrected with the exception of the following two:
 - When a user requests a password reset, they receive the token in an email, the link brings them back 
-to the ‘change password’ page, but filling in the new password, the form ia not submitting.
+to the ‘change password’ page, but filling in the new password, the form is not submitting.
 - When an Artist modifies their artist profile and submits the form, it is saved as a new artist 
 instead of updating the current one. 
-
-I couldn’t fix these before submission due to late discovery and lack of time.
-
-I’ve built and run tests on the models using Django’s TestCase. I faced some issues related to the 
-process as I didn’t know it could’t be run on Heroku’s postgresql. When I learned it, I used sqlite 
-to run the tests locally. Switching database for the test caused some migration issues, which I managed 
-to overcome by using python3 manage.py migrate --fake 
 
 One of the first features developed was the intro animation. I tested it and kept adjusting for quite 
 a while until I liked it. Later on I haven’t tested it until the end of the development process and it 
 turned out I introduced some malfunctioning with adding background image and footer. Even though the 
 scrolling is blocked on the main container, the background image scrolls behind it.
+
+I couldn’t fix these before submission due to late discovery and lack of time.
+
+## Testing models
+
+I’ve built and run tests on the models using Django’s TestCase. I faced some issues related to the 
+process as I didn’t know it could’t be run on Heroku’s postgresql. When I learned it, I used sqlite 
+to run the tests locally. Switching database for the test caused some migration issues, which I managed 
+to overcome by using python3 manage.py migrate --fake 
 
 ## User stories
 
@@ -585,16 +588,9 @@ situations Firefox is more useful to check CSS behaviour and sizes.
 - The newsletter and marketing communications fields in the product model are not in use, although they appear on the 
 artist dashboard. I haven't tested it until the very end and have just realised, they are not saved properly in the model.
 Boolean fields in the model, but receiving 'on' from the form if selected. 
-- At the later stages of the process some caused the intro page fall apart on mobile devices. Because of the static files 
+- At the later stages of the process something caused the intro page fall apart on mobile devices. Because of the static files 
 were already collected to AWS S3, the testing became very difficult and it couldn't be solved before submission.
 
-### Submission issue:
-I was making the final fine-tunings on this README.md document when my Virgin Media internet connection disappeared as a result of a 
-Virgin Media Broadband issue in the area. I managed to connect my pc to a hotspot shared from my mobile. 
-
-Two items got left out because of this issue:
-- Lorem ipsum texts remained on the product upload page
-- Screenshots of the app couldn't be included in this README doc.
 
 # Deployment
 
