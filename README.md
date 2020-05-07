@@ -340,15 +340,21 @@ links to details (description for those who want to contribute and those who wan
 Even though the design is responsive, because of the obvious reasons, a service like this is 
 less likely to be used on small mobile devices. Therefore only desktop versions of the different design elements are shown here:    
 
-### Home page:
-    - missing image
+### Landing page:
+![alt text](media/documentation/landing_page.jpg "Landing page")
+
+### Home page (landing page after the intro):
+![alt text](media/documentation/home_page.jpg "Home page")
+
 #### Products page:
-    - missing image
+![alt text](media/documentation/products_page.jpg "Products page")
+
 #### Details page
-    - missing image
+![alt text](media/documentation/details_page.jpg "Details page")
+
 #### Dashboard
-    - missing image
-    
+![alt text](media/documentation/dashboard.jpg "Dashboard")
+
 # Features
 
 When planning the features I was already trying to plan execution. I started where 
@@ -600,51 +606,47 @@ Created a new app in Heroku, named picture-shop. (The name has to be unique, has
 character, may contain only lowercase characters, numbers and dashes)
 
 As I was going to use the scalable database called postgresql to provision this, clicked on the resources
- tab scrolled down to the add-ons and selected Heroku postgres. 
+tab scrolled down to the add-ons and selected Heroku postgres. 
 Then selected the hobby dev free plan.
 Click on Provision button
 On setting tab Config Vars there is our DATABASE_URL
 We can add our SECTRET_KEY 
 
 We need to add a couple of more libraries
-Pip install dj-database-url psycopg2. This allows us to connect to the database using a URL rather
+`Pip install dj-database-url psycopg2` 
+This allows us to connect to the database using a URL rather
 than the standard db driver that Django is using. 
 
-Pip freeze > requirements.txt 
+`Pip freeze > requirements.txt`
 
 Then in settings.py :
 Add our database
-DATABASE = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}
+`DATABASE = {'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))}`
 
 We need to import dj_database_url
 
 Now we are able to connect to the database, we can makemigrations and migrate. Then create superuser and runserver. It works now.
 
 Now we need to add our static files to Heroku. For that we install Whitenoise:
-Pip install whitenoise
+`Pip install whitenoise`
 This allows us to host our static files correctly on Heroku.
-Again pip freeze > requirements.txt
+Again `pip freeze > requirements.txt`
 We have to add middleware in our settings.py:
 
-MIDDLEWARE = [
-    
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-]
-And 
-STATIC_ROOT = (
-    os.path.join(BASE_DIR, "staticfiles"),
-)
+ `MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware',]`
+
+And `STATIC_ROOT = (os.path.join(BASE_DIR, "staticfiles"),)`
 
 We can organize our database url set up if the postgres database is not found we can use our sqlite.
 
 We also need a Procfile, it is an instruction to Heroku, as to which file is used as our 
 entry at our application with:
 
-web: gunicorn pictures_on_the_wall.wsgi:application
+`web: gunicorn pictures_on_the_wall.wsgi:application`
 
-Pip install gunicorn
+`Pip install gunicorn`
 
-pip freeze > requirements.txt
+`pip freeze > requirements.txt`
 
 We add Heroku to the ALLOWED_HOSTS
 
@@ -671,7 +673,8 @@ These are the one I have:
 **In production, we should never commit secure keys, API keys, usernames and passwords.**
 The very first step I made before initializing git was to remove secure keys to env.py and later on to Heroku.
 
-#### When finished with the last bug fix and all the finetuning, I set the DEBUG to **False** in the ```settings.py```
+#### DEBUG mode
+When finished with the last bug fix and all the finetuning, I set DEBUG to **False** in the settings.py file.
 
 # Credits
 I used CSS prefixer at https://autoprefixer.github.io/ to ensure cross browser functionality. 
