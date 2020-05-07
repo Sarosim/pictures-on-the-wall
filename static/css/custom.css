@@ -511,6 +511,12 @@ footer i {
     text-align: justify;
     text-justify: inter-word;
 }
+
+.requirements-content-text {
+    text-align: justify;
+    text-justify: auto;
+}
+
 /******************* DASHBOARD HTML ******************************/
 
 .dashboard-header {
